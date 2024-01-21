@@ -3,6 +3,8 @@ import csv
 import math
 import pandas as pd
 import numpy as np
+from .process_sql import tokenize
+import json
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -43,3 +45,31 @@ class WriterConsole(Writer):
             count += len(value)
             print(str(key), '->', len(value))
         print(count)
+
+class WriterJsonLikeSpider(Writer):
+    def write(self, dataset, file_path, db_name):
+        json_data = []
+        sql_group = ''
+        for key, value in dataset.items():
+            # sql shared for utterance and all paraphrases
+            sql_group = value[0][14]
+            if str(sql_group) != 'nan':
+
+                for index, v in enumerate(value):
+                    if str(v[11]) != 'nan' and str(v[11]) != ' ':
+                        data = self.get_object_info(sql_group, db_name, v[11], str(key) + '_' + str(index))
+                        json_data.append(data)
+        
+        with open(file_path, 'wt', encoding='utf-8') as out:
+            json.dump(json_data, out, ensure_ascii=False, sort_keys=True, indent=4, separators=(',', ': '))
+            out.close()
+
+    def get_object_info(self, sql_str, db_name, question, id):
+        data = {}
+        data["id"] = id
+        data["db_id"] = db_name
+        data["query"] = sql_str
+        data["query_toks"] = tokenize(sql_str)
+        data["question"] = question
+        data["question_toks"] = tokenize(question)
+        return data
