@@ -14,6 +14,35 @@ class Writer:
     def write():
         pass
 
+class WriterSQL(Writer):
+  def write(self, dataset, file_path, db_name):
+    sqls = []
+    for key, value in dataset.items():
+            # sql shared for utterance and all paraphrases
+            sql_group = value[0][14]
+            if str(sql_group) != 'nan':
+
+                for index, v in enumerate(value):
+                    if str(v[11]) != 'nan' and str(v[11]) != ' ':
+                        data = self.get_object_info(sql_group, db_name, str(key) + '_' + str(index))
+                        sqls.append(data)
+    
+    with open(file_path,'w') as tsv_file:
+      tsv_writer = csv.writer(tsv_file, delimiter='\t')
+      for sql in sqls:
+          print(sql)
+          tsv_writer.writerow([sql['query'], sql['db_id'], sql['id']])
+      tsv_file.close()
+
+
+  def get_object_info(self, sql_str, db_name, id):
+        data = {}
+        data["query"] = sql_str
+        data["db_id"] = db_name
+        data["id"] = id
+        return data
+
+
 class WriterCSV(Writer):
     def write(self, dataset, file_path):
         with open(file_path,'w') as tsv_file:
