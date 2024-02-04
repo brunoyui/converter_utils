@@ -1,7 +1,7 @@
 import logging
 
 from reader import ReaderCSV
-from writer import WriterCSV, WriterExcel, WriterConsole, WriterJsonLikeSpider, WriterSQL
+from writer import WriterCSV, WriterExcel, WriterConsole, WriterJsonLikeSpider, WriterJsonLikeSpiderFirst, WriterSQL
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -25,10 +25,10 @@ def read():
 def write(dataset):
     #writer = WriterExcel()
     #writer = WriterConsole()
-    #writer = WriterJsonLikeSpider()
-    writer = WriterSQL()
+    writer = WriterJsonLikeSpiderFirst()
+    #writer = WriterSQL()
     print(len(dataset))
-    writer.write(dataset, DATASET_FILE_WRITE_PATH_SQL, 'events_log')
+    writer.write(dataset, DATASET_FILE_WRITE_PATH_JSON, 'events_log')
 
 
 def main() -> None:
