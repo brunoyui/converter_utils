@@ -19,7 +19,7 @@ class WriterSQL(Writer):
     sqls = []
     for key, value in dataset.items():
             # sql shared for utterance and all paraphrases
-            sql_group = value[0][14]
+            sql_group = value[0][15]
             if str(sql_group) != 'nan':
 
                 for index, v in enumerate(value):
@@ -42,6 +42,31 @@ class WriterSQL(Writer):
         data["id"] = id
         return data
 
+class WriterSQLFirst(Writer):
+  def write(self, dataset, file_path, db_name):
+    sqls = []
+    for key, value in dataset.items():
+            # sql shared for utterance and all paraphrases
+            sql_group = value[0][15]
+            if str(sql_group) != 'nan':
+              if str(value[0][11]) != 'nan' and str(value[0][11]) != ' ':
+                data = self.get_object_info(sql_group, db_name, str(key) + '_0')
+                sqls.append(data)
+    
+    with open(file_path,'w') as tsv_file:
+      tsv_writer = csv.writer(tsv_file, delimiter='\t')
+      for sql in sqls:
+          print(sql)
+          tsv_writer.writerow([sql['query'], sql['db_id'], sql['id']])
+      tsv_file.close()
+
+
+  def get_object_info(self, sql_str, db_name, id):
+        data = {}
+        data["query"] = sql_str
+        data["db_id"] = db_name
+        data["id"] = id
+        return data
 
 class WriterCSV(Writer):
     def write(self, dataset, file_path):
@@ -133,6 +158,22 @@ class WriterJsonLikeSpider(Writer):
         print(count_other)
         print(count_no_sql)
         print(count_sql)
+    def get_object_info(self, sql_str, db_name, question, id, u_class, class_e_c, class_p, class_w, class_geral, relevance, ambiguity):
+        data = {}
+        data["id"] = id
+        data["db_id"] = db_name
+        data["query"] = sql_str
+        data["query_toks"] = tokenize(sql_str)
+        data["question"] = question
+        data["question_toks"] = tokenize(question)
+        data["u_class"] = str(u_class)
+        data["class_e_c"] = class_e_c
+        data["class_p"] = class_p
+        data["class_w"] = class_w
+        data["class_geral"] = class_geral
+        data["relevance"] = str(relevance)
+        data["ambiguity"] = str(ambiguity)
+        return data
 
 class WriterJsonLikeSpiderFirst(Writer):
     def write(self, dataset, file_path, db_name):

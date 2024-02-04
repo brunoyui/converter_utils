@@ -1,1 +1,1 @@
-from .writer import Writer, WriterConsole, WriterCSV, WriterExcel, WriterJsonLikeSpider, WriterSQL, WriterJsonLikeSpiderFirst
+from .writer import Writer, WriterConsole, WriterCSV, WriterExcel, WriterJsonLikeSpider, WriterSQL, WriterSQLFirst, WriterJsonLikeSpiderFirst
