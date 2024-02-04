@@ -79,21 +79,62 @@ class WriterJsonLikeSpider(Writer):
     def write(self, dataset, file_path, db_name):
         json_data = []
         sql_group = ''
+        class_e_c = ''
+        class_p = ''
+        class_w = ''
+        class_geral = ''
+        relevance = ''
+        ambiguity = ''
+        count_questions = 0
+        count_total = 0 
+        count_other = 0
+        count_no_sql = 0
+        count_sql = 0
+        already_count = False
+        already_count_other = False
         for key, value in dataset.items():
             # sql shared for utterance and all paraphrases
-            sql_group = value[0][14]
-            if str(sql_group) != 'nan':
+            sql_group = value[0][15]
+            class_e_c = value[0][17]
+            class_p = value[0][18]
+            class_w = value[0][19]
+            class_geral = value[0][20]
+            relevance = value[0][21]
+            ambiguity = value[0][23]
 
+            count_total += len(value)
+            if str(sql_group) != 'nan':
+                already_count = False
+                already_count_other = False
                 for index, v in enumerate(value):
+                    if str(v[8]) != 'nan' and str(v[8]) != ' ':
+                        if already_count_other == False:
+                            count_other += 1
+                            already_count_other = True
+                        
                     if str(v[11]) != 'nan' and str(v[11]) != ' ':
-                        data = self.get_object_info(sql_group, db_name, v[11], str(key) + '_' + str(index))
+                        if already_count == False:
+                            count_sql += 1
+                            already_count = True
+                        count_questions += 1
+                        data = self.get_object_info(sql_group, db_name, v[11], str(key) + '_' + str(index), v[12],
+                            class_e_c, class_p, class_w, class_geral, relevance, ambiguity)
                         json_data.append(data)
+            else:
+                count_no_sql +=1
+
         
         with open(file_path, 'wt', encoding='utf-8') as out:
             json.dump(json_data, out, ensure_ascii=False, sort_keys=True, indent=4, separators=(',', ': '))
             out.close()
+        
+        print(count_questions)
+        print(count_total)
+        print(count_other)
+        print(count_no_sql)
+        print(count_sql)
 
-    def get_object_info(self, sql_str, db_name, question, id):
+    def get_object_info(self, sql_str, db_name, question, id, u_class, class_e_c, class_p, class_w, class_geral, relevance, ambiguity):
         data = {}
         data["id"] = id
         data["db_id"] = db_name
@@ -101,4 +142,11 @@ class WriterJsonLikeSpider(Writer):
         data["query_toks"] = tokenize(sql_str)
         data["question"] = question
         data["question_toks"] = tokenize(question)
+        data["u_class"] = str(u_class)
+        data["class_e_c"] = class_e_c
+        data["class_p"] = class_p
+        data["class_w"] = class_w
+        data["class_geral"] = class_geral
+        data["relevance"] = str(relevance)
+        data["ambiguity"] = str(ambiguity)
         return data
