@@ -1643,6 +1643,12 @@ SELECT DISTINCT idcase FROM events_log WHERE activity = 'rework';
 SELECT DISTINCT idcase FROM events_log WHERE activity = 'rework';
 SELECT idcase, activity FROM events_log WHERE activity = 'declaration' GROUP BY idcase HAVING COUNT(DISTINCT resource) > 1;
 SELECT activity, COUNT(activity) as num_occurrences FROM events_log GROUP BY activity HAVING COUNT(activity) > 1;
+SELECT DISTINCT idcase FROM events_log e1 WHERE EXISTS ( SELECT 1 FROM events_log e2 WHERE e1.idcase = e2.idcase AND e1.activity = e2.activity AND e1.timestamp = e2.timestamp - 1);
+SELECT DISTINCT idcase FROM events_log e1 WHERE EXISTS ( SELECT 1 FROM events_log e2 WHERE e1.idcase = e2.idcase AND e1.activity = e2.activity AND e1.timestamp = e2.timestamp - 1);
+SELECT DISTINCT idcase FROM events_log e1 WHERE EXISTS ( SELECT 1 FROM events_log e2 WHERE e1.idcase = e2.idcase AND e1.activity = e2.activity AND e1.timestamp = e2.timestamp - 1);
+SELECT DISTINCT idcase FROM events_log e1 WHERE EXISTS ( SELECT 1 FROM events_log e2 WHERE e1.idcase = e2.idcase AND e1.activity = e2.activity AND e1.timestamp = e2.timestamp - 1);
+SELECT DISTINCT idcase FROM events_log e1 WHERE EXISTS ( SELECT 1 FROM events_log e2 WHERE e1.idcase = e2.idcase AND e1.activity = e2.activity AND e1.timestamp = e2.timestamp - 1);
+SELECT DISTINCT idcase FROM events_log e1 WHERE EXISTS ( SELECT 1 FROM events_log e2 WHERE e1.idcase = e2.idcase AND e1.activity = e2.activity AND e1.timestamp = e2.timestamp - 1);
 SELECT DISTINCT resource FROM events_log;
 SELECT DISTINCT resource FROM events_log WHERE activity = 'supervisor'
 SELECT DISTINCT resource FROM events_log WHERE activity = 'budget';
