@@ -1177,6 +1177,23 @@ SELECT activity, resource FROM events_log ORDER BY timestamp DESC LIMIT 1;
 SELECT activity, resource FROM events_log ORDER BY timestamp DESC LIMIT 1;
 SELECT resource, activity FROM events_log WHERE activity = 'travel declaration processing' ORDER BY timestamp DESC LIMIT 1;
 SELECT resource, activity FROM events_log WHERE activity = 'travel declaration process' ORDER BY timestamp DESC LIMIT 1;
+SELECT e1.activity, e1.resource FROM events_log e1 JOIN events_log e2 ON e1.idcase = e2.idcase WHERE e2.activity = 'end trip' AND e1.timestamp > e2.timestamp;
+SELECT events_log.idcase, events_log.activity, events_log.resource FROM events_log WHERE events_log.timestamp > ( SELECT MAX(timestamp) FROM events_log WHERE activity = 'end trip' )
+SELECT events_log.idcase, events_log.activity, events_log.timestamp FROM events_log WHERE events_log.timestamp > (SELECT timestamp FROM events_log WHERE activity = 'end trip') ORDER BY events_log.timestamp;
+SELECT events_log.activity, events_log.resource FROM events_log WHERE events_log.idcase = (SELECT idcase FROM events_log WHERE activity = 'end trip' AND id > events_log.id) AND events_log.timestamp > (SELECT timestamp FROM events_log WHERE activity = 'end trip' AND id > events_log.id);
+SELECT e.activity, e.timestamp, e.resource, e.cost, e.idcase FROM events_log e WHERE e.idcase IN ( SELECT idcase FROM events_log WHERE activity = 'end trip' ) AND e.timestamp > ( SELECT timestamp FROM events_log WHERE activity = 'end trip' AND idcase = e.idcase )
+SELECT events_log.activity, events_log.timestamp, events_log.resource FROM events_log WHERE events_log.idcase IN (SELECT idcase FROM events_log WHERE activity = 'end trip') ORDER BY events_log.timestamp;
+SELECT events_log.activity, events_log.resource FROM events_log WHERE events_log.timestamp > (SELECT timestamp FROM events_log WHERE activity = 'end trip') ORDER BY events_log.timestamp;
+SELECT events_log.activity, events_log.timestamp FROM events_log WHERE events_log.timestamp > (SELECT timestamp FROM events_log WHERE activity = 'end trip') ORDER BY events_log.timestamp;
+SELECT e1.activity, e1.resource FROM events_log e1 WHERE e1.timestamp > ( SELECT timestamp FROM events_log WHERE activity = 'end trip' AND idcase = e1.idcase )
+SELECT e.activity, e.timestamp, e.resource, e.cost, e.idcase, p.person_responsible FROM events_log e JOIN events_log e2 ON e.idcase = e2.idcase JOIN person_responsible p ON e.activity = p.activity WHERE e2.activity = 'end trip' AND e.timestamp > e2.timestamp;
+SELECT events_log.activity, events_log.timestamp, events_log.resource FROM events_log WHERE events_log.idcase IN (SELECT idcase FROM events_log WHERE activity = 'end trip') ORDER BY events_log.timestamp;
+SELECT events_log.activity, events_log.resource FROM events_log WHERE events_log.timestamp > (SELECT timestamp FROM events_log WHERE activity = 'end trip') ORDER BY events_log.timestamp;
+SELECT events_log.activity, events_log.resource FROM events_log WHERE events_log.idcase IN ( SELECT idcase FROM events_log WHERE activity = 'end trip' ) AND events_log.timestamp > ( SELECT timestamp FROM events_log WHERE activity = 'end trip' )
+SELECT events_log.activity, events_log.timestamp, events_log.resource FROM events_log WHERE events_log.idcase IN ( SELECT idcase FROM events_log WHERE activity = 'end trip' ) AND events_log.timestamp > ( SELECT timestamp FROM events_log WHERE activity = 'end trip' )
+SELECT events_log.activity, events_log.timestamp, events_log.resource FROM events_log WHERE events_log.timestamp > (SELECT timestamp FROM events_log WHERE activity = 'end trip') ORDER BY events_log.timestamp;
+SELECT events_log.activity, events_log.timestamp, events_log.resource FROM events_log WHERE events_log.timestamp > (SELECT MAX(timestamp) FROM events_log WHERE activity = 'trip registration') AND events_log.activity <> 'trip registration';
+SELECT activity, resource FROM events_log WHERE idcase IN ( SELECT idcase FROM events_log WHERE activity = 'end of trip' ) AND timestamp > ( SELECT timestamp FROM events_log WHERE activity = 'end of trip' ) AND activity != 'end of trip';
 SELECT resource, COUNT(*) as num_events FROM events_log WHERE activity != 'end trip' GROUP BY resource;
 SELECT resource, COUNT(*) as num_events FROM events_log WHERE activity != 'end trip' GROUP BY resource;
 SELECT resource, COUNT(*) FROM events_log WHERE activity != 'end trip' GROUP BY resource;
@@ -1234,6 +1251,13 @@ SELECT resource, COUNT(*) AS num_events FROM events_log WHERE activity = 'declar
 SELECT resource FROM events_log WHERE activity = 'declaration approved by administration' GROUP BY resource ORDER BY COUNT(*) DESC LIMIT 1;
 SELECT activity, COUNT(activity) as num_approvals FROM events_log WHERE activity = 'approve declaration' GROUP BY activity ORDER BY num_approvals DESC LIMIT 1;
 SELECT resource, COUNT(*) as num_approvals FROM events_log WHERE activity = 'approve' GROUP BY resource ORDER BY num_approvals DESC LIMIT 1;
+SELECT resource, COUNT(DISTINCT idcase) AS cases_count FROM events_log WHERE timestamp = (SELECT MIN(timestamp) FROM events_log) GROUP BY resource;
+SELECT resource, COUNT(DISTINCT idcase) AS num_cases FROM events_log WHERE timestamp = (SELECT MIN(timestamp) FROM events_log AS e WHERE e.resource = events_log.resource) GROUP BY resource;
+SELECT resource, activity, COUNT(*) as num_times FROM events_log WHERE activity = (SELECT MIN(timestamp) FROM events_log WHERE idcase = events_log.idcase) GROUP BY resource, activity;
+SELECT resource, COUNT(*) FROM events_log WHERE id IN ( SELECT MIN(id) FROM events_log GROUP BY idcase ) GROUP BY resource;
+SELECT resource, COUNT(DISTINCT idcase) AS num_first_actions FROM events_log WHERE timestamp = (SELECT MIN(timestamp) FROM events_log AS e2 WHERE e2.idcase = events_log.idcase) GROUP BY resource;
+SELECT resource, COUNT(DISTINCT idcase) AS declaration_count FROM events_log WHERE activity = 'first action' GROUP BY resource;
+SELECT activity, COUNT(DISTINCT idcase) AS num_declaration_processes FROM events_log WHERE activity = 'declaration' GROUP BY activity;
 SELECT COUNT(DISTINCT idcase) FROM events_log WHERE activity LIKE '%approved%';
 SELECT COUNT(DISTINCT idcase) FROM events_log WHERE activity LIKE '%approved%';
 SELECT COUNT(DISTINCT idcase) FROM events_log WHERE activity LIKE '%approved%';
@@ -1619,6 +1643,12 @@ SELECT DISTINCT idcase FROM events_log WHERE activity = 'rework';
 SELECT idcase, COUNT(DISTINCT id) AS rework_count FROM events_log WHERE activity = 'declaration' GROUP BY idcase HAVING COUNT(DISTINCT activity) > 1;
 SELECT idcase, activity FROM events_log WHERE activity = 'declaration' AND resource = 'rework' GROUP BY idcase;
 SELECT activity, COUNT(activity) as num_occurrences FROM events_log GROUP BY activity HAVING COUNT(activity) > 1;
+SELECT DISTINCT idcase FROM events_log WHERE activity = (SELECT activity FROM events_log GROUP BY activity HAVING COUNT(*) > 1) AND timestamp = (SELECT MAX(timestamp) FROM events_log e2 WHERE e2.idcase = events_log.idcase AND e2.activity = events_log.activity AND e2.timestamp < events_log.timestamp);
+SELECT DISTINCT idcase FROM events_log e1 WHERE EXISTS ( SELECT 1 FROM events_log e2 WHERE e1.idcase = e2.idcase AND e1.activity = e2.activity AND e1.timestamp = e2.timestamp - 1 )
+SELECT DISTINCT idcase FROM events_log WHERE activity IN ( SELECT activity FROM events_log GROUP BY activity, idcase HAVING COUNT(DISTINCT timestamp) > 1 ) ORDER BY idcase;
+SELECT idcase, activity FROM events_log WHERE activity = (SELECT activity FROM events_log GROUP BY activity HAVING COUNT(DISTINCT timestamp) > 1) ORDER BY idcase, timestamp;
+SELECT idcase FROM events_log WHERE activity = 'declaration' AND idcase IN ( SELECT idcase FROM events_log WHERE activity = 'intervention' GROUP BY idcase HAVING COUNT(DISTINCT timestamp) > 1 )
+SELECT DISTINCT e1.idcase, e1.activity FROM events_log e1 JOIN events_log e2 ON e1.idcase = e2.idcase WHERE e1.timestamp = e2.timestamp - 1 AND e1.activity = e2.activity;
 SELECT DISTINCT employee FROM employees WHERE supervisor = 1;
 SELECT DISTINCT resource FROM events_log WHERE activity = 'supervisor'
 SELECT DISTINCT resource FROM events_log WHERE activity = 'budget'
