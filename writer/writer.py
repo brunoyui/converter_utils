@@ -112,39 +112,25 @@ class WriterJsonLikeSpider(Writer):
         ambiguity = ''
         count_questions = 0
         count_total = 0 
-        count_other = 0
         count_no_sql = 0
         count_sql = 0
-        already_count = False
-        already_count_other = False
         for key, value in dataset.items():
             # sql shared for utterance and all paraphrases
-            sql_group = value[0][15]
-            class_e_c = value[0][17]
-            class_p = value[0][18]
-            class_w = value[0][19]
-            class_geral = value[0][20]
-            relevance = value[0][21]
-            ambiguity = value[0][23]
+            sql_group = value[0][10]
+            class_e_c = value[0][14]
+            class_p = value[0][15]
+            class_w = value[0][16]
+            class_geral = value[0][17]
+            relevance = value[0][18]
+            ambiguity = value[0][21]
 
             count_total += len(value)
             if str(sql_group) != 'nan':
-                already_count = False
-                already_count_other = False
                 for index, v in enumerate(value):
-                    if str(v[8]) != 'nan' and str(v[8]) != ' ':
-                        if already_count_other == False:
-                            count_other += 1
-                            already_count_other = True
-                        
-                    if str(v[11]) != 'nan' and str(v[11]) != ' ':
-                        if already_count == False:
-                            count_sql += 1
-                            already_count = True
-                        count_questions += 1
-                        data = self.get_object_info(sql_group, db_name, v[11], str(key) + '_' + str(index), v[12],
+                  count_questions += 1
+                  data = self.get_object_info(sql_group, db_name, v[7], str(key) + '_' + str(index), v[8],
                             class_e_c, class_p, class_w, class_geral, relevance, ambiguity)
-                        json_data.append(data)
+                  json_data.append(data)
             else:
                 count_no_sql +=1
 
@@ -155,17 +141,17 @@ class WriterJsonLikeSpider(Writer):
         
         print(count_questions)
         print(count_total)
-        print(count_other)
         print(count_no_sql)
         print(count_sql)
     def get_object_info(self, sql_str, db_name, question, id, u_class, class_e_c, class_p, class_w, class_geral, relevance, ambiguity):
+        print(question)
         data = {}
         data["id"] = id
         data["db_id"] = db_name
         data["query"] = sql_str
-        data["query_toks"] = tokenize(sql_str)
+        data["query_toks"] = tokenize(sql_str, True)
         data["question"] = question
-        data["question_toks"] = tokenize(question)
+        data["question_toks"] = tokenize(question, False)
         data["u_class"] = str(u_class)
         data["class_e_c"] = class_e_c
         data["class_p"] = class_p

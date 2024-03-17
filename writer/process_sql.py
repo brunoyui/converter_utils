@@ -113,9 +113,11 @@ def get_schema_from_json(fpath):
     return schema
 
 
-def tokenize(string):
+def tokenize(string, is_not_question):
     string = str(string)
-    string = string.replace("\'", "\"")  # ensures all string values wrapped by "" problem??
+    if is_not_question:
+        string = string.replace("\'", "\"")  # ensures all string values wrapped by "" problem??
+    
     quote_idxs = [idx for idx, char in enumerate(string) if char == '"']
     assert len(quote_idxs) % 2 == 0, "Unexpected quote"
 
