@@ -26,9 +26,9 @@ def write(dataset):
     #writer = WriterExcel()
     #writer = WriterConsole()
     #writer = WriterJsonLikeSpiderFirst()
-    writer = WriterJsonLikeSpider()
+    writer = WriterSQL()
     print(len(dataset))
-    writer.write(dataset, DATASET_FILE_WRITE_PATH_JSON, 'event_log')
+    writer.write(dataset, DATASET_FILE_WRITE_PATH_SQL, 'events_log')
 
 
 def main() -> None:

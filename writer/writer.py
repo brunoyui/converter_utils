@@ -19,11 +19,11 @@ class WriterSQL(Writer):
     sqls = []
     for key, value in dataset.items():
             # sql shared for utterance and all paraphrases
-            sql_group = value[0][15]
+            sql_group = value[0][11]
             if str(sql_group) != 'nan':
 
                 for index, v in enumerate(value):
-                    if str(v[11]) != 'nan' and str(v[11]) != ' ':
+                    if str(v[7]) != 'nan' and str(v[7]) != ' ':
                         data = self.get_object_info(sql_group, db_name, str(key) + '_' + str(index))
                         sqls.append(data)
     
