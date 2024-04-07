@@ -1593,12 +1593,12 @@ SELECT COUNT(DISTINCT idcase) FROM events_log WHERE idcase NOT IN (SELECT DISTIN
 SELECT COUNT(DISTINCT idcase) FROM events_log WHERE idcase NOT IN (SELECT DISTINCT idcase FROM events_log where activity = 'Pagamento efetuado') 	events_log	193_5
 SELECT COUNT(DISTINCT idcase) FROM events_log WHERE idcase NOT IN (SELECT DISTINCT idcase FROM events_log where activity = 'Pagamento efetuado') 	events_log	193_6
 SELECT COUNT(DISTINCT idcase) FROM events_log WHERE idcase NOT IN (SELECT DISTINCT idcase FROM events_log where activity = 'Pagamento efetuado') 	events_log	193_7
-SELECT activity, COUNT(DISTINCT(resource)) FROM events_log GROUP BY activity	events_log	194_0
-SELECT activity, COUNT(DISTINCT(resource)) FROM events_log GROUP BY activity	events_log	194_1
-SELECT activity, COUNT(DISTINCT(resource)) FROM events_log GROUP BY activity	events_log	194_2
-SELECT activity, COUNT(DISTINCT(resource)) FROM events_log GROUP BY activity	events_log	194_3
-SELECT activity, COUNT(DISTINCT(resource)) FROM events_log GROUP BY activity	events_log	194_4
-SELECT activity, COUNT(DISTINCT(resource)) FROM events_log GROUP BY activity	events_log	194_5
+SELECT activity, COUNT(DISTINCT resource) FROM events_log GROUP BY activity	events_log	194_0
+SELECT activity, COUNT(DISTINCT resource) FROM events_log GROUP BY activity	events_log	194_1
+SELECT activity, COUNT(DISTINCT resource) FROM events_log GROUP BY activity	events_log	194_2
+SELECT activity, COUNT(DISTINCT resource) FROM events_log GROUP BY activity	events_log	194_3
+SELECT activity, COUNT(DISTINCT resource) FROM events_log GROUP BY activity	events_log	194_4
+SELECT activity, COUNT(DISTINCT resource) FROM events_log GROUP BY activity	events_log	194_5
 select distinct(e1.activity) from events_log AS e1 inner join events_log AS e2 on e1.idcase = e2.idcase WHERE e2.activity = 'Envio de lembrete' and e1.timestamp < e2.timestamp group by e1.idcase, e1.activity 	events_log	195_0
 select distinct(e1.activity) from events_log AS e1 inner join events_log AS e2 on e1.idcase = e2.idcase WHERE e2.activity = 'Envio de lembrete' and e1.timestamp < e2.timestamp group by e1.idcase, e1.activity 	events_log	195_1
 select distinct(e1.activity) from events_log AS e1 inner join events_log AS e2 on e1.idcase = e2.idcase WHERE e2.activity = 'Envio de lembrete' and e1.timestamp < e2.timestamp group by e1.idcase, e1.activity 	events_log	195_2
