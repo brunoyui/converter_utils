@@ -7,7 +7,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-DATASET_FILE_PATH = "./data/dataset.tsv"
+DATASET_FILE_PATH = "./data/pm_dataset.tsv"
 
 DATASET_FILE_WRITE_PATH_CSV = './data/datasetSQL.tsv'
 DATASET_FILE_WRITE_PATH_EXCEL = './data/dataset_.xlsx'
@@ -25,10 +25,10 @@ def read():
 def write(dataset):
     #writer = WriterExcel()
     #writer = WriterConsole()
-    #writer = WriterJsonLikeSpiderFirst()
+    #writer = WriterJsonLikeSpider()
     writer = WriterSQL()
     print(len(dataset))
-    writer.write(dataset, DATASET_FILE_WRITE_PATH_SQL, 'events_log')
+    writer.write(dataset, DATASET_FILE_WRITE_PATH_SQL, 'event_log')
 
 
 def main() -> None:
