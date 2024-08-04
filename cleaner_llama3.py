@@ -1,13 +1,13 @@
 import re
 
-INPUT_PATH = 'data/SPIDER-TEST_SQLPT_5-SHOT_COSSIMILAR_QAPT-EXAMPLE_CTX-200_ANS-4096/RESULTS_MODEL-Meta-Llama-3-8B-Instruct.txt'
-OUTPUT_PATH = 'data/SPIDER-TEST_SQLPT_5-SHOT_COSSIMILAR_QAPT-EXAMPLE_CTX-200_ANS-4096/RESULTS_MODEL-Meta-Llama-3-8B-Instruct_cleaner.txt'
+INPUT_PATH = 'data/SPIDER-TEST_SQL_5-SHOT_COSSIMILAR_QA-EXAMPLE_CTX-200_ANS-4096/RESULTS_MODEL-gpt-4o-mini.txt'
+OUTPUT_PATH = 'data/SPIDER-TEST_SQL_5-SHOT_COSSIMILAR_QA-EXAMPLE_CTX-200_ANS-4096/RESULTS_MODEL-gpt-4o-mini_cleaner.txt'
 
 def cleaner(file_path, output_path):
     with open(file_path, 'r', encoding='latin-1') as file:
         lines = file.readlines()
 
-    with open(output_path, 'w', encoding='latin-1') as output_file:
+    with open(output_path, 'w') as output_file:
         for line in lines:
             line = line.replace("`", "")
             #sql = extract_sql_query_3shot(line)
