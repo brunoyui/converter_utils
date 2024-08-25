@@ -1,0 +1,1127 @@
+[
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: For declaration processing actions that cost between 50 and 400, present their identifier, the activity associated with it, the responsible employee and its specific cost. */\nSELECT id, activity, resource, cost FROM event_log WHERE cost BETWEEN 50 AND 400\n\n/* Answer the following: Report all actions carried out during the processing of each declaration, which costs are not null. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n/* Answer the following: Report the cost of the attributes of the events that occurred between the dates '2017-01-10' and '2017-02-01' and are associated with the 'declaration 143598' case */\nSELECT * FROM event_log WHERE idcase = 'declaration 143598' AND timestamp BETWEEN '2017-01-10' AND '2017-02-01'\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Report the identifier of declarations in which any action had a cost greater than 2,225. */\nSELECT ",
+        "response": "DISTINCT idcase FROM event_log WHERE cost > 2225",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "9_4",
+        "index": 82
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: In how many cases do all events have null cost? */\nSELECT COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL) \n\n/* Answer the following: How many cases have only events without costs? */\nSELECT COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL) \n\n/* Answer the following: Select all events whose cost is not null. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Which events have a cost other than null? */\nSELECT ",
+        "response": "* FROM event_log WHERE cost IS NOT NULL",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "13_0",
+        "index": 108
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: In how many cases do all events have null cost? */\nSELECT COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL) \n\n/* Answer the following: Select all events whose cost is not null. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n/* Answer the following: How many cases have only events without costs? */\nSELECT COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL) \n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Which events have a non-null cost? */\nSELECT ",
+        "response": "* FROM event_log WHERE cost IS NOT NULL",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "13_1",
+        "index": 109
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Select all events whose cost is not null. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n/* Answer the following: In how many cases do all events have null cost? */\nSELECT COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL) \n\n/* Answer the following: Select all events that have an associated cost. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: List the events that have a non-null cost. */\nSELECT ",
+        "response": "* FROM event_log WHERE cost IS NOT NULL",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "13_2",
+        "index": 110
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: In how many cases do all events have null cost? */\nSELECT COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL) \n\n/* Answer the following: Select all events whose cost is not null. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n/* Answer the following: How many null cost events are associated with each resource in each case? */\nselect idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What are the events in which the cost is not null? */\nSELECT ",
+        "response": "* FROM event_log WHERE cost IS NOT NULL",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "13_3",
+        "index": 111
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Select all events whose cost is not null. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n/* Answer the following: In how many cases do all events have null cost? */\nSELECT COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL) \n\n/* Answer the following: Retrieve all information about events that have a cost. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: List the events that have a cost other than null. */\nSELECT ",
+        "response": "* FROM event_log WHERE cost IS NOT NULL",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "13_4",
+        "index": 112
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: How many declarations did the costs not reported to the university? */\nSELECT COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL) \n\n/* Answer the following: Report all actions carried out during the processing of each declaration, which costs are not null. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n/* Answer the following: Which declarations represent the highest cost to the university? */\nSELECT idcase FROM event_log GROUP BY idcase HAVING SUM(cost) = (SELECT SUM(cost) FROM event_log  GROUP BY idcase ORDER BY SUM(cost) DESC LIMIT 1) \n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Report all occurrences in the processing of declarations where costs were communicated to the university */\nSELECT ",
+        "response": "* FROM event_log WHERE cost IS NOT NULL",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "13_9",
+        "index": 117
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: What are the most recurring activities in the log? */\nSELECT activity from event_log GROUP BY activity HAVING  COUNT(*) = (SELECT COUNT(*) FROM event_log  GROUP BY activity ORDER BY COUNT(*)  desc LIMIT 1) \n\n/* Answer the following: What are the 10 cases, in descending order, with the most activities performed? */\nSELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT Count(*) FROM event_log GROUP BY idcase ORDER BY Count(*) Desc LIMIT 10) order by idcase DESC\n\n/* Answer the following: Which activities appear most often in the event log? */\nSELECT activity from event_log GROUP BY activity HAVING  COUNT(*) = (SELECT COUNT(*) FROM event_log  GROUP BY activity ORDER BY COUNT(*)  desc LIMIT 1) \n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What are the most frequent activities? */\nSELECT ",
+        "response": "activity FROM event_log GROUP BY activity HAVING COUNT(*) = (SELECT COUNT(*) FROM event_log GROUP BY activity ORDER BY COUNT(*) DESC LIMIT 1)",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "15_0",
+        "index": 123
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Which activities were performed more than three times? */\nSELECT activity FROM event_log GROUP BY activity HAVING COUNT(*) > 3\n\n/* Answer the following: Which activities are associated with more than five events? */\nSELECT activity, COUNT(*) FROM event_log GROUP BY activity HAVING COUNT(*) > 5\n\n/* Answer the following: What are the 10 cases, in descending order, with the most activities performed? */\nSELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT Count(*) FROM event_log GROUP BY idcase ORDER BY Count(*) Desc LIMIT 10) order by idcase DESC\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What are the most frequently activities performed? */\nSELECT ",
+        "response": "activity FROM event_log GROUP BY activity HAVING COUNT(*) = (SELECT COUNT(*) FROM event_log GROUP BY activity ORDER BY COUNT(*) DESC LIMIT 1)",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "15_1",
+        "index": 124
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: What are the names of the activities that were performed most times in this business process? */\nSELECT activity from event_log GROUP BY activity HAVING  COUNT(*) = (SELECT COUNT(*) FROM event_log  GROUP BY activity ORDER BY COUNT(*)  desc LIMIT 1) \n\n/* Answer the following: What are the activities of this business process and how many times were they performed? Order your response in relation to the frequency of performing the activities. */\nSELECT activity, COUNT(*) FROM event_log GROUP BY activity  ORDER BY COUNT (*)\n\n/* Answer the following: Provide a list, in descending order, of the ten process instances with the most activities. */\nSELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT Count(*) FROM event_log GROUP BY idcase ORDER BY Count(*) Desc LIMIT 10) order by idcase DESC\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Retrieve the names of the activities that are most frequently performed in this business process. */\nSELECT ",
+        "response": "activity FROM event_log GROUP BY activity HAVING COUNT(*) = (SELECT COUNT(*) FROM event_log GROUP BY activity ORDER BY COUNT(*) DESC LIMIT 1)",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "15_3",
+        "index": 126
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: What was performed during the year 2017 during the processing of declarations? */\nSELECT * FROM event_log WHERE timestamp BETWEEN '2017-01-01' AND '2018-01-01'\n\n/* Answer the following: How many people were responsible for performing activities in the declaration management process? */\nSELECT COUNT (DISTINCT resource) FROM event_log\n\n/* Answer the following: Which employees work the most during the processing of declarations? */\nSELECT resource FROM event_log GROUP BY resource HAVING COUNT(*) = (SELECT COUNT(*) FROM event_log GROUP BY resource ORDER BY COUNT(*) DESC LIMIT 1) \n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What activities does the university perform most during the processing of declarations? */\nSELECT ",
+        "response": "activity FROM event_log GROUP BY activity HAVING COUNT(*) = (SELECT COUNT(*) FROM event_log GROUP BY activity ORDER BY COUNT(*) DESC LIMIT 1)",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "15_4",
+        "index": 127
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Make a descending list of 10 declaration codes with the most actions performed during their processing. */\nSELECT idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log  GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC\n\n/* Answer the following: Various actions, activities or tasks are possible when processing a declaration. It is useful to know the number of declarations associated with the performance of each of these actions, activities or tasks. */\nSELECT COUNT(DISTINCT idcase), activity FROM event_log GROUP BY activity\n\n/* Answer the following: Create a report on the costs of performing declaration processing tasks, presenting the information from highest to lowest cost. */\nselect cost, activity from event_log order by cost\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Make a list of activities performed during the processing of declarations. The list must be ordered from the most frequent activity to the least frequent and must clearly indicate how many times each activity was performed. */\nSELECT ",
+        "response": "activity, COUNT(*) FROM event_log GROUP BY activity ORDER BY COUNT (*)",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "16_3",
+        "index": 131
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Report the name of the task associated with declaration processing actions completed on April 12, 2018. */\nSELECT DISTINCT activity FROM (select activity, MAX(timestamp) as timestamp  FROM event_log GROUP by idcase) WHERE timestamp BETWEEN '2018-04-12' AND '2018-04-13'\n\n/* Answer the following: Make a report listing all declarations in which the end of the trip was recorded in the period 2016 and 2017. */\nSELECT DISTINCT idcase FROM event_log WHERE activity = 'End trip' AND timestamp BETWEEN '2016-01-01' AND '2018-01-01'\n\n/* Answer the following: I need all the information regarding the actions that occurred between January 10, 2017 and February 1, 2017 in the processing of declaration 143598. */\nSELECT * FROM event_log WHERE idcase = 'declaration 143598' AND timestamp BETWEEN '2017-01-10' AND '2017-02-01'\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Report everything that occurred during the year 2017 in the processing of declarations. */\nSELECT ",
+        "response": "* FROM event_log WHERE timestamp BETWEEN '2017-01-01' AND '2018-01-01'",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "17_12",
+        "index": 144
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Which declarations had 10 events or fewer? */\nSELECT idcase FROM event_log group by idcase having count(*) <= 10\n\n/* Answer the following: What are the five longest declaration processes in terms of events, which have at least 20 events, and what are their durations? */\nselect strftime('%s', MAX(timestamp)) - strftime('%s', MIN(timestamp)), idcase FROM event_log where idcase in (select idcase from event_log group by idcase having  count(*) IN (select count(*) from event_log group by idcase HAVING count(*) >= 20 order by count(*) desc limit 5)) group by idcase \n\n/* Answer the following: Which resources acted more than five times on a single declaration? */\nSELECT DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Which declarations have up to 20 associated events? */\nSELECT ",
+        "response": "idcase FROM event_log GROUP BY idcase HAVING count(*) <= 20",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "18_1",
+        "index": 148
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Count how many actions were performed in each declaration and report how many declarations have the same number of events performed. */\nSELECT events_count, COUNT(*) FROM (SELECT COUNT(*) as events_count, idcase FROM event_log GROUP BY idcase ) GROUP BY events_count\n\n/* Answer the following: Analyze the declarations and check which actions were performed more than three times in each of them. */\nSELECT DISTINCT activity FROM event_log GROUP BY activity, idcase HAVING count(activity) > 3\n\n/* Answer the following: List the resources that worked on executing more than five events in the same case. */\nSELECT DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: List all declarations in which the trace has up to 20 events. */\nSELECT ",
+        "response": "idcase FROM event_log GROUP BY idcase HAVING count(*) <= 20",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "18_5",
+        "index": 152
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the resources that worked on executing more than five events in the same case. */\nSELECT DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5\n\n/* Answer the following: Count how many actions were performed in each declaration and report how many declarations have the same number of events performed. */\nSELECT events_count, COUNT(*) FROM (SELECT COUNT(*) as events_count, idcase FROM event_log GROUP BY idcase ) GROUP BY events_count\n\n/* Answer the following: Various actions, activities or tasks are possible when processing a declaration. It is useful to know the number of declarations associated with the performance of each of these actions, activities or tasks. */\nSELECT COUNT(DISTINCT idcase), activity FROM event_log GROUP BY activity\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: List all declarations in which the performance has up to 20 events. */\nSELECT ",
+        "response": "idcase FROM event_log GROUP BY idcase HAVING count(*) <= 20",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "18_6",
+        "index": 153
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Return the five resources requested in the greatest number of events. */\nSELECT resource from event_log GROUP BY resource HAVING  COUNT(*) IN (SELECT COUNT(*) FROM event_log  GROUP BY resource ORDER BY COUNT(*)  desc LIMIT 5)\n\n/* Answer the following: Retrieve the five resources associated with the greatest number of events. */\nSELECT resource from event_log GROUP BY resource HAVING  COUNT(*) IN (SELECT COUNT(*) FROM event_log  GROUP BY resource ORDER BY COUNT(*)  desc LIMIT 5)\n\n/* Answer the following: List all resources that acted more than five times in the same case. */\nSELECT DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Return the five resources requested in the greatest number of cases. */\nSELECT ",
+        "response": "resource from event_log GROUP BY resource HAVING COUNT(DISTINCT idcase) IN (SELECT COUNT(DISTINCT idcase) FROM event_log GROUP BY resource ORDER BY COUNT(DISTINCT idcase) desc LIMIT 5)",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "19_2",
+        "index": 156
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Which activities have more than three occurrences per case? */\nSELECT DISTINCT activity FROM event_log GROUP BY activity, idcase HAVING count(activity) > 3\n\n/* Answer the following: What activities appear more than three times in a single case? */\nSELECT DISTINCT activity FROM event_log GROUP BY activity, idcase HAVING count(activity) > 3\n\n/* Answer the following: Which activities have more than five occurrences in the event log? */\nSELECT activity, COUNT(*) FROM event_log GROUP BY activity HAVING COUNT(*) > 5\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What are the cases that have more than 20 activity occurrences? */\nSELECT ",
+        "response": "idcase FROM event_log GROUP BY idcase HAVING count(*) > 20",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "23_0",
+        "index": 184
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Which process instances have up to 10 activity occurrences? */\nSELECT idcase FROM event_log group by idcase having count(*) <= 10\n\n/* Answer the following: In how many process instances was each activity performed? */\nSELECT count(DISTINCT idcase), activity FROM event_log GROUP BY activity\n\n/* Answer the following: Provide a list, in descending order, of the ten process instances with the most activities. */\nSELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT Count(*) FROM event_log GROUP BY idcase ORDER BY Count(*) Desc LIMIT 10) order by idcase DESC\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Which process instances have more than 20 activities performed? */\nSELECT ",
+        "response": "idcase FROM event_log GROUP BY idcase HAVING count(*) > 20",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "23_4",
+        "index": 188
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Which process instances have up to 10 activity occurrences? */\nSELECT idcase FROM event_log group by idcase having count(*) <= 10\n\n/* Answer the following: For each activity, calculate in how many process instances they were performed in. */\nSELECT count(DISTINCT idcase), activity FROM event_log GROUP BY activity\n\n/* Answer the following: Provide a list, in descending order, of the ten process instances with the most activities. */\nSELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT Count(*) FROM event_log GROUP BY idcase ORDER BY Count(*) Desc LIMIT 10) order by idcase DESC\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: List all process instances that have more than 20 activity occurrences. */\nSELECT ",
+        "response": "idcase FROM event_log GROUP BY idcase HAVING count(*) > 20",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "23_5",
+        "index": 189
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: What are the 10 cases, in descending order, with the most events? */\nSELECT idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log  GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC\n\n/* Answer the following: What are the 10 cases in descending order with the greatest number of events? */\nSELECT idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log  GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC\n\n/* Answer the following: What are the 10 cases with the greatest number of events? List the cases in descending order. */\nSELECT idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log  GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Which cases have the greatest number of events? */\nSELECT ",
+        "response": "idcase FROM event_log GROUP BY idcase HAVING COUNT(*) = (SELECT COUNT(*) FROM event_log GROUP BY idcase ORDER BY count(*) DESC LIMIT 1)",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "24_0",
+        "index": 193
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the 10 cases, in descending order, with the most activity performances. */\nSELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT Count(*) FROM event_log GROUP BY idcase ORDER BY Count(*) Desc LIMIT 10) order by idcase DESC\n\n/* Answer the following: List, in descending order, the 10 cases that have the most activity performances. */\nSELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT Count(*) FROM event_log GROUP BY idcase ORDER BY Count(*) Desc LIMIT 10) order by idcase DESC\n\n/* Answer the following: What were the five cases with the most performances of activities and what was the duration of each of them? */\nselect strftime('%s', MAX(timestamp)) - strftime('%s', MIN(timestamp)), idcase FROM event_log where idcase in (select idcase from event_log group by idcase having  count(*) IN (select count(*) from event_log group by idcase order by count(*) desc limit 5)) group by idcase \n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What are the cases in which there are most activity performances? */\nSELECT ",
+        "response": "idcase FROM event_log GROUP BY idcase HAVING COUNT(*) = (SELECT COUNT(*) FROM event_log GROUP BY idcase ORDER BY count(*) DESC LIMIT 1)",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "24_1",
+        "index": 194
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List, in descending order, the 10 cases that have the most events. */\nSELECT idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log  GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC\n\n/* Answer the following: List the case identifiers that have more than 3 events. */\nselect idcase from event_log GROUP BY idcase HAVING COUNT(*) > 3\n\n/* Answer the following: Retrieve the cases that have more than one event. */\nSELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) > 1\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Retrieve the identifiers of the cases that have the greatest number of events. */\nSELECT ",
+        "response": "idcase FROM event_log GROUP BY idcase HAVING COUNT(*) = (SELECT COUNT(*) FROM event_log GROUP BY idcase ORDER BY count(*) DESC LIMIT 1)",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "24_2",
+        "index": 195
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Make a descending list of 10 declaration codes with the most actions performed during their processing. */\nSELECT idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log  GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC\n\n/* Answer the following: What are the ten declarations that involved the greatest number of actions? I need the results sorted in descending order according to the code of each declaration */\nSELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT Count(*) FROM event_log GROUP BY idcase ORDER BY Count(*) Desc LIMIT 10) order by idcase DESC\n\n/* Answer the following: Count how many actions were performed in each declaration and report how many declarations have the same number of events performed. */\nSELECT events_count, COUNT(*) FROM (SELECT COUNT(*) as events_count, idcase FROM event_log GROUP BY idcase ) GROUP BY events_count\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Retrieve the codes for the longest declarations in terms of number of actions performed. */\nSELECT ",
+        "response": "idcase FROM event_log GROUP BY idcase HAVING COUNT(*) = (SELECT COUNT(*) FROM event_log GROUP BY idcase ORDER BY count(*) DESC LIMIT 1)",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "24_6",
+        "index": 199
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Report all cases relating to activities started or completed for which payments have not yet been requested or made. */\nSELECT idcase from event_log WHERE activity = 'Start trip' OR activity = 'End trip' EXCEPT SELECT idcase from event_log WHERE activity = 'Request payment' INTERSECT SELECT idcase from event_log WHERE activity = 'Payment handled'\n\n/* Answer the following: Submit a report with the employee's name and the number of times they requested a declaration if they did so more than twice. */\nselect resource, count(*) from event_log where activity = 'Declaration submitted by employee' group by resource having count(*) > 2\n\n/* Answer the following: Make a report stating how many interventions by each employee did not report costs in the processing of declarations. */\nselect idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Report the declarations in which the employee Sara was involved and for which a payment request has not yet been opened. */\nSELECT ",
+        "response": "DISTINCT idcase FROM event_log WHERE resource = 'Sara' AND idcase NOT IN (SELECT idcase FROM event_log WHERE activity = 'Request payment')",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "25_5",
+        "index": 205
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: How many cases are related to each of the possible activities? */\nSELECT COUNT(DISTINCT idcase), activity FROM event_log GROUP BY activity\n\n/* Answer the following: In which cases are there more than 20 occurrences of activities performed? */\nSELECT idcase FROM event_log GROUP BY idcase HAVING count(*) > 20\n\n/* Answer the following: What are the 10 cases with the greatest number of events? List the cases in descending order. */\nSELECT idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log  GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What are the 10 cases with the greatest number of activities? List the cases in descending order. */\nSELECT ",
+        "response": "idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT Count(*) FROM event_log GROUP BY idcase ORDER BY Count(*) Desc LIMIT 10) order by idcase DESC",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "28_1",
+        "index": 223
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: What are the 10 cases, in descending order, with the most events? */\nSELECT idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log  GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC\n\n/* Answer the following: What are the 10 cases in descending order with the greatest number of events? */\nSELECT idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log  GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC\n\n/* Answer the following: Which activities have more than three occurrences per case? */\nSELECT DISTINCT activity FROM event_log GROUP BY activity, idcase HAVING count(activity) > 3\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What are the 10 cases in descending order with the most activities? */\nSELECT ",
+        "response": "idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT Count(*) FROM event_log GROUP BY idcase ORDER BY Count(*) Desc LIMIT 10) order by idcase DESC",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "28_2",
+        "index": 224
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Provide a list in descending order of the 10 cases with the most events. */\nSELECT idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log  GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC\n\n/* Answer the following: What were the five cases with the most performances of activities and what was the duration of each of them? */\nselect strftime('%s', MAX(timestamp)) - strftime('%s', MIN(timestamp)), idcase FROM event_log where idcase in (select idcase from event_log group by idcase having  count(*) IN (select count(*) from event_log group by idcase order by count(*) desc limit 5)) group by idcase \n\n/* Answer the following: List, in descending order, the 10 cases that have the most events. */\nSELECT idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log  GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Provide a list in descending order of the 10 cases with the most activities. */\nSELECT ",
+        "response": "idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT Count(*) FROM event_log GROUP BY idcase ORDER BY Count(*) Desc LIMIT 10) order by idcase DESC",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "28_5",
+        "index": 227
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Make a descending list of 10 declaration codes with the most actions performed during their processing. */\nSELECT idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log  GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC\n\n/* Answer the following: Which actions were performed more than five times during the processing of declarations? */\nSELECT activity, COUNT(*) FROM event_log GROUP BY activity HAVING COUNT(*) > 5\n\n/* Answer the following: What are the 5 declarations that went through the greatest number of actions and how long did each of them take to process? */\nselect strftime('%s', MAX(timestamp)) - strftime('%s', MIN(timestamp)), idcase FROM event_log where idcase in (select idcase from event_log group by idcase having  count(*) IN (select count(*) from event_log group by idcase order by count(*) desc limit 5)) group by idcase \n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What are the ten declarations that involved the greatest number of actions? I need the results sorted in descending order according to the code of each declaration */\nSELECT ",
+        "response": "idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT Count(*) FROM event_log GROUP BY idcase ORDER BY Count(*) Desc LIMIT 10) order by idcase DESC",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "28_9",
+        "index": 231
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Make a descending list of 10 declaration codes with the most actions performed during their processing. */\nSELECT idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log  GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC\n\n/* Answer the following: Which actions were performed more than five times during the processing of declarations? */\nSELECT activity, COUNT(*) FROM event_log GROUP BY activity HAVING COUNT(*) > 5\n\n/* Answer the following: Which declarations had 10 events or fewer? */\nSELECT idcase FROM event_log group by idcase having count(*) <= 10\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What are the ten declarations, in descending code order, with the greatest number of actions? */\nSELECT ",
+        "response": "idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT Count(*) FROM event_log GROUP BY idcase ORDER BY Count(*) Desc LIMIT 10) order by idcase DESC",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "28_10",
+        "index": 232
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Which cases have the greatest number of events? */\nSELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) = (SELECT  COUNT(*) FROM event_log GROUP BY idcase ORDER BY count(*) DESC LIMIT 1)\n\n/* Answer the following: What are the five cases with the most events and what are their durations? */\nselect strftime('%s', MAX(timestamp)) - strftime('%s', MIN(timestamp)), idcase FROM event_log where idcase in (select idcase from event_log group by idcase having  count(*) IN (select count(*) from event_log group by idcase order by count(*) desc limit 5)) group by idcase \n\n/* Answer the following: What are the 10 cases in descending order with the most activities? */\nSELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT Count(*) FROM event_log GROUP BY idcase ORDER BY Count(*) Desc LIMIT 10) order by idcase DESC\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What are the 10 cases, in descending order, with the most events? */\nSELECT ",
+        "response": "idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "29_0",
+        "index": 233
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Which cases have the greatest number of events? */\nSELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) = (SELECT  COUNT(*) FROM event_log GROUP BY idcase ORDER BY count(*) DESC LIMIT 1)\n\n/* Answer the following: What are the 10 cases in descending order with the most activities? */\nSELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT Count(*) FROM event_log GROUP BY idcase ORDER BY Count(*) Desc LIMIT 10) order by idcase DESC\n\n/* Answer the following: What are the five cases with the most events and what are their durations? */\nselect strftime('%s', MAX(timestamp)) - strftime('%s', MIN(timestamp)), idcase FROM event_log where idcase in (select idcase from event_log group by idcase having  count(*) IN (select count(*) from event_log group by idcase order by count(*) desc limit 5)) group by idcase \n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What are the 10 cases in descending order with the greatest number of events? */\nSELECT ",
+        "response": "idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "29_1",
+        "index": 234
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Which cases have the greatest number of events? */\nSELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) = (SELECT  COUNT(*) FROM event_log GROUP BY idcase ORDER BY count(*) DESC LIMIT 1)\n\n/* Answer the following: Within the subset of cases that have at least 20 events, which are the five with the greatest number of events and how long did each of these cases take to perform? */\nselect strftime('%s', MAX(timestamp)) - strftime('%s', MIN(timestamp)), idcase FROM event_log where idcase in (select idcase from event_log group by idcase having  count(*) IN (select count(*) from event_log group by idcase HAVING count(*) >= 20 order by count(*) desc limit 5)) group by idcase \n\n/* Answer the following: What are the 10 cases with the greatest number of activities? List the cases in descending order. */\nSELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT Count(*) FROM event_log GROUP BY idcase ORDER BY Count(*) Desc LIMIT 10) order by idcase DESC\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What are the 10 cases with the greatest number of events? List the cases in descending order. */\nSELECT ",
+        "response": "idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "29_2",
+        "index": 235
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: What are the ten declarations that involved the greatest number of actions? I need the results sorted in descending order according to the code of each declaration */\nSELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT Count(*) FROM event_log GROUP BY idcase ORDER BY Count(*) Desc LIMIT 10) order by idcase DESC\n\n/* Answer the following: What are the ten declarations, in descending code order, with the greatest number of actions? */\nSELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT Count(*) FROM event_log GROUP BY idcase ORDER BY Count(*) Desc LIMIT 10) order by idcase DESC\n\n/* Answer the following: Make a list of activities performed during the processing of declarations. The list must be ordered from the most frequent activity to the least frequent and must clearly indicate how many times each activity was performed. */\nSELECT activity, COUNT(*) FROM event_log GROUP BY activity  ORDER BY COUNT (*)\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Make a descending list of 10 declaration codes with the most actions performed during their processing. */\nSELECT ",
+        "response": "idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "29_6",
+        "index": 239
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the labels of activities that have occurred at least one hundred times. */\nSELECT activity FROM event_log GROUP BY activity HAVING COUNT (*) >= 100\n\n/* Answer the following: Considering that there are actions whose name identifies the role of the employee responsible, present an ordered list with the number of times that actions from each group were carried out. */\nselect count(*), 'employee' as grupo from event_log WHERE activity like '%employee%'  UNION select count(*), 'supervisor' as grupo from event_log WHERE activity like '%supervisor%'  UNION select count(*), 'administration' as grupo from event_log WHERE activity like '%administration%'  UNION select count(*), 'pre-approver' as grupo from event_log WHERE activity like '%pre-approver%'  UNION select count(*), 'budget owner' as grupo from event_log WHERE activity like '%budget owner%'  UNION select count(*), 'director' as grupo from event_log WHERE activity like '%director%'  order by count(*)  \n\n/* Answer the following: Make an ordered list of employees, from most productive to least productive, stating how many times each one was involved in processing declarations. */\nSELECT resource, COUNT(*) FROM event_log GROUP BY resource ORDER BY COUNT(*) DESC\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Make a list of employees who have acted at least 100 times, organized in descending order by the number of actions performed. */\nSELECT ",
+        "response": "resource FROM event_log GROUP BY resource HAVING count(*) >= 100 ORDER BY count(*) DESC",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "31_2",
+        "index": 251
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Make a list of activities performed during the processing of declarations. The list must be ordered from the most frequent activity to the least frequent and must clearly indicate how many times each activity was performed. */\nSELECT activity, COUNT(*) FROM event_log GROUP BY activity  ORDER BY COUNT (*)\n\n/* Answer the following: Various actions, activities or tasks are possible when processing a declaration. It is useful to know the number of declarations associated with the performance of each of these actions, activities or tasks. */\nSELECT COUNT(DISTINCT idcase), activity FROM event_log GROUP BY activity\n\n/* Answer the following: Make a descending list of 10 declaration codes with the most actions performed during their processing. */\nSELECT idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log  GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Organize all information about the processing of declarations and organize the data in a way ordered by the declaration code and by their start date. */\nSELECT ",
+        "response": "* FROM event_log ORDER BY idcase, timestamp",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "32_5",
+        "index": 257
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Retrieve the type of action performed in the interventions carried out by the employee Diana when processing declarations, which has declared cost information. */\nSELECT activity, count(*) FROM event_log WHERE resource = 'Diana'  AND cost IS NOT NULL GROUP BY activity\n\n/* Answer the following: Make a report stating how many interventions by each employee did not report costs in the processing of declarations. */\nselect idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource\n\n/* Answer the following: How many interventions, per employee, did not report costs during the processing of declarations? */\nselect idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Retrieve all interventions carried out by the employee Diana when processing declarations, which have declared cost information. */\nSELECT ",
+        "response": "count(*) FROM event_log WHERE resource = 'Diana' AND cost IS NOT NULL",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "41_3",
+        "index": 302
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: What is the total number of events in which each resource was involved? */\nSELECT COUNT(*), resource FROM event_log GROUP BY resource\n\n/* Answer the following: What is the total number of events related to each resource? */\nSELECT COUNT(*), resource FROM event_log GROUP BY resource\n\n/* Answer the following: How many events did each resource act on? */\nSELECT COUNT(*), resource FROM event_log GROUP BY resource\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: How many resources acted in cases containing more than 3 events? */\nSELECT ",
+        "response": "COUNT (DISTINCT resource) FROM event_log WHERE idcase IN (SELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) > 3)",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "43_0",
+        "index": 306
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Report in how many cases each resource was responsible for performing the first event. */\nSELECT COUNT(*), resource FROM (SELECT resource, MIN(timestamp) from event_log GROUP BY idcase) GROUP BY resource\n\n/* Answer the following: Report the number of cases in which each resource acted. */\nSELECT COUNT(DISTINCT idcase), resource FROM event_log GROUP BY resource\n\n/* Answer the following: Identify the number of cases each resource was associated with. */\nSELECT resource, COUNT(DISTINCT idcase) from event_log GROUP BY resource\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: List the number of resources that acted in cases that have more than 3 events. */\nSELECT ",
+        "response": "COUNT (DISTINCT resource) FROM event_log WHERE idcase IN (SELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) > 3)",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "43_2",
+        "index": 308
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: How many declaration processes were initiated by each of the employees? */\nSELECT COUNT(*), resource FROM (SELECT resource, MIN(timestamp) from event_log GROUP BY idcase) GROUP BY resource\n\n/* Answer the following: Which employees worked on processing more than three declarations? */\nSELECT resource FROM event_log GROUP BY resource HAVING COUNT(DISTINCT idcase) > 3\n\n/* Answer the following: How many times was each declaration processing action performed by each employee? */\nselect count(*), activity, resource from event_log group by resource, activity\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: How many employees acted in processing declarations that involved more than three interventions? */\nSELECT ",
+        "response": "COUNT (DISTINCT resource) FROM event_log WHERE idcase IN (SELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) > 3)",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "43_4",
+        "index": 310
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: How long, on average, does each type of intervention carried out during the processing of declarations last? */\nWITH RankedEvents AS (SELECT id, activity, timestamp, LEAD(timestamp) OVER (PARTITION BY idcase ORDER BY timestamp) AS next_timestamp, idcase FROM event_log), DurationEvents AS (SELECT activity, (strftime('%s', next_timestamp) - strftime('%s', timestamp)) as duration FROM RankedEvents WHERE next_timestamp IS NOT NULL) SELECT activity, AVG(duration) AS average_duration FROM DurationEvents GROUP BY activity\n\n/* Answer the following: How long does it take from the start of processing a declaration until the end of the trip is recorded or until it is rejected by an employee or payment is made? */\nselect p.idcase, strftime('%s', p.timestamp) - strftime('%s', e.start_time) as 'End trip', strftime('%s', x.timestamp) - strftime('%s', e.start_time) as 'Declaration rejected by employee', strftime('%s', y.timestamp) - strftime('%s', e.start_time) as 'Payment handled', f.activity from event_log p inner join (select MIN(timestamp) as start_time, idcase FROM event_log GROUP by idcase) e on e.idcase = p.idcase and p.activity = 'End trip' left join event_log x on x.idcase=e.idcase and x.activity = 'Declaration rejected by employee'  left join event_log y on y.idcase=e.idcase and y.activity = 'Payment handled' inner join (select MAX(timestamp) as end_time, activity, idcase FROM event_log WHERE activity='End trip' or activity= 'Declaration rejected by employee' or activity='Payment handled' GROUP by idcase) f on f.idcase=e.idcase \n\n/* Answer the following: What was the time spent for a declaration to be approved by the supervisor? */\nWITH RankedEvents AS (SELECT id, activity, timestamp, LEAD(timestamp) OVER (PARTITION BY idcase ORDER BY timestamp) AS next_timestamp, idcase FROM event_log) SELECT idcase, coalesce((strftime('%s', next_timestamp) - strftime('%s', timestamp)),0) as duration FROM RankedEvents WHERE activity='Declaration approved by supervisor'\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What is the duration of processing for each declaration? */\nSELECT ",
+        "response": "idcase, MAX(strftime('%s', timestamp)) - MIN(strftime('%s', timestamp)) FROM event_log GROUP BY idcase",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "49_5",
+        "index": 350
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: How long does it take from the start of processing a declaration until the end of the trip is recorded or until it is rejected by an employee or payment is made? */\nselect p.idcase, strftime('%s', p.timestamp) - strftime('%s', e.start_time) as 'End trip', strftime('%s', x.timestamp) - strftime('%s', e.start_time) as 'Declaration rejected by employee', strftime('%s', y.timestamp) - strftime('%s', e.start_time) as 'Payment handled', f.activity from event_log p inner join (select MIN(timestamp) as start_time, idcase FROM event_log GROUP by idcase) e on e.idcase = p.idcase and p.activity = 'End trip' left join event_log x on x.idcase=e.idcase and x.activity = 'Declaration rejected by employee'  left join event_log y on y.idcase=e.idcase and y.activity = 'Payment handled' inner join (select MAX(timestamp) as end_time, activity, idcase FROM event_log WHERE activity='End trip' or activity= 'Declaration rejected by employee' or activity='Payment handled' GROUP by idcase) f on f.idcase=e.idcase \n\n/* Answer the following: What was the time spent for a declaration to be approved by the supervisor? */\nWITH RankedEvents AS (SELECT id, activity, timestamp, LEAD(timestamp) OVER (PARTITION BY idcase ORDER BY timestamp) AS next_timestamp, idcase FROM event_log) SELECT idcase, coalesce((strftime('%s', next_timestamp) - strftime('%s', timestamp)),0) as duration FROM RankedEvents WHERE activity='Declaration approved by supervisor'\n\n/* Answer the following: The processing of declarations begins with a record about the start of the trip or at a request from an employee. Considering this, provide information on the events associated with the start of processing a declaration, in ascending order according to date and the name of the employee associated with the performance of the event. */\nSELECT * FROM event_log WHERE activity = 'Start trip' OR activity = 'Declaration submitted by employee' ORDER BY timestamp, resource\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: How long did it take between the first action taken on a declaration until an indication of the finalization of a trip, or until those actions that indicate that the declaration was rejected by an employee or that a payment has already been made? */\nSELECT ",
+        "response": "p.idcase, strftime('%s', p.timestamp) - strftime('%s', e.start_time) as 'End trip', strftime('%s', x.timestamp) - strftime('%s', e.start_time) as 'Declaration rejected by employee', strftime('%s', y.timestamp) - strftime('%s', e.start_time) as 'Payment handled' from event_log p inner join (select MIN(timestamp) as start_time, idcase FROM event_log GROUP by idcase) e on e.idcase = p.idcase and p.activity = 'End trip' left join event_log x on x.idcase=e.idcase and x.activity = 'Declaration rejected by employee' left join event_log y on y.idcase=e.idcase and y.activity = 'Payment handled'",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "54_3",
+        "index": 397
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Create a report that informs how much each intervention carried out on the declarations costs, adding information about which action each intervention refers to. Present the report in order from highest to lowest cost already recorded. */\nselect cost, activity from event_log order by cost\n\n/* Answer the following: How many interventions, per employee, did not report costs during the processing of declarations? */\nselect idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource\n\n/* Answer the following: For which declarations was the payment request made between May 1 and 10, 2017? */\nSELECT DISTINCT idcase FROM event_log WHERE activity = 'Request payment' AND timestamp BETWEEN '2017-05-01' AND '2017-05-10'\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Are there interventions that request payment for declarations? If so, report details of the performance of this intervention. */\nSELECT ",
+        "response": "* FROM event_log WHERE activity = 'Request payment'",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "56_3",
+        "index": 407
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: How many declarations did the costs not reported to the university? */\nSELECT COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL) \n\n/* Answer the following: How many declarations have no cost? */\nSELECT COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL) \n\n/* Answer the following: What were the five most costly interventions in the processing of declarations? */\nSELECT * FROM event_log WHERE cost IN (SELECT DISTINCT cost FROM event_log ORDER BY cost DESC LIMIT 5)\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Which declarations represent the highest cost to the university? */\nSELECT ",
+        "response": "idcase FROM event_log GROUP BY idcase HAVING SUM(cost) = (SELECT SUM(cost) FROM event_log GROUP BY idcase ORDER BY SUM(cost) DESC LIMIT 1)",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "58_6",
+        "index": 440
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Select the five events with the highest costs. */\nSELECT * FROM event_log WHERE cost IN (SELECT DISTINCT cost FROM event_log ORDER BY cost DESC LIMIT 5)\n\n/* Answer the following: List five higher-cost events. */\nSELECT * FROM event_log WHERE cost IN (SELECT DISTINCT cost FROM event_log ORDER BY cost DESC LIMIT 5)\n\n/* Answer the following: List the values of the attributes of the five highest-cost events. */\nSELECT * FROM event_log WHERE cost IN (SELECT DISTINCT cost FROM event_log ORDER BY cost DESC LIMIT 5)\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Present the events whose costs are maximum. */\nSELECT ",
+        "response": "* FROM event_log WHERE cost = (SELECT MAX(cost) FROM event_log)",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "59_5",
+        "index": 446
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Which actions were performed more than five times during the processing of declarations? */\nSELECT activity, COUNT(*) FROM event_log GROUP BY activity HAVING COUNT(*) > 5\n\n/* Answer the following: Various actions, activities or tasks are possible when processing a declaration. It is useful to know the number of declarations associated with the performance of each of these actions, activities or tasks. */\nSELECT COUNT(DISTINCT idcase), activity FROM event_log GROUP BY activity\n\n/* Answer the following: Which of the actions relating to processing declarations have already been carried out 100 or more times? */\nSELECT activity FROM event_log GROUP BY activity HAVING COUNT (*) >= 100\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: When processing declarations, several actions are possible. How many times was each of these actions performed? */\nSELECT ",
+        "response": "activity, count(*) from event_log group by activity",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "61_18",
+        "index": 494
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: For declaration processing actions that cost between 50 and 400, present their identifier, the activity associated with it, the responsible employee and its specific cost. */\nSELECT id, activity, resource, cost FROM event_log WHERE cost BETWEEN 50 AND 400\n\n/* Answer the following: Make a list of activities performed during the processing of declarations. The list must be ordered from the most frequent activity to the least frequent and must clearly indicate how many times each activity was performed. */\nSELECT activity, COUNT(*) FROM event_log GROUP BY activity  ORDER BY COUNT (*)\n\n/* Answer the following: Report all actions carried out during the processing of each declaration, which costs are not null. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Create a report on the costs of performing declaration processing tasks, presenting the information from highest to lowest cost. */\nSELECT ",
+        "response": "cost, activity from event_log order by cost",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "62_7",
+        "index": 507
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: What declarations were made by Thomas, Diana, or Sara? */\nSELECT DISTINCT idcase FROM event_log where resource = 'Thomas' OR resource = 'Diana' OR resource = 'Sara'\n\n/* Answer the following: The collaborator Alexis worked on which declarations and how many actions did she engage in for each declaration in this set of declarations? */\nSELECT idcase, count(*) FROM event_log where resource = 'Alexis' GROUP by idcase\n\n/* Answer the following: What are the cases in which one of the following resources acted: Thomas, Diana, or Sara? */\nSELECT DISTINCT idcase FROM event_log where resource = 'Thomas' OR resource = 'Diana' OR resource = 'Sara'\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What are the declarations in which both Sara and Thomas participated together? */\nSELECT ",
+        "response": "idcase FROM event_log WHERE resource = 'Sara' INTERSECT SELECT idcase FROM event_log WHERE resource = 'Thomas'",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "65_5",
+        "index": 531
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List, in alphabetical order and without repetitions, the names of the resources recorded in the event log. */\nSELECT DISTINCT resource FROM event_log ORDER BY resource\n\n/* Answer the following: What resources are recorded in the event log? List in alphabetical order and without repetitions. */\nSELECT DISTINCT resource FROM event_log ORDER BY resource\n\n/* Answer the following: If a resource has acted on more than five events in the same case, list the name of this resource. */\nSELECT DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: List all events, and their attributes, that were performed by resources whose name starts with the letter 'M'. */\nSELECT ",
+        "response": "* FROM event_log WHERE resource LIKE 'M%'",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "75_2",
+        "index": 611
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Which activities appear most often in the event log? */\nSELECT activity from event_log GROUP BY activity HAVING  COUNT(*) = (SELECT COUNT(*) FROM event_log  GROUP BY activity ORDER BY COUNT(*)  desc LIMIT 1) \n\n/* Answer the following: Which activities appear most frequently in the event log? */\nSELECT activity FROM event_log GROUP BY activity HAVING COUNT(*) = (SELECT COUNT(*) FROM event_log GROUP BY activity ORDER BY COUNT(*) DESC LIMIT 1) \n\n/* Answer the following: For which activities are one hundred or more occurrences recorded in the event log? */\nSELECT activity FROM event_log GROUP BY activity HAVING COUNT (*) >= 100\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What activities appear more than five times in the event log? */\nSELECT ",
+        "response": "activity, COUNT(*) FROM event_log GROUP BY activity HAVING COUNT(*) > 5",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "76_2",
+        "index": 619
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: For which activities are one hundred or more occurrences recorded in the event log? */\nSELECT activity FROM event_log GROUP BY activity HAVING COUNT (*) >= 100\n\n/* Answer the following: Which activities appear most frequently in the event log? */\nSELECT activity FROM event_log GROUP BY activity HAVING COUNT(*) = (SELECT COUNT(*) FROM event_log GROUP BY activity ORDER BY COUNT(*) DESC LIMIT 1) \n\n/* Answer the following: Which activities appear most often in the event log? */\nSELECT activity from event_log GROUP BY activity HAVING  COUNT(*) = (SELECT COUNT(*) FROM event_log  GROUP BY activity ORDER BY COUNT(*)  desc LIMIT 1) \n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Which activities have more than five occurrences in the event log? */\nSELECT ",
+        "response": "activity, COUNT(*) FROM event_log GROUP BY activity HAVING COUNT(*) > 5",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "76_3",
+        "index": 620
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: In how many events was the 'declaration approved by administration' activity performed? Report the quantity grouped by resource. */\nSELECT count(*), resource FROM event_log WHERE activity = 'Declaration approved by administration' GROUP BY resource\n\n/* Answer the following: I need to know in how many declarations performed and ended on March 2, 2018 each of the different processing actions were performed. */\nselect activity, count(DISTINCT idcase) FROM event_log where idcase in (SELECT idcase FROM event_log GROUP BY idcase  HAVING strftime('%Y-%m-%d', MAX(timestamp)) =  '2018-03-12') group by activity\n\n/* Answer the following: How many interventions have already been recorded for each type of possible action on declarations? */\nselect activity, count(*) from event_log group by activity\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Report how many actions happened in declaration 56300. */\nSELECT ",
+        "response": "count(*) FROM event_log WHERE idcase = 'declaration 56300'",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "78_6",
+        "index": 646
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: What are the declarations in which both Sara and Thomas participated together? */\nSELECT idcase FROM event_log WHERE resource = 'Sara' INTERSECT SELECT idcase FROM event_log WHERE resource = 'Thomas'\n\n/* Answer the following: The collaborator Alexis worked on which declarations and how many actions did she engage in for each declaration in this set of declarations? */\nSELECT idcase, count(*) FROM event_log where resource = 'Alexis' GROUP by idcase\n\n/* Answer the following: Which declarations were the sole responsibility of the employee Christopher? */\nSELECT idcase from event_log group by idcase HAVING COUNT(DISTINCT resource) = 1 AND resource = 'Christopher'\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What declarations were made by Thomas, Diana, or Sara? */\nSELECT ",
+        "response": "DISTINCT idcase FROM event_log where resource = 'Thomas' OR resource = 'Diana' OR resource = 'Sara'",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "82_4",
+        "index": 681
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Which declarations were finalized with end of trip registration without a payment having been made or at least a payment request having been registered? */\nSELECT DISTINCT idcase FROM event_log where activity = 'End trip' INTERSECT SELECT DISTINCT idcase FROM event_log GROUP BY idcase HAVING count(DISTINCT resource) > 1 EXCEPT SELECT DISTINCT idcase FROM event_log where activity = 'Request Payment' OR activity = 'Payment handled'\n\n/* Answer the following: What are the ten most recent travel declaration processes in which the 'request payment' activity was not performed? */\nSELECT DISTINCT idcase FROM event_log WHERE idcase NOT IN (SELECT DISTINCT idcase FROM event_log WHERE activity = 'Request payment' ) ORDER BY timestamp DESC LIMIT 10\n\n/* Answer the following: In which travel declaration processes were ten or fewer actions performed? */\nSELECT idcase FROM event_log group by idcase having count(*) <= 10\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: In which travel declarations marking the beginning or end of the trip were the payment request and execution not observed? */\nSELECT ",
+        "response": "idcase from event_log WHERE activity = 'Start trip' OR activity = 'End trip' EXCEPT SELECT idcase from event_log WHERE activity = 'Request payment' INTERSECT SELECT idcase from event_log WHERE activity = 'Payment handled'",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "86_8",
+        "index": 707
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List all resources that were not associated with events performed on March 31, 2018. */\nSELECT distinct resource FROM event_log EXCEPT SELECT distinct resource FROM event_log where strftime('%Y-%m-%d', timestamp) =  '2018-03-31'\n\n/* Answer the following: List the events that have a cost other than null. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n/* Answer the following: List the events that have a non-null cost. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: List all events for which no resources are associated. */\nSELECT ",
+        "response": "* FROM event_log WHERE resource IS NULL",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "87_4",
+        "index": 713
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Make a report stating how many interventions by each employee did not report costs in the processing of declarations. */\nselect idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource\n\n/* Answer the following: Make a report reporting the number of interventions that have already been registered for each type of possible action in processing declarations. */\nselect activity, count(*) from event_log group by activity\n\n/* Answer the following: Make a list of all declarations that were the responsibility of just one employee. */\nSELECT idcase from event_log group by idcase HAVING COUNT(DISTINCT resource) = 1\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Make a report of all interventions in which employees were not allocated, or the allocation was not reported. */\nSELECT ",
+        "response": "* FROM event_log WHERE resource IS NULL",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "87_7",
+        "index": 716
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Retrieve the five resources associated with the most cases. */\nSELECT resource from event_log GROUP BY resource HAVING  COUNT(DISTINCT idcase) IN (SELECT COUNT(DISTINCT idcase) FROM event_log  GROUP BY resource ORDER BY COUNT(DISTINCT idcase)  desc LIMIT 5)\n\n/* Answer the following: List all cases in which two different resources subsequently performed the same activity. */\nSELECT DISTINCT(idcase) FROM (SELECT idcase, activity, resource, LEAD(activity) OVER (PARTITION BY idcase ORDER BY timestamp) AS next_activity, LEAD(resource) OVER (PARTITION BY idcase ORDER BY timestamp) AS next_resource FROM event_log)  where activity = next_activity and resource != next_resource \n\n/* Answer the following: For each resource, check how many different activities it was involved in. */\nselect count(DISTINCT activity), resource  FROM event_log GROUP by resource\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: List all resources that acted more than five times in the same case. */\nSELECT ",
+        "response": "DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "90_1",
+        "index": 735
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: What is the number of occurrences of a resource acting? */\nSELECT COUNT(*), resource FROM event_log GROUP BY resource\n\n/* Answer the following: How many resources acted in cases containing more than 3 events? */\nSELECT COUNT (DISTINCT resource) FROM event_log WHERE idcase IN (SELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) > 3)\n\n/* Answer the following: List the cases in which all activities were performed by the same resource. */\nSELECT idcase from event_log group by idcase HAVING COUNT(DISTINCT resource) = 1\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Which resources acted more than five times in the same case? */\nSELECT ",
+        "response": "DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "90_2",
+        "index": 736
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the cases in which all activities were performed by the same resource. */\nSELECT idcase from event_log group by idcase HAVING COUNT(DISTINCT resource) = 1\n\n/* Answer the following: How many times does each of the resources appear in the event log? */\nSELECT resource,COUNT(*) FROM event_log GROUP BY resource\n\n/* Answer the following: Indicate cases in which the same activity was performed twice in a row by two different resources. */\nSELECT DISTINCT(idcase) FROM (SELECT idcase, activity, resource, LEAD(activity) OVER (PARTITION BY idcase ORDER BY timestamp) AS next_activity, LEAD(resource) OVER (PARTITION BY idcase ORDER BY timestamp) AS next_resource FROM event_log)  where activity = next_activity and resource != next_resource \n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: If a resource acted more than five times in the same case, list the name of the resource. */\nSELECT ",
+        "response": "DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "90_3",
+        "index": 737
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the cases in which all events were associated with the same resource. */\nSELECT idcase from event_log group by idcase HAVING COUNT(DISTINCT resource) = 1\n\n/* Answer the following: List the number of resources that acted in cases that have more than 3 events. */\nSELECT COUNT (DISTINCT resource) FROM event_log WHERE idcase IN (SELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) > 3)\n\n/* Answer the following: How many resources acted in cases containing more than 3 events? */\nSELECT COUNT (DISTINCT resource) FROM event_log WHERE idcase IN (SELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) > 3)\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: If a resource has acted on more than five events in the same case, list the name of this resource. */\nSELECT ",
+        "response": "DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "90_4",
+        "index": 738
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the cases in which all events were associated with the same resource. */\nSELECT idcase from event_log group by idcase HAVING COUNT(DISTINCT resource) = 1\n\n/* Answer the following: How many events did each resource work on? */\nSELECT count (*), resource FROM event_log group by resource\n\n/* Answer the following: How many resources acted in cases containing more than 3 events? */\nSELECT COUNT (DISTINCT resource) FROM event_log WHERE idcase IN (SELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) > 3)\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: List the resources that worked on executing more than five events in the same case. */\nSELECT ",
+        "response": "DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "90_5",
+        "index": 739
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: How many events did each resource work on? */\nSELECT count (*), resource FROM event_log group by resource\n\n/* Answer the following: How many events were associated with each resource? */\nSELECT count (*), resource FROM event_log group by resource\n\n/* Answer the following: How many resources acted in cases containing more than 3 events? */\nSELECT COUNT (DISTINCT resource) FROM event_log WHERE idcase IN (SELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) > 3)\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What resources were allocated to more than five events in the same case? */\nSELECT ",
+        "response": "DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "90_6",
+        "index": 740
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Which actions were performed more than five times during the processing of declarations? */\nSELECT activity, COUNT(*) FROM event_log GROUP BY activity HAVING COUNT(*) > 5\n\n/* Answer the following: Which declarations have undergone more than three different interventions? */\nselect idcase from event_log GROUP BY idcase HAVING COUNT(DISTINCT activity) > 3\n\n/* Answer the following: What are the 5 declarations that went through the greatest number of actions and how long did each of them take to process? */\nselect strftime('%s', MAX(timestamp)) - strftime('%s', MIN(timestamp)), idcase FROM event_log where idcase in (select idcase from event_log group by idcase having  count(*) IN (select count(*) from event_log group by idcase order by count(*) desc limit 5)) group by idcase \n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Which resources acted more than five times on a declaration? */\nSELECT ",
+        "response": "DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "90_7",
+        "index": 741
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Which actions were performed more than five times during the processing of declarations? */\nSELECT activity, COUNT(*) FROM event_log GROUP BY activity HAVING COUNT(*) > 5\n\n/* Answer the following: Which declarations have undergone more than three different interventions? */\nselect idcase from event_log GROUP BY idcase HAVING COUNT(DISTINCT activity) > 3\n\n/* Answer the following: In which declarations was an intervention performed at least twice consecutively? */\nSELECT DISTINCT(idcase) FROM (SELECT idcase, activity, LEAD(activity) OVER (PARTITION BY idcase ORDER BY timestamp) AS next_activity FROM event_log)  where activity = next_activity \n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Which resources acted more than five times on a single declaration? */\nSELECT ",
+        "response": "DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "90_8",
+        "index": 742
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: In how many activities has each resource already acted? */\nSELECT resource, activity, count (*) FROM event_log group by resource, activity\n\n/* Answer the following: What is the number of occurrences of a resource acting? */\nSELECT COUNT(*), resource FROM event_log GROUP BY resource\n\n/* Answer the following: How many different activities did each resource perform? */\nselect count(DISTINCT activity), resource  FROM event_log GROUP by resource\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Which resources have more than 5 actions in a single declaration? */\nSELECT ",
+        "response": "DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "90_10",
+        "index": 744
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Which activities appear most frequently in the event log? */\nSELECT activity FROM event_log GROUP BY activity HAVING COUNT(*) = (SELECT COUNT(*) FROM event_log GROUP BY activity ORDER BY COUNT(*) DESC LIMIT 1) \n\n/* Answer the following: What activities appear more than five times in the event log? */\nSELECT activity, COUNT(*) FROM event_log GROUP BY activity HAVING COUNT(*) > 5\n\n/* Answer the following: For which activities are one hundred or more occurrences recorded in the event log? */\nSELECT activity FROM event_log GROUP BY activity HAVING COUNT (*) >= 100\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Which activities appear most often in the event log? */\nSELECT ",
+        "response": "activity from event_log GROUP BY activity HAVING COUNT(*) = (SELECT COUNT(*) FROM event_log GROUP BY activity ORDER BY COUNT(*) desc LIMIT 1)",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "91_0",
+        "index": 745
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Which activities appear most frequently in the event log? */\nSELECT activity FROM event_log GROUP BY activity HAVING COUNT(*) = (SELECT COUNT(*) FROM event_log GROUP BY activity ORDER BY COUNT(*) DESC LIMIT 1) \n\n/* Answer the following: What activities appear more than five times in the event log? */\nSELECT activity, COUNT(*) FROM event_log GROUP BY activity HAVING COUNT(*) > 5\n\n/* Answer the following: For which activities are one hundred or more occurrences recorded in the event log? */\nSELECT activity FROM event_log GROUP BY activity HAVING COUNT (*) >= 100\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What are the most recurring activities in the log? */\nSELECT ",
+        "response": "activity from event_log GROUP BY activity HAVING COUNT(*) = (SELECT COUNT(*) FROM event_log GROUP BY activity ORDER BY COUNT(*) desc LIMIT 1)",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "91_1",
+        "index": 746
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: How many times was each resource responsible for performing the 'declaration approved by administration' activity? */\nSELECT count(*), resource FROM event_log WHERE activity = 'Declaration approved by administration' GROUP BY resource\n\n/* Answer the following: Which resources acted more than five times on a declaration? */\nSELECT DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5\n\n/* Answer the following: Which resource worked on the greatest number of events in which the 'declaration approved by administration' activity was performed? */\nSELECT resource FROM event_log WHERE activity = 'Declaration approved by administration' GROUP BY resource ORDER BY COUNT(*) DESC LIMIT 1\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: In how many cases was the 'declaration approved by budget owner' activity associated with the Eugene or Marie resources? */\nSELECT ",
+        "response": "count(distinct idcase), resource from event_log where resource = 'Marie' or resource = 'Eugene' and activity = 'Declaration approved by budget owner' group by resource",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "94_3",
+        "index": 761
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Report how many actions happened in declaration 56300. */\nSELECT count(*) FROM event_log WHERE idcase = 'declaration 56300'\n\n/* Answer the following: List the activities that contain 'permit' or 'declaration' in their name. */\nSELECT DISTINCT activity FROM event_log WHERE activity LIKE '%permit%' OR activity LIKE '%declaration%'\n\n/* Answer the following: In which declarations were up to 20 activity occurrences performed? */\nSELECT idcase FROM event_log GROUP BY idcase HAVING count(*) <= 20\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: List all activities that were performed in the 'declaration 49464' case but were not performed in the 'declaration 76667' case. */\nSELECT ",
+        "response": "activity from event_log where idcase = 'declaration 49464' except select activity from event_log where idcase = 'declaration 76667'",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "95_1",
+        "index": 768
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: How many events were associated with each resource? */\nSELECT count (*), resource FROM event_log group by resource\n\n/* Answer the following: How many events was each resource associated with? */\nSELECT COUNT(*), resource FROM event_log GROUP BY resource\n\n/* Answer the following: List all resources and how many events each one is related to, in descending order of the number of events. */\nSELECT resource, COUNT(*) FROM event_log GROUP BY resource ORDER BY COUNT(*) DESC\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: List the cases in which all events were associated with the same resource. */\nSELECT ",
+        "response": "idcase from event_log group by idcase HAVING COUNT(DISTINCT resource) = 1",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "100_4",
+        "index": 806
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: In how many cases do all events have null cost? */\nSELECT COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL) \n\n/* Answer the following: Which events have a non-null cost? */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n/* Answer the following: List the events that have a cost other than null. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: How many null cost events are associated with each resource in each case? */\nSELECT ",
+        "response": "idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "102_0",
+        "index": 817
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: In how many cases do all events have null cost? */\nSELECT COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL) \n\n/* Answer the following: List the events that have a non-null cost. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n/* Answer the following: List the events that have a cost other than null. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: For each case, how many null cost events are there associated with each resource? */\nSELECT ",
+        "response": "idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "102_1",
+        "index": 818
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: In how many cases do all events have null cost? */\nSELECT COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL) \n\n/* Answer the following: List the events that have a non-null cost. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n/* Answer the following: Which events have a non-null cost? */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: How many null cost events are there for each case, associated with each resource? */\nSELECT ",
+        "response": "idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "102_2",
+        "index": 819
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: In how many cases do all events have null cost? */\nSELECT COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL) \n\n/* Answer the following: How many times did each resource act on the first event of a process instance? */\nSELECT COUNT(*), resource FROM (SELECT resource, MIN(timestamp) from event_log GROUP BY idcase) GROUP BY resource\n\n/* Answer the following: For each process instance, what is the number of unique resources and their cost? */\nSELECT COUNT(DISTINCT resource), SUM(cost), idcase FROM event_log GROUP BY idcase\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: For each process instance, how many null cost events are there associated with each resource? */\nSELECT ",
+        "response": "idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "102_3",
+        "index": 820
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the events that have a non-null cost. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n/* Answer the following: List the events that have a cost other than null. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n/* Answer the following: Retrieve information about the number of resources that worked on executing each process instance. */\nSELECT idcase, count(distinct resource) FROM event_log group by idcase\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: List how many null cost events are associated with each resource in each of the process instances. */\nSELECT ",
+        "response": "idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "102_4",
+        "index": 821
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the events that have a non-null cost. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n/* Answer the following: Report the total cost of each case present in the event log. */\nSELECT idcase, SUM(cost) FROM event_log group by idcase\n\n/* Answer the following: Report how many times each resource acted in the 'declaration submitted by employee' activity if this occurred more than twice. */\nselect resource, count(*) from event_log where activity = 'Declaration submitted by employee' group by resource having count(*) > 2\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Report how many null cost events there are associated with each employee in each of the process instances recorded in the log. */\nSELECT ",
+        "response": "idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "102_5",
+        "index": 822
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Report how many employees were involved in processing the declarations. */\nSELECT COUNT(DISTINCT resource) FROM event_log\n\n/* Answer the following: Make a report of all interventions in which employees were not allocated, or the allocation was not reported. */\nSELECT * FROM event_log WHERE resource IS NULL\n\n/* Answer the following: Report in how many declarations each employee was involved in executing the first action. */\nSELECT COUNT(*), resource FROM (SELECT resource, MIN(timestamp) from event_log GROUP BY idcase) GROUP BY resource\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Make a report stating how many interventions by each employee did not report costs in the processing of declarations. */\nSELECT ",
+        "response": "idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "102_6",
+        "index": 823
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: How many employees acted in processing declarations that involved more than three interventions? */\nSELECT COUNT (DISTINCT resource) FROM event_log WHERE idcase IN (SELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) > 3)\n\n/* Answer the following: How many declarations, that went through any intervention between 1/05/2017 and 1/06/2017, were each of our employees allocated to? */\nSELECT COUNT(DISTINCT idcase), resource FROM event_log WHERE timestamp between '2017-05-01' and '2017-06-01' GROUP BY resource\n\n/* Answer the following: Report how many employees were involved in processing the declarations. */\nSELECT COUNT(DISTINCT resource) FROM event_log\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: How many interventions, per employee, did not report costs during the processing of declarations? */\nSELECT ",
+        "response": "idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "102_7",
+        "index": 824
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: How many events were performed for each process instance? */\nSELECT count (*), idcase FROM event_log group by idcase\n\n/* Answer the following: How many events were recorded for each process instance? */\nSELECT count (*), idcase FROM event_log group by idcase\n\n/* Answer the following: How many events occurred in each process instance until it went through the 'end trip' activity? */\nselect count(*), e1.idcase from event_log AS e1 inner join event_log AS e2 on e1.idcase = e2.idcase WHERE e2.activity = 'End trip' and e1.timestamp < e2.timestamp group by e1.idcase\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Retrieve how many events were performed in each process instance. */\nSELECT ",
+        "response": "count (*), idcase FROM event_log group by idcase",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "106_5",
+        "index": 852
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: What declarations were made by Thomas, Diana, or Sara? */\nSELECT DISTINCT idcase FROM event_log where resource = 'Thomas' OR resource = 'Diana' OR resource = 'Sara'\n\n/* Answer the following: What are the declarations in which both Sara and Thomas participated together? */\nSELECT idcase FROM event_log WHERE resource = 'Sara' INTERSECT SELECT idcase FROM event_log WHERE resource = 'Thomas'\n\n/* Answer the following: Which people worked on more than three declarations? */\nSELECT resource FROM event_log GROUP BY resource HAVING COUNT(DISTINCT idcase) > 3\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: The collaborator Alexis worked on which declarations and how many actions did she engage in for each declaration in this set of declarations? */\nSELECT ",
+        "response": "idcase, count(*) FROM event_log where resource = 'Alexis' GROUP by idcase",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "108_7",
+        "index": 868
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the cases in which events were recorded after the end of the trip. */\nselect e1.idcase from event_log AS e1 inner join event_log AS e2 on e1.idcase = e2.idcase  WHERE e2.activity = 'End trip' and e1.timestamp > e2.timestamp group by e1.idcase\n\n/* Answer the following: Which cases had activities carried out after the event that records the end of the trip? */\nselect e1.idcase from event_log AS e1 inner join event_log AS e2 on e1.idcase = e2.idcase  WHERE e2.activity = 'End trip' and e1.timestamp > e2.timestamp group by e1.idcase\n\n/* Answer the following: What are the cases in which there are events recorded after the trip has ended? */\nselect e1.idcase from event_log AS e1 inner join event_log AS e2 on e1.idcase = e2.idcase  WHERE e2.activity = 'End trip' and e1.timestamp > e2.timestamp group by e1.idcase\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Which actions indicating the end of a trip were not recorded on the twelfth of December, twenty seventeen? */\nSELECT ",
+        "response": "* from event_log where activity = 'End trip' and strftime('%Y-%m-%d', timestamp) != '2017-12-12'",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "110_6",
+        "index": 883
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: How long did it take between the first action taken on a declaration until an indication of the finalization of a trip, or until those actions that indicate that the declaration was rejected by an employee or that a payment has already been made? */\nselect p.idcase, strftime('%s', p.timestamp) - strftime('%s', e.start_time) as 'End trip', strftime('%s', x.timestamp) - strftime('%s', e.start_time) as 'Declaration rejected by employee', strftime('%s', y.timestamp) - strftime('%s', e.start_time) as 'Payment handled' from event_log p inner join (select MIN(timestamp) as start_time, idcase FROM event_log GROUP by idcase) e on e.idcase = p.idcase and p.activity = 'End trip' left join event_log x on x.idcase=e.idcase and x.activity = 'Declaration rejected by employee'  left join event_log y on y.idcase=e.idcase and y.activity = 'Payment handled' \n\n/* Answer the following: How much time passed between the employee requesting a permit and the permit being approved by administration, in the declarations in which these actions occurred? */\nselect  e.idcase, (strftime('%s',e1.timestamp) - strftime('%s', e. timestamp)) from event_log e inner join event_log e1 on e1.idcase = e.idcase and e1.timestamp > e.timestamp where e.activity = 'Permit submitted by employee' and e1.activity = 'Permit approved by administration' \n\n/* Answer the following: What is the duration of processing for each declaration? */\nSELECT  idcase, MAX(strftime('%s', timestamp)) - MIN(strftime('%s', timestamp)) FROM  event_log GROUP BY  idcase\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What was the time spent for a declaration to be approved by the supervisor? */\nSELECT ",
+        "response": "nkedEvents AS (SELECT id, activity, timestamp, LEAD(timestamp) OVER (PARTITION BY idcase ORDER BY timestamp) AS next_timestamp, idcase FROM event_log) SELECT idcase, coalesce((strftime('%s', next_timestamp) - strftime('%s', timestamp)),0) as duration FROM RankedEvents WHERE activity='Declaration approved by supervisor'",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "115_6",
+        "index": 916
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: In which travel declaration processes were ten or fewer actions performed? */\nSELECT idcase FROM event_log group by idcase having count(*) <= 10\n\n/* Answer the following: How many actions were the responsibility of each person involved in the trip declaration process? */\nSELECT count (*), resource FROM event_log group by resource\n\n/* Answer the following: For each declaration, how many actions were necessary until the end of the trip was recorded? */\nselect count(*), e1.idcase from event_log AS e1 inner join event_log AS e2 on e1.idcase = e2.idcase WHERE e2.activity = 'End trip' and e1.timestamp < e2.timestamp group by e1.idcase\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: How many actions were taken for each travel declaration? */\nSELECT ",
+        "response": "count (*), idcase FROM event_log group by idcase",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "118_6",
+        "index": 937
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: How many actions were the responsibility of each person involved in the trip declaration process? */\nSELECT count (*), resource FROM event_log group by resource\n\n/* Answer the following: In which travel declaration processes were ten or fewer actions performed? */\nSELECT idcase FROM event_log group by idcase having count(*) <= 10\n\n/* Answer the following: How many declarations are associated with the performance of each of the possible actions in travel declaration processing? */\nSELECT COUNT(DISTINCT idcase), activity FROM event_log GROUP BY activity\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: How many interventions were necessary to process each travel declaration? */\nSELECT ",
+        "response": "count (*), idcase FROM event_log group by idcase",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "118_7",
+        "index": 938
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: How many declarations are associated with the performance of each of the possible actions in travel declaration processing? */\nSELECT COUNT(DISTINCT idcase), activity FROM event_log GROUP BY activity\n\n/* Answer the following: What is the mean cost of each type of action required to process travel declarations? */\nSELECT AVG(cost), activity  FROM event_log GROUP BY activity\n\n/* Answer the following: How many interventions were necessary to process each travel declaration? */\nSELECT count (*), idcase FROM event_log group by idcase\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What resources are associated with more than two hundred travel declarations? */\nSELECT ",
+        "response": "resource FROM event_log GROUP BY resource HAVING COUNT(DISTINCT idcase) > 200",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "122_2",
+        "index": 963
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: In which travel declaration processes were ten or fewer actions performed? */\nSELECT idcase FROM event_log group by idcase having count(*) <= 10\n\n/* Answer the following: What different actions are registered with a name that contains the word 'declaration' in each travel declaration? */\nSELECT DISTINCT activity FROM event_log WHERE activity LIKE '%declaration%'\n\n/* Answer the following: How many different people worked on each of the travel declarations and what was the total cost of each of the declarations? */\nSELECT COUNT(DISTINCT resource), SUM(cost), idcase FROM event_log GROUP BY idcase\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What resources have more than 200 travel declarations? */\nSELECT ",
+        "response": "resource FROM event_log GROUP BY resource HAVING COUNT(DISTINCT idcase) > 200",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "122_6",
+        "index": 967
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: How many different people appear in the event log? */\nSELECT COUNT(DISTINCT resource) FROM event_log\n\n/* Answer the following: How many events are there associated with each activity? */\nselect activity, count(*) from event_log group by activity\n\n/* Answer the following: For which activities are one hundred or more occurrences recorded in the event log? */\nSELECT activity FROM event_log GROUP BY activity HAVING COUNT (*) >= 100\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: How many people are associated with performing activities in the event log? */\nSELECT ",
+        "response": "COUNT (DISTINCT resource) FROM event_log",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "123_5",
+        "index": 973
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: How many declarations are associated with the performance of each of the possible actions in travel declaration processing? */\nSELECT COUNT(DISTINCT idcase), activity FROM event_log GROUP BY activity\n\n/* Answer the following: How many actions were taken for each travel declaration? */\nSELECT count (*), idcase FROM event_log group by idcase\n\n/* Answer the following: In which travel declaration processes were ten or fewer actions performed? */\nSELECT idcase FROM event_log group by idcase having count(*) <= 10\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What different actions are registered with a name that contains the word 'declaration' in each travel declaration? */\nSELECT ",
+        "response": "DISTINCT activity FROM event_log WHERE activity LIKE '%declaration%'",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "124_6",
+        "index": 983
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Which events have a non-null cost? */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n/* Answer the following: Which events have a cost other than null? */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n/* Answer the following: How many null cost events are there for each case, associated with each resource? */\nselect idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: In how many cases do all events have null cost? */\nSELECT ",
+        "response": "COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL)",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "126_5",
+        "index": 999
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the events that have a non-null cost. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n/* Answer the following: Which events have a reported cost? */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n/* Answer the following: What are the cases with cost events greater than 2,225? */\nSELECT DISTINCT idcase FROM event_log WHERE cost > 2225\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: How many cases have only events without costs? */\nSELECT ",
+        "response": "COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL)",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "126_6",
+        "index": 1000
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Report all occurrences in the processing of declarations where costs were communicated to the university */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n/* Answer the following: Which declarations represent the highest cost to the university? */\nSELECT idcase FROM event_log GROUP BY idcase HAVING SUM(cost) = (SELECT SUM(cost) FROM event_log  GROUP BY idcase ORDER BY SUM(cost) DESC LIMIT 1) \n\n/* Answer the following: How many interventions, per employee, did not report costs during the processing of declarations? */\nselect idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: How many declarations did the costs not reported to the university? */\nSELECT ",
+        "response": "COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL)",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "126_7",
+        "index": 1001
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Create a report on the costs of performing declaration processing tasks, presenting the information from highest to lowest cost. */\nselect cost, activity from event_log order by cost\n\n/* Answer the following: Report all actions carried out during the processing of each declaration, which costs are not null. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n/* Answer the following: What is the mean cost of the actions required to process a declaration? */\nSELECT AVG (cost) FROM event_log\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: For declaration processing actions that cost between 50 and 400, present their identifier, the activity associated with it, the responsible employee and its specific cost. */\nSELECT ",
+        "response": "id, activity, resource, cost FROM event_log WHERE cost BETWEEN 50 AND 400",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "137_8",
+        "index": 1090
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the events that have a non-null cost. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n/* Answer the following: List the events that have a cost other than null. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n/* Answer the following: Which events have a non-null cost? */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Select all events whose cost is not null. */\nSELECT ",
+        "response": "* FROM event_log WHERE cost IS NOT NULL",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "141_0",
+        "index": 1112
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the events that have a non-null cost. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n/* Answer the following: List the events that have a cost other than null. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n/* Answer the following: Which events have a non-null cost? */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Select all tuples where the event cost is not null. */\nSELECT ",
+        "response": "* FROM event_log WHERE cost IS NOT NULL",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "141_1",
+        "index": 1113
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Select the sum of event costs, grouping by activity and resource. */\nSELECT activity, resource, SUM(cost) from event_log group by activity, resource\n\n/* Answer the following: List the events that have a non-null cost. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n/* Answer the following: Select events based on their cost being between 50 and 400. Display the identifier, activity performed, resource and cost associated with the event. */\nSELECT id, activity, resource, cost FROM event_log WHERE cost BETWEEN 50 AND 400\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Select all lines where there is an associated cost. */\nSELECT ",
+        "response": "* FROM event_log WHERE cost IS NOT NULL",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "141_2",
+        "index": 1114
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Select the sum of event costs, grouping by activity and resource. */\nSELECT activity, resource, SUM(cost) from event_log group by activity, resource\n\n/* Answer the following: List the events that have a non-null cost. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n/* Answer the following: Retrieve the total cost of each case. */\nSELECT idcase, SUM(cost) FROM event_log group by idcase\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Select all tuples where there is an associated cost. */\nSELECT ",
+        "response": "* FROM event_log WHERE cost IS NOT NULL",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "141_3",
+        "index": 1115
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the events that have a non-null cost. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n/* Answer the following: Select the sum of event costs, grouping by activity and resource. */\nSELECT activity, resource, SUM(cost) from event_log group by activity, resource\n\n/* Answer the following: List the events that have a cost other than null. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Select all events that have an associated cost. */\nSELECT ",
+        "response": "* FROM event_log WHERE cost IS NOT NULL",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "141_4",
+        "index": 1116
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the events that have a non-null cost. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n/* Answer the following: List the events for which there is a reported cost. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n/* Answer the following: List the events that have a reported cost. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Retrieve all information about events that have an associated cost. */\nSELECT ",
+        "response": "* FROM event_log WHERE cost IS NOT NULL",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "141_5",
+        "index": 1117
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the events that have a non-null cost. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n/* Answer the following: List the events that have a cost other than null. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n/* Answer the following: List the events for which there is a reported cost. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Retrieve all information about events that have a cost. */\nSELECT ",
+        "response": "* FROM event_log WHERE cost IS NOT NULL",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "141_6",
+        "index": 1118
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: For declaration processing actions that cost between 50 and 400, present their identifier, the activity associated with it, the responsible employee and its specific cost. */\nSELECT id, activity, resource, cost FROM event_log WHERE cost BETWEEN 50 AND 400\n\n/* Answer the following: Create a report on the costs of performing declaration processing tasks, presenting the information from highest to lowest cost. */\nselect cost, activity from event_log order by cost\n\n/* Answer the following: Report the identifier of declarations in which any action had a cost greater than 2,225. */\nSELECT DISTINCT idcase FROM event_log WHERE cost > 2225\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Report all actions carried out during the processing of each declaration, which costs are not null. */\nSELECT ",
+        "response": "* FROM event_log WHERE cost IS NOT NULL",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "141_7",
+        "index": 1119
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Report how many employees were involved in processing the declarations. */\nSELECT COUNT(DISTINCT resource) FROM event_log\n\n/* Answer the following: Make a report stating how many interventions by each employee did not report costs in the processing of declarations. */\nselect idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource\n\n/* Answer the following: Create a report that informs how much each intervention carried out on the declarations costs, adding information about which action each intervention refers to. Present the report in order from highest to lowest cost already recorded. */\nselect cost, activity from event_log order by cost\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Report how much was spent on each association of activities and employees involved in processing the declarations. */\nSELECT ",
+        "response": "activity, resource, SUM(cost) from event_log group by activity, resource",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "144_7",
+        "index": 1149
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Which actions were performed more than five times during the processing of declarations? */\nSELECT activity, COUNT(*) FROM event_log GROUP BY activity HAVING COUNT(*) > 5\n\n/* Answer the following: Which of the actions relating to processing declarations have already been carried out 100 or more times? */\nSELECT activity FROM event_log GROUP BY activity HAVING COUNT (*) >= 100\n\n/* Answer the following: Make a list of activities performed during the processing of declarations. The list must be ordered from the most frequent activity to the least frequent and must clearly indicate how many times each activity was performed. */\nSELECT activity, COUNT(*) FROM event_log GROUP BY activity  ORDER BY COUNT (*)\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: In the processing of declarations, there are activities that are performed many times. Inform me of those that were performed more than three times. */\nSELECT ",
+        "response": "activity FROM event_log GROUP BY activity HAVING COUNT(*) > 3",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "146_8",
+        "index": 1168
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: In how many process instances did each resource act? */\nSELECT COUNT(DISTINCT idcase), resource FROM event_log GROUP BY resource\n\n/* Answer the following: In how many process instances did each resource act? */\nSELECT COUNT(DISTINCT idcase), resource FROM event_log GROUP BY resource\n\n/* Answer the following: How many events were performed for each process instance? */\nSELECT count (*), idcase FROM event_log group by idcase\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: How many times did each resource act on the first event of a process instance? */\nSELECT ",
+        "response": "COUNT(*), resource FROM (SELECT resource, MIN(timestamp) from event_log GROUP BY idcase) GROUP BY resource",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "154_3",
+        "index": 1256
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: What are the five longest cases in terms of number of events, among those with at least 20 events, and what is the duration of each of these cases? */\nselect strftime('%s', MAX(timestamp)) - strftime('%s', MIN(timestamp)), idcase FROM event_log where idcase in (select idcase from event_log group by idcase having  count(*) IN (select count(*) from event_log group by idcase HAVING count(*) >= 20 order by count(*) desc limit 5)) group by idcase \n\n/* Answer the following: Considering cases with 20 events or more, list the five that have the most events and report how long each of them lasted. */\nselect strftime('%s', MAX(timestamp)) - strftime('%s', MIN(timestamp)), idcase FROM event_log where idcase in (select idcase from event_log group by idcase having  count(*) IN (select count(*) from event_log group by idcase HAVING count(*) >= 20 order by count(*) desc limit 5)) group by idcase \n\n/* Answer the following: What are the 10 cases, in descending order, with the most events? */\nSELECT idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log  GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What are the five cases with the most events and what are their durations? */\nSELECT ",
+        "response": "strftime('%s', MAX(timestamp)) - strftime('%s', MIN(timestamp)), idcase FROM event_log where idcase in (select idcase from event_log group by idcase having count(*) IN (select count(*) from event_log group by idcase order by count(*) desc limit 5)) group by idcase",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "157_0",
+        "index": 1276
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Which declarations were subject to more than three interventions? */\nselect idcase from event_log GROUP BY idcase HAVING COUNT(*) > 3\n\n/* Answer the following: Among the declarations with 20 actions or more performed, report the 5 largest and how long their processing took. */\nselect strftime('%s', MAX(timestamp)) - strftime('%s', MIN(timestamp)), idcase FROM event_log where idcase in (select idcase from event_log group by idcase having  count(*) IN (select count(*) from event_log group by idcase HAVING count(*) >= 20 order by count(*) desc limit 5)) group by idcase \n\n/* Answer the following: Which declarations have undergone more than three different interventions? */\nselect idcase from event_log GROUP BY idcase HAVING COUNT(DISTINCT activity) > 3\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What are the 5 declarations that went through the greatest number of actions and how long did each of them take to process? */\nSELECT ",
+        "response": "strftime('%s', MAX(timestamp)) - strftime('%s', MIN(timestamp)), idcase FROM event_log where idcase in (select idcase from event_log group by idcase having count(*) IN (select count(*) from event_log group by idcase order by count(*) desc limit 5)) group by idcase",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "157_7",
+        "index": 1283
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the ten process instances, in descending order, with the most activity performances. */\nSELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT Count(*) FROM event_log GROUP BY idcase ORDER BY Count(*) Desc LIMIT 10) order by idcase DESC\n\n/* Answer the following: List, in descending order, the ten process instances that have the most activity performances. */\nSELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT Count(*) FROM event_log GROUP BY idcase ORDER BY Count(*) Desc LIMIT 10) order by idcase DESC\n\n/* Answer the following: Provide a list, in descending order, of the ten process instances with the most activities. */\nSELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT Count(*) FROM event_log GROUP BY idcase ORDER BY Count(*) Desc LIMIT 10) order by idcase DESC\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What are the five process instances with the most activity performances, considering those in which at least 20 events occurred, and what are the durations of these instances? */\nSELECT ",
+        "response": "strftime('%s', MAX(timestamp)) - strftime('%s', MIN(timestamp)), idcase FROM event_log where idcase in (select idcase from event_log group by idcase having count(*) IN (select count(*) from event_log group by idcase HAVING count(*) >= 20 order by count(*) desc limit 5)) group by idcase",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "158_2",
+        "index": 1287
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the identifiers of the five cases in which the most events were performed and report how long each lasted. */\nselect strftime('%s', MAX(timestamp)) - strftime('%s', MIN(timestamp)), idcase FROM event_log where idcase in (select idcase from event_log group by idcase having  count(*) IN (select count(*) from event_log group by idcase order by count(*) desc limit 5)) group by idcase \n\n/* Answer the following: What are the five cases with the most events and what are their durations? */\nselect strftime('%s', MAX(timestamp)) - strftime('%s', MIN(timestamp)), idcase FROM event_log where idcase in (select idcase from event_log group by idcase having  count(*) IN (select count(*) from event_log group by idcase order by count(*) desc limit 5)) group by idcase \n\n/* Answer the following: Provide a list, in descending order, of the ten process instances with the most activities. */\nSELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT Count(*) FROM event_log GROUP BY idcase ORDER BY Count(*) Desc LIMIT 10) order by idcase DESC\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Among the process instances with 20 or more events, list the five largest and report how long they lasted. */\nSELECT ",
+        "response": "strftime('%s', MAX(timestamp)) - strftime('%s', MIN(timestamp)), idcase FROM event_log where idcase in (select idcase from event_log group by idcase having count(*) IN (select count(*) from event_log group by idcase HAVING count(*) >= 20 order by count(*) desc limit 5)) group by idcase",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "158_3",
+        "index": 1288
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: What are the 5 declarations that went through the greatest number of actions and how long did each of them take to process? */\nselect strftime('%s', MAX(timestamp)) - strftime('%s', MIN(timestamp)), idcase FROM event_log where idcase in (select idcase from event_log group by idcase having  count(*) IN (select count(*) from event_log group by idcase order by count(*) desc limit 5)) group by idcase \n\n/* Answer the following: What are the five most labor-intensive declarations (most requiring some action to be performed) and how long did each one take to be processed? */\nselect strftime('%s', MAX(timestamp)) - strftime('%s', MIN(timestamp)), idcase FROM event_log where idcase in (select idcase from event_log group by idcase having  count(*) IN (select count(*) from event_log group by idcase order by count(*) desc limit 5)) group by idcase \n\n/* Answer the following: How many actions were performed each day in processing the declarations? */\nSELECT strftime('%Y-%m-%d', timestamp) AS event_day, COUNT(*) FROM event_log GROUP BY event_day\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Among the declarations with 20 actions or more performed, report the 5 largest and how long their processing took. */\nSELECT ",
+        "response": "strftime('%s', MAX(timestamp)) - strftime('%s', MIN(timestamp)), idcase FROM event_log where idcase in (select idcase from event_log group by idcase having count(*) IN (select count(*) from event_log group by idcase HAVING count(*) >= 20 order by count(*) desc limit 5)) group by idcase",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "158_7",
+        "index": 1292
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List, in descending order, the 10 cases that have the most events. */\nSELECT idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log  GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC\n\n/* Answer the following: List the number of events recorded for each case. */\nSELECT count (*), idcase FROM event_log group by idcase\n\n/* Answer the following: List the number of events associated with each case. */\nSELECT count (*), idcase FROM event_log group by idcase\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: List all cases that had up to ten events performed. */\nSELECT ",
+        "response": "idcase FROM event_log group by idcase having count(*) <= 10",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "160_2",
+        "index": 1307
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Retrieve the cases that have more than one event. */\nSELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) > 1\n\n/* Answer the following: Retrieve the identifiers of the cases that have the greatest number of events. */\nSELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) = (SELECT  COUNT(*) FROM event_log GROUP BY idcase ORDER BY count(*) DESC LIMIT 1)\n\n/* Answer the following: List, in descending order, the 10 cases that have the most events. */\nSELECT idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log  GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Retrieve cases that had a maximum of 10 events performed. */\nSELECT ",
+        "response": "idcase FROM event_log group by idcase having count(*) <= 10",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "160_3",
+        "index": 1308
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: For which activities are one hundred or more occurrences recorded in the event log? */\nSELECT activity FROM event_log GROUP BY activity HAVING COUNT (*) >= 100\n\n/* Answer the following: What activities appear more than five times in the event log? */\nSELECT activity, COUNT(*) FROM event_log GROUP BY activity HAVING COUNT(*) > 5\n\n/* Answer the following: Which activities have more than five occurrences in the event log? */\nSELECT activity, COUNT(*) FROM event_log GROUP BY activity HAVING COUNT(*) > 5\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What are the cases for which there are up to ten events recorded in the event log? */\nSELECT ",
+        "response": "idcase FROM event_log group by idcase having count(*) <= 10",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "160_7",
+        "index": 1312
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: How many actions were taken for each travel declaration? */\nSELECT count (*), idcase FROM event_log group by idcase\n\n/* Answer the following: How many interventions were necessary to process each travel declaration? */\nSELECT count (*), idcase FROM event_log group by idcase\n\n/* Answer the following: How many declarations are associated with the performance of each of the possible actions in travel declaration processing? */\nSELECT COUNT(DISTINCT idcase), activity FROM event_log GROUP BY activity\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: In which travel declaration processes were ten or fewer actions performed? */\nSELECT ",
+        "response": "idcase FROM event_log group by idcase having count(*) <= 10",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "160_10",
+        "index": 1315
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: When processing declarations, several actions are possible. How many times was each of these actions performed? */\nselect activity, count(*) from event_log group by activity\n\n/* Answer the following: Make a list of activities performed during the processing of declarations. The list must be ordered from the most frequent activity to the least frequent and must clearly indicate how many times each activity was performed. */\nSELECT activity, COUNT(*) FROM event_log GROUP BY activity  ORDER BY COUNT (*)\n\n/* Answer the following: Make a descending list of 10 declaration codes with the most actions performed during their processing. */\nSELECT idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log  GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Various actions, activities or tasks are possible when processing a declaration. It is useful to know the number of declarations associated with the performance of each of these actions, activities or tasks. */\nSELECT ",
+        "response": "COUNT(DISTINCT idcase), activity FROM event_log GROUP BY activity",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "164_6",
+        "index": 1350
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List all resources and how many events each one is related to, in descending order of the number of events. */\nSELECT resource, COUNT(*) FROM event_log GROUP BY resource ORDER BY COUNT(*) DESC\n\n/* Answer the following: What resources are recorded in the event log? List in alphabetical order and without repetitions. */\nSELECT DISTINCT resource FROM event_log ORDER BY resource\n\n/* Answer the following: If a resource has acted on more than five events in the same case, list the name of this resource. */\nSELECT DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: In which cases does the 'Wayne' resource appear associated with the performance of an event? Sort the response by case identifier. */\nSELECT ",
+        "response": "DISTINCT idcase FROM event_log WHERE resource = 'Wayne' ORDER BY idcase",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "168_2",
+        "index": 1376
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Which people worked on more than three declarations? */\nSELECT resource FROM event_log GROUP BY resource HAVING COUNT(DISTINCT idcase) > 3\n\n/* Answer the following: Which declarations were the sole responsibility of the employee Christopher? */\nSELECT idcase from event_log group by idcase HAVING COUNT(DISTINCT resource) = 1 AND resource = 'Christopher'\n\n/* Answer the following: What are the declarations whose processing went through more than twenty interventions? */\nSELECT idcase FROM event_log GROUP BY idcase HAVING count(*) > 20\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What declarations does Wayne work on? Present an ordered list. */\nSELECT ",
+        "response": "DISTINCT idcase FROM event_log WHERE resource = 'Wayne' ORDER BY idcase",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "168_9",
+        "index": 1383
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: How many declarations are associated with the performance of each of the possible actions in travel declaration processing? */\nSELECT COUNT(DISTINCT idcase), activity FROM event_log GROUP BY activity\n\n/* Answer the following: In which travel declaration processes were ten or fewer actions performed? */\nSELECT idcase FROM event_log group by idcase having count(*) <= 10\n\n/* Answer the following: How many actions were taken for each travel declaration? */\nSELECT count (*), idcase FROM event_log group by idcase\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: How many travel declarations have a permit action associated with the start of their processing? */\nSELECT ",
+        "response": "COUNT(idcase) FROM (SELECT idcase, activity, MIN(timestamp) FROM event_log GROUP BY idcase) AS e1 WHERE e1.activity LIKE 'Permit%'",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "170_8",
+        "index": 1400
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: For each activity, report how many cases were carried out. */\nSELECT COUNT(DISTINCT idcase), activity FROM event_log GROUP BY activity\n\n/* Answer the following: If any activity was performed more than once before 10/01/2017, report the name of the activity and how many times it was performed. */\nSELECT COUNT(*), activity FROM event_log WHERE timestamp < '2017-01-10' GROUP BY activity HAVING COUNT(*) > 1\n\n/* Answer the following: Report the activities for which there were one hundred or more occurrences recorded in the log. */\nSELECT activity FROM event_log GROUP BY activity HAVING COUNT (*) >= 100\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Considering each of the activities present in the event log, report the number of cases in which they occurred. */\nSELECT ",
+        "response": "count(DISTINCT idcase), activity FROM event_log GROUP BY activity",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "174_2",
+        "index": 1437
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the ten process instances, in descending order, with the most activity performances. */\nSELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT Count(*) FROM event_log GROUP BY idcase ORDER BY Count(*) Desc LIMIT 10) order by idcase DESC\n\n/* Answer the following: List, in descending order, the ten process instances that have the most activity performances. */\nSELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT Count(*) FROM event_log GROUP BY idcase ORDER BY Count(*) Desc LIMIT 10) order by idcase DESC\n\n/* Answer the following: What are the five process instances with the most activity performances, considering those in which at least 20 events occurred, and what are the durations of these instances? */\nselect strftime('%s', MAX(timestamp)) - strftime('%s', MIN(timestamp)), idcase FROM event_log where idcase in (select idcase from event_log group by idcase having  count(*) IN (select count(*) from event_log group by idcase HAVING count(*) >= 20 order by count(*) desc limit 5)) group by idcase \n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Identify the last event performed for each process instance and list the identifiers of these events in order of performance. */\nSELECT ",
+        "response": "id FROM (select id, MAX(timestamp) as timestamp FROM event_log GROUP by idcase) ORDER by timestamp",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "185_6",
+        "index": 1544
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Make a list of employees who have acted at least 100 times, organized in descending order by the number of actions performed. */\nSELECT resource FROM event_log GROUP BY resource HAVING count(*) >= 100 ORDER BY count(*) DESC\n\n/* Answer the following: List activities that were performed more than three times. */\nSELECT activity FROM event_log GROUP BY activity HAVING COUNT(*) > 3\n\n/* Answer the following: List the activities that were performed more than once before 10/01/2017, and the number of times they were performed. */\nSELECT COUNT(*), activity FROM event_log WHERE timestamp < '2017-01-10' GROUP BY activity HAVING COUNT(*) > 1\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: List the labels of activities that have occurred at least one hundred times. */\nSELECT ",
+        "response": "activity FROM event_log GROUP BY activity HAVING COUNT (*) >= 100",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "186_3",
+        "index": 1550
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Report activities that have more than five occurrences in the event log. */\nSELECT activity, COUNT(*) FROM event_log GROUP BY activity HAVING COUNT(*) > 5\n\n/* Answer the following: Considering each of the activities present in the event log, report the number of cases in which they occurred. */\nSELECT count(DISTINCT idcase), activity FROM event_log GROUP BY activity\n\n/* Answer the following: Report activities that have more than three occurrences per case. */\nSELECT DISTINCT activity FROM event_log GROUP BY activity, idcase HAVING count(activity) > 3\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Report the activities for which there were one hundred or more occurrences recorded in the log. */\nSELECT ",
+        "response": "activity FROM event_log GROUP BY activity HAVING COUNT (*) >= 100",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "186_4",
+        "index": 1551
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: What activities appear more than five times in the event log? */\nSELECT activity, COUNT(*) FROM event_log GROUP BY activity HAVING COUNT(*) > 5\n\n/* Answer the following: Which activities appear most often in the event log? */\nSELECT activity from event_log GROUP BY activity HAVING  COUNT(*) = (SELECT COUNT(*) FROM event_log  GROUP BY activity ORDER BY COUNT(*)  desc LIMIT 1) \n\n/* Answer the following: Which activities appear most frequently in the event log? */\nSELECT activity FROM event_log GROUP BY activity HAVING COUNT(*) = (SELECT COUNT(*) FROM event_log GROUP BY activity ORDER BY COUNT(*) DESC LIMIT 1) \n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: For which activities are one hundred or more occurrences recorded in the event log? */\nSELECT ",
+        "response": "activity FROM event_log GROUP BY activity HAVING COUNT (*) >= 100",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "186_5",
+        "index": 1552
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: In which cases are there more than twenty occurrences of activities performed? */\nSELECT idcase FROM event_log GROUP BY idcase HAVING count(*) > 20\n\n/* Answer the following: For each existing activity, how many cases were recorded? */\nSELECT COUNT(DISTINCT idcase), activity FROM event_log GROUP BY activity\n\n/* Answer the following: In which cases are there more than 20 occurrences of activities performed? */\nSELECT idcase FROM event_log GROUP BY idcase HAVING count(*) > 20\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What were the actions for which 100 or more occurrences were recorded? */\nSELECT ",
+        "response": "activity FROM event_log GROUP BY activity HAVING COUNT (*) >= 100",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "186_6",
+        "index": 1553
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Which actions were performed more than five times during the processing of declarations? */\nSELECT activity, COUNT(*) FROM event_log GROUP BY activity HAVING COUNT(*) > 5\n\n/* Answer the following: In the processing of declarations, there are activities that are performed many times. Inform me of those that were performed more than three times. */\nSELECT activity FROM event_log GROUP BY activity HAVING COUNT(*) > 3\n\n/* Answer the following: Each of the possible processing actions was performed on how many declarations processed and ended on March 2, 2018? */\nselect activity, count(DISTINCT idcase) FROM event_log where idcase in (SELECT idcase FROM event_log GROUP BY idcase  HAVING strftime('%Y-%m-%d', MAX(timestamp)) =  '2018-03-12') group by activity\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Which of the actions relating to processing declarations have already been carried out 100 or more times? */\nSELECT ",
+        "response": "activity FROM event_log GROUP BY activity HAVING COUNT (*) >= 100",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "186_7",
+        "index": 1554
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Analyze the declarations and check which actions were performed more than three times in each of them. */\nSELECT DISTINCT activity FROM event_log GROUP BY activity, idcase HAVING count(activity) > 3\n\n/* Answer the following: Various actions, activities or tasks are possible when processing a declaration. It is useful to know the number of declarations associated with the performance of each of these actions, activities or tasks. */\nSELECT COUNT(DISTINCT idcase), activity FROM event_log GROUP BY activity\n\n/* Answer the following: Make a descending list of 10 declaration codes with the most actions performed during their processing. */\nSELECT idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log  GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Count how many actions were performed in each declaration and report how many declarations have the same number of events performed. */\nSELECT ",
+        "response": "events_count, COUNT(*) FROM (SELECT COUNT(*) as events_count, idcase FROM event_log GROUP BY idcase ) GROUP BY events_count",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "196_4",
+        "index": 1608
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: What was the time spent for a declaration to be approved by the supervisor? */\nWITH RankedEvents AS (SELECT id, activity, timestamp, LEAD(timestamp) OVER (PARTITION BY idcase ORDER BY timestamp) AS next_timestamp, idcase FROM event_log) SELECT idcase, coalesce((strftime('%s', next_timestamp) - strftime('%s', timestamp)),0) as duration FROM RankedEvents WHERE activity='Declaration approved by supervisor'\n\n/* Answer the following: How long did it take between the first action taken on a declaration until an indication of the finalization of a trip, or until those actions that indicate that the declaration was rejected by an employee or that a payment has already been made? */\nselect p.idcase, strftime('%s', p.timestamp) - strftime('%s', e.start_time) as 'End trip', strftime('%s', x.timestamp) - strftime('%s', e.start_time) as 'Declaration rejected by employee', strftime('%s', y.timestamp) - strftime('%s', e.start_time) as 'Payment handled' from event_log p inner join (select MIN(timestamp) as start_time, idcase FROM event_log GROUP by idcase) e on e.idcase = p.idcase and p.activity = 'End trip' left join event_log x on x.idcase=e.idcase and x.activity = 'Declaration rejected by employee'  left join event_log y on y.idcase=e.idcase and y.activity = 'Payment handled' \n\n/* Answer the following: What was the duration of the 'declaration approved by supervisor' activity in each case? */\nWITH RankedEvents AS (SELECT id, activity, timestamp, LEAD(timestamp) OVER (PARTITION BY idcase ORDER BY timestamp) AS next_timestamp, idcase FROM event_log) SELECT idcase, coalesce((strftime('%s', next_timestamp) - strftime('%s', timestamp)),0) as duration FROM RankedEvents WHERE activity='Declaration approved by supervisor'\n\n/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: How much time passed between the employee requesting a permit and the permit being approved by administration, in the declarations in which these actions occurred? */\nSELECT ",
+        "response": "e.idcase, (strftime('%s',e1.timestamp) - strftime('%s', e. timestamp)) from event_log e inner join event_log e1 on e1.idcase = e.idcase and e1.timestamp > e.timestamp where e.activity = 'Permit submitted by employee' and e1.activity = 'Permit approved by administration'",
+        "n_examples": 3,
+        "db_id": "event_log",
+        "id": "203_2",
+        "index": 1638
+    }
+]
