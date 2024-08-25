@@ -1,677 +1,700 @@
-[
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: In how many cases do all events have null cost? */\nSELECT COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL) \n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Which events have a cost other than null?\nSELECT ",
-        "response": "* FROM event_log WHERE cost IS NOT NULL",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "13_0",
-        "index": 108
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: In how many cases do all events have null cost? */\nSELECT COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL) \n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Which events have a non-null cost?\nSELECT ",
-        "response": "* FROM event_log WHERE cost IS NOT NULL",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "13_1",
-        "index": 109
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Select all events whose cost is not null. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### List the events that have a non-null cost.\nSELECT ",
-        "response": "* FROM event_log WHERE cost IS NOT NULL",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "13_2",
-        "index": 110
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: In how many cases do all events have null cost? */\nSELECT COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL) \n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### What are the events in which the cost is not null?\nSELECT ",
-        "response": "* FROM event_log WHERE cost IS NOT NULL",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "13_3",
-        "index": 111
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Select all events whose cost is not null. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### List the events that have a cost other than null.\nSELECT ",
-        "response": "* FROM event_log WHERE cost IS NOT NULL",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "13_4",
-        "index": 112
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: How many declarations did the costs not reported to the university? */\nSELECT COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL) \n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Report all occurrences in the processing of declarations where costs were communicated to the university\nSELECT ",
-        "response": "* FROM event_log WHERE cost IS NOT NULL",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "13_9",
-        "index": 117
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: What was performed during the year 2017 during the processing of declarations? */\nSELECT * FROM event_log WHERE timestamp BETWEEN '2017-01-01' AND '2018-01-01'\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### What activities does the university perform most during the processing of declarations?\nSELECT ",
-        "response": "activity FROM event_log GROUP BY activity HAVING COUNT(*) = (SELECT COUNT(*) FROM event_log GROUP BY activity ORDER BY COUNT(*) DESC LIMIT 1)",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "15_4",
-        "index": 127
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Make a descending list of 10 declaration codes with the most actions performed during their processing. */\nSELECT idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log  GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Make a list of activities performed during the processing of declarations. The list must be ordered from the most frequent activity to the least frequent and must clearly indicate how many times each activity was performed.\nSELECT ",
-        "response": "activity, COUNT(*) FROM event_log GROUP BY activity ORDER BY COUNT (*)",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "16_3",
-        "index": 131
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the resources that worked on executing more than five events in the same case. */\nSELECT DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### List all declarations in which the performance has up to 20 events.\nSELECT ",
-        "response": "idcase FROM event_log GROUP BY idcase HAVING count(*) <= 20",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "18_6",
-        "index": 153
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: What are the 10 cases, in descending order, with the most events? */\nSELECT idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log  GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Which cases have the greatest number of events?\nSELECT ",
-        "response": "idcase FROM event_log GROUP BY idcase HAVING COUNT(*) = (SELECT COUNT(*) FROM event_log GROUP BY idcase ORDER BY count(*) DESC LIMIT 1)",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "24_0",
-        "index": 193
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the 10 cases, in descending order, with the most activity performances. */\nSELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT Count(*) FROM event_log GROUP BY idcase ORDER BY Count(*) Desc LIMIT 10) order by idcase DESC\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### What are the cases in which there are most activity performances?\nSELECT ",
-        "response": "idcase FROM event_log GROUP BY idcase HAVING COUNT(*) = (SELECT COUNT(*) FROM event_log GROUP BY idcase ORDER BY count(*) DESC LIMIT 1)",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "24_1",
-        "index": 194
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List, in descending order, the 10 cases that have the most events. */\nSELECT idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log  GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Retrieve the identifiers of the cases that have the greatest number of events.\nSELECT ",
-        "response": "idcase FROM event_log GROUP BY idcase HAVING COUNT(*) = (SELECT COUNT(*) FROM event_log GROUP BY idcase ORDER BY count(*) DESC LIMIT 1)",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "24_2",
-        "index": 195
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Make a descending list of 10 declaration codes with the most actions performed during their processing. */\nSELECT idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log  GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Retrieve the codes for the longest declarations in terms of number of actions performed.\nSELECT ",
-        "response": "idcase FROM event_log GROUP BY idcase HAVING COUNT(*) = (SELECT COUNT(*) FROM event_log GROUP BY idcase ORDER BY count(*) DESC LIMIT 1)",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "24_6",
-        "index": 199
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: How many cases are related to each of the possible activities? */\nSELECT COUNT(DISTINCT idcase), activity FROM event_log GROUP BY activity\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### What are the 10 cases with the greatest number of activities? List the cases in descending order.\nSELECT ",
-        "response": "idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT Count(*) FROM event_log GROUP BY idcase ORDER BY Count(*) Desc LIMIT 10) order by idcase DESC",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "28_1",
-        "index": 223
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: What are the 10 cases, in descending order, with the most events? */\nSELECT idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log  GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### What are the 10 cases in descending order with the most activities?\nSELECT ",
-        "response": "idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT Count(*) FROM event_log GROUP BY idcase ORDER BY Count(*) Desc LIMIT 10) order by idcase DESC",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "28_2",
-        "index": 224
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Provide a list in descending order of the 10 cases with the most events. */\nSELECT idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log  GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Provide a list in descending order of the 10 cases with the most activities.\nSELECT ",
-        "response": "idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT Count(*) FROM event_log GROUP BY idcase ORDER BY Count(*) Desc LIMIT 10) order by idcase DESC",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "28_5",
-        "index": 227
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Make a descending list of 10 declaration codes with the most actions performed during their processing. */\nSELECT idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log  GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### What are the ten declarations that involved the greatest number of actions? I need the results sorted in descending order according to the code of each declaration\nSELECT ",
-        "response": "idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT Count(*) FROM event_log GROUP BY idcase ORDER BY Count(*) Desc LIMIT 10) order by idcase DESC",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "28_9",
-        "index": 231
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Make a descending list of 10 declaration codes with the most actions performed during their processing. */\nSELECT idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log  GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### What are the ten declarations, in descending code order, with the greatest number of actions?\nSELECT ",
-        "response": "idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT Count(*) FROM event_log GROUP BY idcase ORDER BY Count(*) Desc LIMIT 10) order by idcase DESC",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "28_10",
-        "index": 232
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Which cases have the greatest number of events? */\nSELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) = (SELECT  COUNT(*) FROM event_log GROUP BY idcase ORDER BY count(*) DESC LIMIT 1)\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### What are the 10 cases with the greatest number of events? List the cases in descending order.\nSELECT ",
-        "response": "idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "29_2",
-        "index": 235
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: What are the ten declarations that involved the greatest number of actions? I need the results sorted in descending order according to the code of each declaration */\nSELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT Count(*) FROM event_log GROUP BY idcase ORDER BY Count(*) Desc LIMIT 10) order by idcase DESC\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Make a descending list of 10 declaration codes with the most actions performed during their processing.\nSELECT ",
-        "response": "idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "29_6",
-        "index": 239
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the labels of activities that have occurred at least one hundred times. */\nSELECT activity FROM event_log GROUP BY activity HAVING COUNT (*) >= 100\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Make a list of employees who have acted at least 100 times, organized in descending order by the number of actions performed.\nSELECT ",
-        "response": "resource FROM event_log GROUP BY resource HAVING count(*) >= 100 ORDER BY count(*) DESC",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "31_2",
-        "index": 251
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Report in how many cases each resource was responsible for performing the first event. */\nSELECT COUNT(*), resource FROM (SELECT resource, MIN(timestamp) from event_log GROUP BY idcase) GROUP BY resource\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### List the number of resources that acted in cases that have more than 3 events.\nSELECT ",
-        "response": "COUNT (DISTINCT resource) FROM event_log WHERE idcase IN (SELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) > 3)",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "43_2",
-        "index": 308
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: How many declarations did the costs not reported to the university? */\nSELECT COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL) \n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Which declarations represent the highest cost to the university?\nSELECT ",
-        "response": "idcase FROM event_log GROUP BY idcase HAVING SUM(cost) = (SELECT SUM(cost) FROM event_log GROUP BY idcase ORDER BY SUM(cost) DESC LIMIT 1)",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "58_6",
-        "index": 440
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: What declarations were made by Thomas, Diana, or Sara? */\nSELECT DISTINCT idcase FROM event_log where resource = 'Thomas' OR resource = 'Diana' OR resource = 'Sara'\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### What are the declarations in which both Sara and Thomas participated together?\nSELECT ",
-        "response": "idcase FROM event_log WHERE resource = 'Sara' INTERSECT SELECT idcase FROM event_log WHERE resource = 'Thomas'",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "65_5",
-        "index": 531
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Which activities appear most often in the event log? */\nSELECT activity from event_log GROUP BY activity HAVING  COUNT(*) = (SELECT COUNT(*) FROM event_log  GROUP BY activity ORDER BY COUNT(*)  desc LIMIT 1) \n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### What activities appear more than five times in the event log?\nSELECT ",
-        "response": "activity, COUNT(*) FROM event_log GROUP BY activity HAVING COUNT(*) > 5",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "76_2",
-        "index": 619
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: For which activities are one hundred or more occurrences recorded in the event log? */\nSELECT activity FROM event_log GROUP BY activity HAVING COUNT (*) >= 100\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Which activities have more than five occurrences in the event log?\nSELECT ",
-        "response": "activity, COUNT(*) FROM event_log GROUP BY activity HAVING COUNT(*) > 5",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "76_3",
-        "index": 620
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: In how many events was the 'declaration approved by administration' activity performed? Report the quantity grouped by resource. */\nSELECT count(*), resource FROM event_log WHERE activity = 'Declaration approved by administration' GROUP BY resource\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Report how many actions happened in declaration 56300.\nSELECT ",
-        "response": "count(*) FROM event_log WHERE idcase = 'declaration 56300'",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "78_6",
-        "index": 646
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: What are the declarations in which both Sara and Thomas participated together? */\nSELECT idcase FROM event_log WHERE resource = 'Sara' INTERSECT SELECT idcase FROM event_log WHERE resource = 'Thomas'\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### What declarations were made by Thomas, Diana, or Sara?\nSELECT ",
-        "response": "DISTINCT idcase FROM event_log where resource = 'Thomas' OR resource = 'Diana' OR resource = 'Sara'",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "82_4",
-        "index": 681
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Make a report stating how many interventions by each employee did not report costs in the processing of declarations. */\nselect idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Make a report of all interventions in which employees were not allocated, or the allocation was not reported.\nSELECT ",
-        "response": "* FROM event_log WHERE resource IS NULL",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "87_7",
-        "index": 716
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Retrieve the five resources associated with the most cases. */\nSELECT resource from event_log GROUP BY resource HAVING  COUNT(DISTINCT idcase) IN (SELECT COUNT(DISTINCT idcase) FROM event_log  GROUP BY resource ORDER BY COUNT(DISTINCT idcase)  desc LIMIT 5)\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### List all resources that acted more than five times in the same case.\nSELECT ",
-        "response": "DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "90_1",
-        "index": 735
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: What is the number of occurrences of a resource acting? */\nSELECT COUNT(*), resource FROM event_log GROUP BY resource\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Which resources acted more than five times in the same case?\nSELECT ",
-        "response": "DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "90_2",
-        "index": 736
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the cases in which all activities were performed by the same resource. */\nSELECT idcase from event_log group by idcase HAVING COUNT(DISTINCT resource) = 1\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### If a resource acted more than five times in the same case, list the name of the resource.\nSELECT ",
-        "response": "DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "90_3",
-        "index": 737
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the cases in which all events were associated with the same resource. */\nSELECT idcase from event_log group by idcase HAVING COUNT(DISTINCT resource) = 1\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### If a resource has acted on more than five events in the same case, list the name of this resource.\nSELECT ",
-        "response": "DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "90_4",
-        "index": 738
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the cases in which all events were associated with the same resource. */\nSELECT idcase from event_log group by idcase HAVING COUNT(DISTINCT resource) = 1\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### List the resources that worked on executing more than five events in the same case.\nSELECT ",
-        "response": "DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "90_5",
-        "index": 739
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: How many events did each resource work on? */\nSELECT count (*), resource FROM event_log group by resource\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### What resources were allocated to more than five events in the same case?\nSELECT ",
-        "response": "DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "90_6",
-        "index": 740
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Which actions were performed more than five times during the processing of declarations? */\nSELECT activity, COUNT(*) FROM event_log GROUP BY activity HAVING COUNT(*) > 5\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Which resources acted more than five times on a declaration?\nSELECT ",
-        "response": "DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "90_7",
-        "index": 741
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Which actions were performed more than five times during the processing of declarations? */\nSELECT activity, COUNT(*) FROM event_log GROUP BY activity HAVING COUNT(*) > 5\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Which resources acted more than five times on a single declaration?\nSELECT ",
-        "response": "DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "90_8",
-        "index": 742
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: In how many activities has each resource already acted? */\nSELECT resource, activity, count (*) FROM event_log group by resource, activity\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Which resources have more than 5 actions in a single declaration?\nSELECT ",
-        "response": "DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "90_10",
-        "index": 744
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Report how many actions happened in declaration 56300. */\nSELECT count(*) FROM event_log WHERE idcase = 'declaration 56300'\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### List all activities that were performed in the 'declaration 49464' case but were not performed in the 'declaration 76667' case.\nSELECT ",
-        "response": "activity from event_log where idcase = 'declaration 49464' except select activity from event_log where idcase = 'declaration 76667'",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "95_1",
-        "index": 768
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: In how many cases do all events have null cost? */\nSELECT COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL) \n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### How many null cost events are associated with each resource in each case?\nSELECT ",
-        "response": "idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "102_0",
-        "index": 817
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: In how many cases do all events have null cost? */\nSELECT COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL) \n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### For each case, how many null cost events are there associated with each resource?\nSELECT ",
-        "response": "idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "102_1",
-        "index": 818
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: In how many cases do all events have null cost? */\nSELECT COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL) \n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### How many null cost events are there for each case, associated with each resource?\nSELECT ",
-        "response": "idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "102_2",
-        "index": 819
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: In how many cases do all events have null cost? */\nSELECT COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL) \n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### For each process instance, how many null cost events are there associated with each resource?\nSELECT ",
-        "response": "idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "102_3",
-        "index": 820
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the events that have a non-null cost. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### List how many null cost events are associated with each resource in each of the process instances.\nSELECT ",
-        "response": "idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "102_4",
-        "index": 821
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the events that have a non-null cost. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Report how many null cost events there are associated with each employee in each of the process instances recorded in the log.\nSELECT ",
-        "response": "idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "102_5",
-        "index": 822
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Report how many employees were involved in processing the declarations. */\nSELECT COUNT(DISTINCT resource) FROM event_log\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Make a report stating how many interventions by each employee did not report costs in the processing of declarations.\nSELECT ",
-        "response": "idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "102_6",
-        "index": 823
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: How many employees acted in processing declarations that involved more than three interventions? */\nSELECT COUNT (DISTINCT resource) FROM event_log WHERE idcase IN (SELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) > 3)\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### How many interventions, per employee, did not report costs during the processing of declarations?\nSELECT ",
-        "response": "idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "102_7",
-        "index": 824
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the cases in which events were recorded after the end of the trip. */\nselect e1.idcase from event_log AS e1 inner join event_log AS e2 on e1.idcase = e2.idcase  WHERE e2.activity = 'End trip' and e1.timestamp > e2.timestamp group by e1.idcase\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Which actions indicating the end of a trip were not recorded on the twelfth of December, twenty seventeen?\nSELECT ",
-        "response": "* from event_log where activity = 'End trip' and strftime('%Y-%m-%d', timestamp) != '2017-12-12'",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "110_6",
-        "index": 883
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: How long did it take between the first action taken on a declaration until an indication of the finalization of a trip, or until those actions that indicate that the declaration was rejected by an employee or that a payment has already been made? */\nselect p.idcase, strftime('%s', p.timestamp) - strftime('%s', e.start_time) as 'End trip', strftime('%s', x.timestamp) - strftime('%s', e.start_time) as 'Declaration rejected by employee', strftime('%s', y.timestamp) - strftime('%s', e.start_time) as 'Payment handled' from event_log p inner join (select MIN(timestamp) as start_time, idcase FROM event_log GROUP by idcase) e on e.idcase = p.idcase and p.activity = 'End trip' left join event_log x on x.idcase=e.idcase and x.activity = 'Declaration rejected by employee'  left join event_log y on y.idcase=e.idcase and y.activity = 'Payment handled' \n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### What was the time spent for a declaration to be approved by the supervisor?\nSELECT ",
-        "response": "nkedEvents AS (SELECT id, activity, timestamp, LEAD(timestamp) OVER (PARTITION BY idcase ORDER BY timestamp) AS next_timestamp, idcase FROM event_log) SELECT idcase, coalesce((strftime('%s', next_timestamp) - strftime('%s', timestamp)),0) as duration FROM RankedEvents WHERE activity='Declaration approved by supervisor'",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "115_6",
-        "index": 916
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: In which travel declaration processes were ten or fewer actions performed? */\nSELECT idcase FROM event_log group by idcase having count(*) <= 10\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### How many actions were taken for each travel declaration?\nSELECT ",
-        "response": "count (*), idcase FROM event_log group by idcase",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "118_6",
-        "index": 937
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: How many actions were the responsibility of each person involved in the trip declaration process? */\nSELECT count (*), resource FROM event_log group by resource\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### How many interventions were necessary to process each travel declaration?\nSELECT ",
-        "response": "count (*), idcase FROM event_log group by idcase",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "118_7",
-        "index": 938
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: In which travel declaration processes were ten or fewer actions performed? */\nSELECT idcase FROM event_log group by idcase having count(*) <= 10\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### What resources have more than 200 travel declarations?\nSELECT ",
-        "response": "resource FROM event_log GROUP BY resource HAVING COUNT(DISTINCT idcase) > 200",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "122_6",
-        "index": 967
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: How many declarations are associated with the performance of each of the possible actions in travel declaration processing? */\nSELECT COUNT(DISTINCT idcase), activity FROM event_log GROUP BY activity\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### What different actions are registered with a name that contains the word 'declaration' in each travel declaration?\nSELECT ",
-        "response": "DISTINCT activity FROM event_log WHERE activity LIKE '%declaration%'",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "124_6",
-        "index": 983
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Which events have a non-null cost? */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### In how many cases do all events have null cost?\nSELECT ",
-        "response": "COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL)",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "126_5",
-        "index": 999
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the events that have a non-null cost. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### How many cases have only events without costs?\nSELECT ",
-        "response": "COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL)",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "126_6",
-        "index": 1000
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Report all occurrences in the processing of declarations where costs were communicated to the university */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### How many declarations did the costs not reported to the university?\nSELECT ",
-        "response": "COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL)",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "126_7",
-        "index": 1001
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the events that have a non-null cost. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Select all events whose cost is not null.\nSELECT ",
-        "response": "* FROM event_log WHERE cost IS NOT NULL",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "141_0",
-        "index": 1112
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the events that have a non-null cost. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Select all tuples where the event cost is not null.\nSELECT ",
-        "response": "* FROM event_log WHERE cost IS NOT NULL",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "141_1",
-        "index": 1113
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the events that have a non-null cost. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Select all events that have an associated cost.\nSELECT ",
-        "response": "* FROM event_log WHERE cost IS NOT NULL",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "141_4",
-        "index": 1116
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the events that have a non-null cost. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Retrieve all information about events that have an associated cost.\nSELECT ",
-        "response": "* FROM event_log WHERE cost IS NOT NULL",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "141_5",
-        "index": 1117
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the events that have a non-null cost. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Retrieve all information about events that have a cost.\nSELECT ",
-        "response": "* FROM event_log WHERE cost IS NOT NULL",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "141_6",
-        "index": 1118
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: For declaration processing actions that cost between 50 and 400, present their identifier, the activity associated with it, the responsible employee and its specific cost. */\nSELECT id, activity, resource, cost FROM event_log WHERE cost BETWEEN 50 AND 400\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Report all actions carried out during the processing of each declaration, which costs are not null.\nSELECT ",
-        "response": "* FROM event_log WHERE cost IS NOT NULL",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "141_7",
-        "index": 1119
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Which declarations were subject to more than three interventions? */\nselect idcase from event_log GROUP BY idcase HAVING COUNT(*) > 3\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### What are the 5 declarations that went through the greatest number of actions and how long did each of them take to process?\nSELECT ",
-        "response": "strftime('%s', MAX(timestamp)) - strftime('%s', MIN(timestamp)), idcase FROM event_log where idcase in (select idcase from event_log group by idcase having count(*) IN (select count(*) from event_log group by idcase order by count(*) desc limit 5)) group by idcase",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "157_7",
-        "index": 1283
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the ten process instances, in descending order, with the most activity performances. */\nSELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT Count(*) FROM event_log GROUP BY idcase ORDER BY Count(*) Desc LIMIT 10) order by idcase DESC\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### What are the five process instances with the most activity performances, considering those in which at least 20 events occurred, and what are the durations of these instances?\nSELECT ",
-        "response": "strftime('%s', MAX(timestamp)) - strftime('%s', MIN(timestamp)), idcase FROM event_log where idcase in (select idcase from event_log group by idcase having count(*) IN (select count(*) from event_log group by idcase HAVING count(*) >= 20 order by count(*) desc limit 5)) group by idcase",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "158_2",
-        "index": 1287
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List, in descending order, the 10 cases that have the most events. */\nSELECT idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log  GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### List all cases that had up to ten events performed.\nSELECT ",
-        "response": "idcase FROM event_log group by idcase having count(*) <= 10",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "160_2",
-        "index": 1307
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: For which activities are one hundred or more occurrences recorded in the event log? */\nSELECT activity FROM event_log GROUP BY activity HAVING COUNT (*) >= 100\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### What are the cases for which there are up to ten events recorded in the event log?\nSELECT ",
-        "response": "idcase FROM event_log group by idcase having count(*) <= 10",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "160_7",
-        "index": 1312
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: How many actions were taken for each travel declaration? */\nSELECT count (*), idcase FROM event_log group by idcase\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### In which travel declaration processes were ten or fewer actions performed?\nSELECT ",
-        "response": "idcase FROM event_log group by idcase having count(*) <= 10",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "160_10",
-        "index": 1315
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: How many declarations are associated with the performance of each of the possible actions in travel declaration processing? */\nSELECT COUNT(DISTINCT idcase), activity FROM event_log GROUP BY activity\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### How many travel declarations have a permit action associated with the start of their processing?\nSELECT ",
-        "response": "COUNT(idcase) FROM (SELECT idcase, activity, MIN(timestamp) FROM event_log GROUP BY idcase) AS e1 WHERE e1.activity LIKE 'Permit%'",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "170_8",
-        "index": 1400
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the ten process instances, in descending order, with the most activity performances. */\nSELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT Count(*) FROM event_log GROUP BY idcase ORDER BY Count(*) Desc LIMIT 10) order by idcase DESC\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Identify the last event performed for each process instance and list the identifiers of these events in order of performance.\nSELECT ",
-        "response": "id FROM (select id, MAX(timestamp) as timestamp FROM event_log GROUP by idcase) ORDER by timestamp",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "185_6",
-        "index": 1544
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Make a list of employees who have acted at least 100 times, organized in descending order by the number of actions performed. */\nSELECT resource FROM event_log GROUP BY resource HAVING count(*) >= 100 ORDER BY count(*) DESC\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### List the labels of activities that have occurred at least one hundred times.\nSELECT ",
-        "response": "activity FROM event_log GROUP BY activity HAVING COUNT (*) >= 100",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "186_3",
-        "index": 1550
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Report activities that have more than five occurrences in the event log. */\nSELECT activity, COUNT(*) FROM event_log GROUP BY activity HAVING COUNT(*) > 5\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Report the activities for which there were one hundred or more occurrences recorded in the log.\nSELECT ",
-        "response": "activity FROM event_log GROUP BY activity HAVING COUNT (*) >= 100",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "186_4",
-        "index": 1551
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: What activities appear more than five times in the event log? */\nSELECT activity, COUNT(*) FROM event_log GROUP BY activity HAVING COUNT(*) > 5\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### For which activities are one hundred or more occurrences recorded in the event log?\nSELECT ",
-        "response": "activity FROM event_log GROUP BY activity HAVING COUNT (*) >= 100",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "186_5",
-        "index": 1552
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: In which cases are there more than twenty occurrences of activities performed? */\nSELECT idcase FROM event_log GROUP BY idcase HAVING count(*) > 20\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### What were the actions for which 100 or more occurrences were recorded?\nSELECT ",
-        "response": "activity FROM event_log GROUP BY activity HAVING COUNT (*) >= 100",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "186_6",
-        "index": 1553
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Which actions were performed more than five times during the processing of declarations? */\nSELECT activity, COUNT(*) FROM event_log GROUP BY activity HAVING COUNT(*) > 5\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Which of the actions relating to processing declarations have already been carried out 100 or more times?\nSELECT ",
-        "response": "activity FROM event_log GROUP BY activity HAVING COUNT (*) >= 100",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "186_7",
-        "index": 1554
-    },
-    {
-        "prompt_tokens": 0,
-        "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: What was the time spent for a declaration to be approved by the supervisor? */\nWITH RankedEvents AS (SELECT id, activity, timestamp, LEAD(timestamp) OVER (PARTITION BY idcase ORDER BY timestamp) AS next_timestamp, idcase FROM event_log) SELECT idcase, coalesce((strftime('%s', next_timestamp) - strftime('%s', timestamp)),0) as duration FROM RankedEvents WHERE activity='Declaration approved by supervisor'\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### How much time passed between the employee requesting a permit and the permit being approved by administration, in the declarations in which these actions occurred?\nSELECT ",
-        "response": "e.idcase, (strftime('%s',e1.timestamp) - strftime('%s', e. timestamp)) from event_log e inner join event_log e1 on e1.idcase = e.idcase and e1.timestamp > e.timestamp where e.activity = 'Permit submitted by employee' and e1.activity = 'Permit approved by administration'",
-        "n_examples": 1,
-        "db_id": "event_log",
-        "id": "203_2",
-        "index": 1638
-    }
-]
+{
+    "args": {
+        "data_type": "spider",
+        "split": "test",
+        "k_shot": 1,
+        "prompt_repr": "NUMBERSIGN",
+        "example_type": "QA",
+        "selector_type": "COSSIMILAR",
+        "max_seq_len": 4096,
+        "max_ans_len": 200,
+        "tokenizer": "gpt-3.5-turbo",
+        "scope_factor": 100,
+        "pre_test_result": null
+    },
+    "costs": {
+        "prompt_tokens_per_prompt": 0.0,
+        "gpt-4": 13.24,
+        "gpt-3.5-turbo": 0.662,
+        "text-davinci-003": 6.62,
+        "example_quality": 0.48564273326029367,
+        "pattern_similarity": 0.36488759598466214
+    },
+    "questions": [
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: In how many cases do all events have null cost? */\nSELECT COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL) \n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Which events have a cost other than null?\nSELECT ",
+            "response": "* FROM event_log WHERE cost IS NOT NULL",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "13_0",
+            "index": 108
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: In how many cases do all events have null cost? */\nSELECT COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL) \n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Which events have a non-null cost?\nSELECT ",
+            "response": "* FROM event_log WHERE cost IS NOT NULL",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "13_1",
+            "index": 109
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Select all events whose cost is not null. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### List the events that have a non-null cost.\nSELECT ",
+            "response": "* FROM event_log WHERE cost IS NOT NULL",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "13_2",
+            "index": 110
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: In how many cases do all events have null cost? */\nSELECT COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL) \n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### What are the events in which the cost is not null?\nSELECT ",
+            "response": "* FROM event_log WHERE cost IS NOT NULL",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "13_3",
+            "index": 111
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Select all events whose cost is not null. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### List the events that have a cost other than null.\nSELECT ",
+            "response": "* FROM event_log WHERE cost IS NOT NULL",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "13_4",
+            "index": 112
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: How many declarations did the costs not reported to the university? */\nSELECT COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL) \n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Report all occurrences in the processing of declarations where costs were communicated to the university\nSELECT ",
+            "response": "* FROM event_log WHERE cost IS NOT NULL",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "13_9",
+            "index": 117
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: What was performed during the year 2017 during the processing of declarations? */\nSELECT * FROM event_log WHERE timestamp BETWEEN '2017-01-01' AND '2018-01-01'\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### What activities does the university perform most during the processing of declarations?\nSELECT ",
+            "response": "activity FROM event_log GROUP BY activity HAVING COUNT(*) = (SELECT COUNT(*) FROM event_log GROUP BY activity ORDER BY COUNT(*) DESC LIMIT 1)",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "15_4",
+            "index": 127
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Make a descending list of 10 declaration codes with the most actions performed during their processing. */\nSELECT idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log  GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Make a list of activities performed during the processing of declarations. The list must be ordered from the most frequent activity to the least frequent and must clearly indicate how many times each activity was performed.\nSELECT ",
+            "response": "activity, COUNT(*) FROM event_log GROUP BY activity ORDER BY COUNT (*)",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "16_3",
+            "index": 131
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the resources that worked on executing more than five events in the same case. */\nSELECT DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### List all declarations in which the performance has up to 20 events.\nSELECT ",
+            "response": "idcase FROM event_log GROUP BY idcase HAVING count(*) <= 20",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "18_6",
+            "index": 153
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: What are the 10 cases, in descending order, with the most events? */\nSELECT idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log  GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Which cases have the greatest number of events?\nSELECT ",
+            "response": "idcase FROM event_log GROUP BY idcase HAVING COUNT(*) = (SELECT COUNT(*) FROM event_log GROUP BY idcase ORDER BY count(*) DESC LIMIT 1)",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "24_0",
+            "index": 193
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the 10 cases, in descending order, with the most activity performances. */\nSELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT Count(*) FROM event_log GROUP BY idcase ORDER BY Count(*) Desc LIMIT 10) order by idcase DESC\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### What are the cases in which there are most activity performances?\nSELECT ",
+            "response": "idcase FROM event_log GROUP BY idcase HAVING COUNT(*) = (SELECT COUNT(*) FROM event_log GROUP BY idcase ORDER BY count(*) DESC LIMIT 1)",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "24_1",
+            "index": 194
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List, in descending order, the 10 cases that have the most events. */\nSELECT idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log  GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Retrieve the identifiers of the cases that have the greatest number of events.\nSELECT ",
+            "response": "idcase FROM event_log GROUP BY idcase HAVING COUNT(*) = (SELECT COUNT(*) FROM event_log GROUP BY idcase ORDER BY count(*) DESC LIMIT 1)",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "24_2",
+            "index": 195
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Make a descending list of 10 declaration codes with the most actions performed during their processing. */\nSELECT idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log  GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Retrieve the codes for the longest declarations in terms of number of actions performed.\nSELECT ",
+            "response": "idcase FROM event_log GROUP BY idcase HAVING COUNT(*) = (SELECT COUNT(*) FROM event_log GROUP BY idcase ORDER BY count(*) DESC LIMIT 1)",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "24_6",
+            "index": 199
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: How many cases are related to each of the possible activities? */\nSELECT COUNT(DISTINCT idcase), activity FROM event_log GROUP BY activity\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### What are the 10 cases with the greatest number of activities? List the cases in descending order.\nSELECT ",
+            "response": "idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT Count(*) FROM event_log GROUP BY idcase ORDER BY Count(*) Desc LIMIT 10) order by idcase DESC",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "28_1",
+            "index": 223
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: What are the 10 cases, in descending order, with the most events? */\nSELECT idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log  GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### What are the 10 cases in descending order with the most activities?\nSELECT ",
+            "response": "idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT Count(*) FROM event_log GROUP BY idcase ORDER BY Count(*) Desc LIMIT 10) order by idcase DESC",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "28_2",
+            "index": 224
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Provide a list in descending order of the 10 cases with the most events. */\nSELECT idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log  GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Provide a list in descending order of the 10 cases with the most activities.\nSELECT ",
+            "response": "idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT Count(*) FROM event_log GROUP BY idcase ORDER BY Count(*) Desc LIMIT 10) order by idcase DESC",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "28_5",
+            "index": 227
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Make a descending list of 10 declaration codes with the most actions performed during their processing. */\nSELECT idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log  GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### What are the ten declarations that involved the greatest number of actions? I need the results sorted in descending order according to the code of each declaration\nSELECT ",
+            "response": "idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT Count(*) FROM event_log GROUP BY idcase ORDER BY Count(*) Desc LIMIT 10) order by idcase DESC",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "28_9",
+            "index": 231
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Make a descending list of 10 declaration codes with the most actions performed during their processing. */\nSELECT idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log  GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### What are the ten declarations, in descending code order, with the greatest number of actions?\nSELECT ",
+            "response": "idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT Count(*) FROM event_log GROUP BY idcase ORDER BY Count(*) Desc LIMIT 10) order by idcase DESC",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "28_10",
+            "index": 232
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Which cases have the greatest number of events? */\nSELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) = (SELECT  COUNT(*) FROM event_log GROUP BY idcase ORDER BY count(*) DESC LIMIT 1)\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### What are the 10 cases with the greatest number of events? List the cases in descending order.\nSELECT ",
+            "response": "idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "29_2",
+            "index": 235
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: What are the ten declarations that involved the greatest number of actions? I need the results sorted in descending order according to the code of each declaration */\nSELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT Count(*) FROM event_log GROUP BY idcase ORDER BY Count(*) Desc LIMIT 10) order by idcase DESC\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Make a descending list of 10 declaration codes with the most actions performed during their processing.\nSELECT ",
+            "response": "idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "29_6",
+            "index": 239
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the labels of activities that have occurred at least one hundred times. */\nSELECT activity FROM event_log GROUP BY activity HAVING COUNT (*) >= 100\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Make a list of employees who have acted at least 100 times, organized in descending order by the number of actions performed.\nSELECT ",
+            "response": "resource FROM event_log GROUP BY resource HAVING count(*) >= 100 ORDER BY count(*) DESC",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "31_2",
+            "index": 251
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Report in how many cases each resource was responsible for performing the first event. */\nSELECT COUNT(*), resource FROM (SELECT resource, MIN(timestamp) from event_log GROUP BY idcase) GROUP BY resource\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### List the number of resources that acted in cases that have more than 3 events.\nSELECT ",
+            "response": "COUNT (DISTINCT resource) FROM event_log WHERE idcase IN (SELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) > 3)",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "43_2",
+            "index": 308
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: How many declarations did the costs not reported to the university? */\nSELECT COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL) \n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Which declarations represent the highest cost to the university?\nSELECT ",
+            "response": "idcase FROM event_log GROUP BY idcase HAVING SUM(cost) = (SELECT SUM(cost) FROM event_log GROUP BY idcase ORDER BY SUM(cost) DESC LIMIT 1)",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "58_6",
+            "index": 440
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: What declarations were made by Thomas, Diana, or Sara? */\nSELECT DISTINCT idcase FROM event_log where resource = 'Thomas' OR resource = 'Diana' OR resource = 'Sara'\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### What are the declarations in which both Sara and Thomas participated together?\nSELECT ",
+            "response": "idcase FROM event_log WHERE resource = 'Sara' INTERSECT SELECT idcase FROM event_log WHERE resource = 'Thomas'",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "65_5",
+            "index": 531
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Which activities appear most often in the event log? */\nSELECT activity from event_log GROUP BY activity HAVING  COUNT(*) = (SELECT COUNT(*) FROM event_log  GROUP BY activity ORDER BY COUNT(*)  desc LIMIT 1) \n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### What activities appear more than five times in the event log?\nSELECT ",
+            "response": "activity, COUNT(*) FROM event_log GROUP BY activity HAVING COUNT(*) > 5",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "76_2",
+            "index": 619
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: For which activities are one hundred or more occurrences recorded in the event log? */\nSELECT activity FROM event_log GROUP BY activity HAVING COUNT (*) >= 100\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Which activities have more than five occurrences in the event log?\nSELECT ",
+            "response": "activity, COUNT(*) FROM event_log GROUP BY activity HAVING COUNT(*) > 5",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "76_3",
+            "index": 620
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: In how many events was the 'declaration approved by administration' activity performed? Report the quantity grouped by resource. */\nSELECT count(*), resource FROM event_log WHERE activity = 'Declaration approved by administration' GROUP BY resource\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Report how many actions happened in declaration 56300.\nSELECT ",
+            "response": "count(*) FROM event_log WHERE idcase = 'declaration 56300'",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "78_6",
+            "index": 646
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: What are the declarations in which both Sara and Thomas participated together? */\nSELECT idcase FROM event_log WHERE resource = 'Sara' INTERSECT SELECT idcase FROM event_log WHERE resource = 'Thomas'\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### What declarations were made by Thomas, Diana, or Sara?\nSELECT ",
+            "response": "DISTINCT idcase FROM event_log where resource = 'Thomas' OR resource = 'Diana' OR resource = 'Sara'",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "82_4",
+            "index": 681
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Make a report stating how many interventions by each employee did not report costs in the processing of declarations. */\nselect idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Make a report of all interventions in which employees were not allocated, or the allocation was not reported.\nSELECT ",
+            "response": "* FROM event_log WHERE resource IS NULL",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "87_7",
+            "index": 716
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Retrieve the five resources associated with the most cases. */\nSELECT resource from event_log GROUP BY resource HAVING  COUNT(DISTINCT idcase) IN (SELECT COUNT(DISTINCT idcase) FROM event_log  GROUP BY resource ORDER BY COUNT(DISTINCT idcase)  desc LIMIT 5)\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### List all resources that acted more than five times in the same case.\nSELECT ",
+            "response": "DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "90_1",
+            "index": 735
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: What is the number of occurrences of a resource acting? */\nSELECT COUNT(*), resource FROM event_log GROUP BY resource\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Which resources acted more than five times in the same case?\nSELECT ",
+            "response": "DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "90_2",
+            "index": 736
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the cases in which all activities were performed by the same resource. */\nSELECT idcase from event_log group by idcase HAVING COUNT(DISTINCT resource) = 1\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### If a resource acted more than five times in the same case, list the name of the resource.\nSELECT ",
+            "response": "DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "90_3",
+            "index": 737
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the cases in which all events were associated with the same resource. */\nSELECT idcase from event_log group by idcase HAVING COUNT(DISTINCT resource) = 1\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### If a resource has acted on more than five events in the same case, list the name of this resource.\nSELECT ",
+            "response": "DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "90_4",
+            "index": 738
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the cases in which all events were associated with the same resource. */\nSELECT idcase from event_log group by idcase HAVING COUNT(DISTINCT resource) = 1\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### List the resources that worked on executing more than five events in the same case.\nSELECT ",
+            "response": "DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "90_5",
+            "index": 739
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: How many events did each resource work on? */\nSELECT count (*), resource FROM event_log group by resource\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### What resources were allocated to more than five events in the same case?\nSELECT ",
+            "response": "DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "90_6",
+            "index": 740
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Which actions were performed more than five times during the processing of declarations? */\nSELECT activity, COUNT(*) FROM event_log GROUP BY activity HAVING COUNT(*) > 5\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Which resources acted more than five times on a declaration?\nSELECT ",
+            "response": "DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "90_7",
+            "index": 741
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Which actions were performed more than five times during the processing of declarations? */\nSELECT activity, COUNT(*) FROM event_log GROUP BY activity HAVING COUNT(*) > 5\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Which resources acted more than five times on a single declaration?\nSELECT ",
+            "response": "DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "90_8",
+            "index": 742
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: In how many activities has each resource already acted? */\nSELECT resource, activity, count (*) FROM event_log group by resource, activity\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Which resources have more than 5 actions in a single declaration?\nSELECT ",
+            "response": "DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "90_10",
+            "index": 744
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Report how many actions happened in declaration 56300. */\nSELECT count(*) FROM event_log WHERE idcase = 'declaration 56300'\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### List all activities that were performed in the 'declaration 49464' case but were not performed in the 'declaration 76667' case.\nSELECT ",
+            "response": "activity from event_log where idcase = 'declaration 49464' except select activity from event_log where idcase = 'declaration 76667'",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "95_1",
+            "index": 768
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: In how many cases do all events have null cost? */\nSELECT COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL) \n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### How many null cost events are associated with each resource in each case?\nSELECT ",
+            "response": "idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "102_0",
+            "index": 817
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: In how many cases do all events have null cost? */\nSELECT COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL) \n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### For each case, how many null cost events are there associated with each resource?\nSELECT ",
+            "response": "idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "102_1",
+            "index": 818
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: In how many cases do all events have null cost? */\nSELECT COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL) \n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### How many null cost events are there for each case, associated with each resource?\nSELECT ",
+            "response": "idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "102_2",
+            "index": 819
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: In how many cases do all events have null cost? */\nSELECT COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL) \n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### For each process instance, how many null cost events are there associated with each resource?\nSELECT ",
+            "response": "idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "102_3",
+            "index": 820
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the events that have a non-null cost. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### List how many null cost events are associated with each resource in each of the process instances.\nSELECT ",
+            "response": "idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "102_4",
+            "index": 821
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the events that have a non-null cost. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Report how many null cost events there are associated with each employee in each of the process instances recorded in the log.\nSELECT ",
+            "response": "idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "102_5",
+            "index": 822
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Report how many employees were involved in processing the declarations. */\nSELECT COUNT(DISTINCT resource) FROM event_log\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Make a report stating how many interventions by each employee did not report costs in the processing of declarations.\nSELECT ",
+            "response": "idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "102_6",
+            "index": 823
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: How many employees acted in processing declarations that involved more than three interventions? */\nSELECT COUNT (DISTINCT resource) FROM event_log WHERE idcase IN (SELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) > 3)\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### How many interventions, per employee, did not report costs during the processing of declarations?\nSELECT ",
+            "response": "idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "102_7",
+            "index": 824
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the cases in which events were recorded after the end of the trip. */\nselect e1.idcase from event_log AS e1 inner join event_log AS e2 on e1.idcase = e2.idcase  WHERE e2.activity = 'End trip' and e1.timestamp > e2.timestamp group by e1.idcase\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Which actions indicating the end of a trip were not recorded on the twelfth of December, twenty seventeen?\nSELECT ",
+            "response": "* from event_log where activity = 'End trip' and strftime('%Y-%m-%d', timestamp) != '2017-12-12'",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "110_6",
+            "index": 883
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: How long did it take between the first action taken on a declaration until an indication of the finalization of a trip, or until those actions that indicate that the declaration was rejected by an employee or that a payment has already been made? */\nselect p.idcase, strftime('%s', p.timestamp) - strftime('%s', e.start_time) as 'End trip', strftime('%s', x.timestamp) - strftime('%s', e.start_time) as 'Declaration rejected by employee', strftime('%s', y.timestamp) - strftime('%s', e.start_time) as 'Payment handled' from event_log p inner join (select MIN(timestamp) as start_time, idcase FROM event_log GROUP by idcase) e on e.idcase = p.idcase and p.activity = 'End trip' left join event_log x on x.idcase=e.idcase and x.activity = 'Declaration rejected by employee'  left join event_log y on y.idcase=e.idcase and y.activity = 'Payment handled' \n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### What was the time spent for a declaration to be approved by the supervisor?\nSELECT ",
+            "response": "nkedEvents AS (SELECT id, activity, timestamp, LEAD(timestamp) OVER (PARTITION BY idcase ORDER BY timestamp) AS next_timestamp, idcase FROM event_log) SELECT idcase, coalesce((strftime('%s', next_timestamp) - strftime('%s', timestamp)),0) as duration FROM RankedEvents WHERE activity='Declaration approved by supervisor'",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "115_6",
+            "index": 916
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: In which travel declaration processes were ten or fewer actions performed? */\nSELECT idcase FROM event_log group by idcase having count(*) <= 10\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### How many actions were taken for each travel declaration?\nSELECT ",
+            "response": "count (*), idcase FROM event_log group by idcase",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "118_6",
+            "index": 937
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: How many actions were the responsibility of each person involved in the trip declaration process? */\nSELECT count (*), resource FROM event_log group by resource\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### How many interventions were necessary to process each travel declaration?\nSELECT ",
+            "response": "count (*), idcase FROM event_log group by idcase",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "118_7",
+            "index": 938
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: In which travel declaration processes were ten or fewer actions performed? */\nSELECT idcase FROM event_log group by idcase having count(*) <= 10\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### What resources have more than 200 travel declarations?\nSELECT ",
+            "response": "resource FROM event_log GROUP BY resource HAVING COUNT(DISTINCT idcase) > 200",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "122_6",
+            "index": 967
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: How many declarations are associated with the performance of each of the possible actions in travel declaration processing? */\nSELECT COUNT(DISTINCT idcase), activity FROM event_log GROUP BY activity\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### What different actions are registered with a name that contains the word 'declaration' in each travel declaration?\nSELECT ",
+            "response": "DISTINCT activity FROM event_log WHERE activity LIKE '%declaration%'",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "124_6",
+            "index": 983
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Which events have a non-null cost? */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### In how many cases do all events have null cost?\nSELECT ",
+            "response": "COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL)",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "126_5",
+            "index": 999
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the events that have a non-null cost. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### How many cases have only events without costs?\nSELECT ",
+            "response": "COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL)",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "126_6",
+            "index": 1000
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Report all occurrences in the processing of declarations where costs were communicated to the university */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### How many declarations did the costs not reported to the university?\nSELECT ",
+            "response": "COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL)",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "126_7",
+            "index": 1001
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the events that have a non-null cost. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Select all events whose cost is not null.\nSELECT ",
+            "response": "* FROM event_log WHERE cost IS NOT NULL",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "141_0",
+            "index": 1112
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the events that have a non-null cost. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Select all tuples where the event cost is not null.\nSELECT ",
+            "response": "* FROM event_log WHERE cost IS NOT NULL",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "141_1",
+            "index": 1113
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the events that have a non-null cost. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Select all events that have an associated cost.\nSELECT ",
+            "response": "* FROM event_log WHERE cost IS NOT NULL",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "141_4",
+            "index": 1116
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the events that have a non-null cost. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Retrieve all information about events that have an associated cost.\nSELECT ",
+            "response": "* FROM event_log WHERE cost IS NOT NULL",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "141_5",
+            "index": 1117
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the events that have a non-null cost. */\nSELECT * FROM event_log WHERE cost IS NOT NULL\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Retrieve all information about events that have a cost.\nSELECT ",
+            "response": "* FROM event_log WHERE cost IS NOT NULL",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "141_6",
+            "index": 1118
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: For declaration processing actions that cost between 50 and 400, present their identifier, the activity associated with it, the responsible employee and its specific cost. */\nSELECT id, activity, resource, cost FROM event_log WHERE cost BETWEEN 50 AND 400\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Report all actions carried out during the processing of each declaration, which costs are not null.\nSELECT ",
+            "response": "* FROM event_log WHERE cost IS NOT NULL",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "141_7",
+            "index": 1119
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Which declarations were subject to more than three interventions? */\nselect idcase from event_log GROUP BY idcase HAVING COUNT(*) > 3\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### What are the 5 declarations that went through the greatest number of actions and how long did each of them take to process?\nSELECT ",
+            "response": "strftime('%s', MAX(timestamp)) - strftime('%s', MIN(timestamp)), idcase FROM event_log where idcase in (select idcase from event_log group by idcase having count(*) IN (select count(*) from event_log group by idcase order by count(*) desc limit 5)) group by idcase",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "157_7",
+            "index": 1283
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the ten process instances, in descending order, with the most activity performances. */\nSELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT Count(*) FROM event_log GROUP BY idcase ORDER BY Count(*) Desc LIMIT 10) order by idcase DESC\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### What are the five process instances with the most activity performances, considering those in which at least 20 events occurred, and what are the durations of these instances?\nSELECT ",
+            "response": "strftime('%s', MAX(timestamp)) - strftime('%s', MIN(timestamp)), idcase FROM event_log where idcase in (select idcase from event_log group by idcase having count(*) IN (select count(*) from event_log group by idcase HAVING count(*) >= 20 order by count(*) desc limit 5)) group by idcase",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "158_2",
+            "index": 1287
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List, in descending order, the 10 cases that have the most events. */\nSELECT idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log  GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### List all cases that had up to ten events performed.\nSELECT ",
+            "response": "idcase FROM event_log group by idcase having count(*) <= 10",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "160_2",
+            "index": 1307
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: For which activities are one hundred or more occurrences recorded in the event log? */\nSELECT activity FROM event_log GROUP BY activity HAVING COUNT (*) >= 100\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### What are the cases for which there are up to ten events recorded in the event log?\nSELECT ",
+            "response": "idcase FROM event_log group by idcase having count(*) <= 10",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "160_7",
+            "index": 1312
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: How many actions were taken for each travel declaration? */\nSELECT count (*), idcase FROM event_log group by idcase\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### In which travel declaration processes were ten or fewer actions performed?\nSELECT ",
+            "response": "idcase FROM event_log group by idcase having count(*) <= 10",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "160_10",
+            "index": 1315
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: How many declarations are associated with the performance of each of the possible actions in travel declaration processing? */\nSELECT COUNT(DISTINCT idcase), activity FROM event_log GROUP BY activity\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### How many travel declarations have a permit action associated with the start of their processing?\nSELECT ",
+            "response": "COUNT(idcase) FROM (SELECT idcase, activity, MIN(timestamp) FROM event_log GROUP BY idcase) AS e1 WHERE e1.activity LIKE 'Permit%'",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "170_8",
+            "index": 1400
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: List the ten process instances, in descending order, with the most activity performances. */\nSELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT Count(*) FROM event_log GROUP BY idcase ORDER BY Count(*) Desc LIMIT 10) order by idcase DESC\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Identify the last event performed for each process instance and list the identifiers of these events in order of performance.\nSELECT ",
+            "response": "id FROM (select id, MAX(timestamp) as timestamp FROM event_log GROUP by idcase) ORDER by timestamp",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "185_6",
+            "index": 1544
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Make a list of employees who have acted at least 100 times, organized in descending order by the number of actions performed. */\nSELECT resource FROM event_log GROUP BY resource HAVING count(*) >= 100 ORDER BY count(*) DESC\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### List the labels of activities that have occurred at least one hundred times.\nSELECT ",
+            "response": "activity FROM event_log GROUP BY activity HAVING COUNT (*) >= 100",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "186_3",
+            "index": 1550
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Report activities that have more than five occurrences in the event log. */\nSELECT activity, COUNT(*) FROM event_log GROUP BY activity HAVING COUNT(*) > 5\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Report the activities for which there were one hundred or more occurrences recorded in the log.\nSELECT ",
+            "response": "activity FROM event_log GROUP BY activity HAVING COUNT (*) >= 100",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "186_4",
+            "index": 1551
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: What activities appear more than five times in the event log? */\nSELECT activity, COUNT(*) FROM event_log GROUP BY activity HAVING COUNT(*) > 5\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### For which activities are one hundred or more occurrences recorded in the event log?\nSELECT ",
+            "response": "activity FROM event_log GROUP BY activity HAVING COUNT (*) >= 100",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "186_5",
+            "index": 1552
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: In which cases are there more than twenty occurrences of activities performed? */\nSELECT idcase FROM event_log GROUP BY idcase HAVING count(*) > 20\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### What were the actions for which 100 or more occurrences were recorded?\nSELECT ",
+            "response": "activity FROM event_log GROUP BY activity HAVING COUNT (*) >= 100",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "186_6",
+            "index": 1553
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: Which actions were performed more than five times during the processing of declarations? */\nSELECT activity, COUNT(*) FROM event_log GROUP BY activity HAVING COUNT(*) > 5\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Which of the actions relating to processing declarations have already been carried out 100 or more times?\nSELECT ",
+            "response": "activity FROM event_log GROUP BY activity HAVING COUNT (*) >= 100",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "186_7",
+            "index": 1554
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Some SQL examples are provided based on similar problems: */\n/* Answer the following: What was the time spent for a declaration to be approved by the supervisor? */\nWITH RankedEvents AS (SELECT id, activity, timestamp, LEAD(timestamp) OVER (PARTITION BY idcase ORDER BY timestamp) AS next_timestamp, idcase FROM event_log) SELECT idcase, coalesce((strftime('%s', next_timestamp) - strftime('%s', timestamp)),0) as duration FROM RankedEvents WHERE activity='Declaration approved by supervisor'\n\n### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables, with their properties:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### How much time passed between the employee requesting a permit and the permit being approved by administration, in the declarations in which these actions occurred?\nSELECT ",
+            "response": "e.idcase, (strftime('%s',e1.timestamp) - strftime('%s', e. timestamp)) from event_log e inner join event_log e1 on e1.idcase = e.idcase and e1.timestamp > e.timestamp where e.activity = 'Permit submitted by employee' and e1.activity = 'Permit approved by administration'",
+            "n_examples": 1,
+            "db_id": "event_log",
+            "id": "203_2",
+            "index": 1638
+        }
+    ]
+}

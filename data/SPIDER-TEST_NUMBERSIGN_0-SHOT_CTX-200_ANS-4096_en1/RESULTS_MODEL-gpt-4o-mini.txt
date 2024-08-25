@@ -1,0 +1,43 @@
+SELECT ```sql SELECT * FROM event_log WHERE cost IS NOT NULL; ```
+SELECT ```sql SELECT * FROM event_log WHERE cost IS NOT NULL; ```
+SELECT ```sql SELECT * FROM event_log WHERE cost IS NOT NULL; ```
+SELECT ```sql SELECT * FROM event_log WHERE cost IS NOT NULL; ```
+SELECT ```sql SELECT * FROM event_log WHERE cost IS NOT NULL; ```
+SELECT ```sql SELECT * FROM event_log WHERE activity = 'cost communicated to university'; ```
+SELECT ```sql SELECT activity, COUNT(*) AS activity_count FROM event_log WHERE resource = 'declaration' GROUP BY activity ORDER BY activity_count DESC; ```
+SELECT ```sql SELECT idcase, COUNT(*) AS activity_count FROM event_log GROUP BY idcase ORDER BY activity_count DESC LIMIT 10; ```
+SELECT ```sql SELECT idcase, COUNT(*) AS action_count FROM event_log GROUP BY idcase ORDER BY action_count DESC, idcase DESC LIMIT 10; ```
+SELECT ```sql SELECT idcase, COUNT(*) AS action_count FROM event_log GROUP BY idcase ORDER BY action_count DESC LIMIT 10; ```
+SELECT ```sql SELECT idcase, COUNT(*) AS event_count FROM event_log GROUP BY idcase ORDER BY event_count DESC LIMIT 10; ```
+SELECT ```sql SELECT resource, COUNT(*) AS action_count FROM event_log GROUP BY resource HAVING action_count >= 100 ORDER BY action_count DESC; ```
+SELECT ```sql SELECT DISTINCT el1.idcase FROM event_log el1 JOIN event_log el2 ON el1.idcase = el2.idcase WHERE el1.activity = 'Sara' AND el2.activity = 'Thomas'; ```
+SELECT ```sql SELECT COUNT(*) FROM event_log WHERE idcase = 56300; ```
+SELECT ```sql SELECT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5; ```
+SELECT ```sql SELECT resource, idcase, COUNT(*) as activity_count FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5; ```
+SELECT ```sql SELECT resource FROM event_log WHERE idcase IN ( SELECT idcase FROM event_log GROUP BY idcase, resource HAVING COUNT(*) > 5 ) GROUP BY resource; ```
+SELECT ```sql SELECT resource FROM event_log WHERE idcase IN ( SELECT idcase FROM event_log GROUP BY idcase, resource HAVING COUNT(*) > 5 ) GROUP BY resource; ```
+SELECT ```sql SELECT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5; ```
+SELECT ```sql SELECT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5; ```
+SELECT ```sql SELECT resource, COUNT(*) as activity_count FROM event_log GROUP BY resource HAVING activity_count > 5; ```
+SELECT ```sql SELECT resource, COUNT(*) as action_count FROM event_log GROUP BY resource, idcase HAVING action_count > 5; ```
+SELECT ```sql SELECT resource, COUNT(*) as action_count FROM event_log GROUP BY resource HAVING action_count > 5; ```
+SELECT ```sql SELECT resource, idcase, COUNT(*) AS null_cost_events FROM event_log WHERE cost IS NULL GROUP BY resource, idcase; ```
+SELECT ```sql SELECT resource, COUNT(*) AS null_cost_count FROM event_log WHERE cost IS NULL GROUP BY resource, idcase; ```
+SELECT ```sql SELECT resource, idcase, COUNT(*) AS null_cost_events FROM event_log WHERE cost IS NULL GROUP BY resource, idcase; ```
+SELECT ```sql SELECT resource, COUNT(*) AS null_cost_events FROM event_log WHERE cost IS NULL GROUP BY resource; ```
+SELECT ```sql SELECT resource, idcase, COUNT(*) AS null_cost_events FROM event_log WHERE cost IS NULL GROUP BY resource, idcase; ```
+SELECT ```sql SELECT idcase, resource, COUNT(*) AS null_cost_events FROM event_log WHERE cost IS NULL GROUP BY idcase, resource; ```
+SELECT ```sql SELECT resource, COUNT(*) AS interventions_without_cost FROM event_log WHERE activity = 'declaration' AND cost IS NULL GROUP BY resource; ```
+SELECT ```sql SELECT resource, COUNT(*) AS interventions_without_cost FROM event_log WHERE activity = 'declaration' AND cost = 0 GROUP BY resource; ```
+SELECT ```sql SELECT activity FROM event_log WHERE activity IN ('trip_end_action1', 'trip_end_action2', 'trip_end_action3') AND DATE(timestamp) = '2017-12-12' AND idcase NOT IN (SELECT idcase FROM event_log WHERE DATE(timestamp) = '2017-12-12'); ```
+SELECT ```sql SELECT SUM(cost) AS total_time_spent FROM event_log WHERE activity = 'declaration_approved' AND resource = 'supervisor'; ```
+SELECT ```sql SELECT COUNT(DISTINCT idcase) FROM event_log WHERE cost IS NULL GROUP BY idcase HAVING COUNT(*) = (SELECT COUNT(*) FROM event_log WHERE idcase = event_log.idcase); ```
+SELECT ```sql SELECT COUNT(*) FROM event_log WHERE cost IS NULL; ```
+SELECT ```sql SELECT * FROM event_log WHERE cost IS NOT NULL; ```
+SELECT ```sql SELECT * FROM event_log WHERE cost IS NOT NULL; ```
+SELECT ```sql SELECT * FROM event_log WHERE cost IS NOT NULL; ```
+SELECT ```sql SELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) <= 10; ```
+SELECT ```sql SELECT activity, COUNT(*) AS occurrence_count FROM event_log GROUP BY activity HAVING COUNT(*) >= 100; ```
+SELECT ```sql SELECT activity FROM event_log GROUP BY activity HAVING COUNT(*) >= 100; ```
+SELECT ```sql SELECT activity, COUNT(*) AS occurrences FROM event_log GROUP BY activity HAVING COUNT(*) >= 100; ```
+SELECT ```sql SELECT activity, COUNT(*) as action_count FROM event_log WHERE activity LIKE '%processing declaration%' GROUP BY activity HAVING action_count >= 100; ```
