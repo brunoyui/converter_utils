@@ -1,0 +1,353 @@
+[
+    {
+        "prompt_tokens": 0,
+        "prompt": "### Complete somente a consulta sqlite SQL e sem explica\u00e7\u00e3o\n### Tabelas SQLite SQL, com suas propriedades:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Informe todas as ocorr\u00eancias no processamento das declara\u00e7\u00f5es em que os custos foram informados \u00e0 universidade.\nSELECT ",
+        "response": "* FROM event_log WHERE cost IS NOT NULL",
+        "n_examples": 0,
+        "db_id": "event_log",
+        "id": "13_9",
+        "index": 117
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "### Complete somente a consulta sqlite SQL e sem explica\u00e7\u00e3o\n### Tabelas SQLite SQL, com suas propriedades:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Quais s\u00e3o as atividades que a universidade mais executa durante o processamento das declara\u00e7\u00f5es?\nSELECT ",
+        "response": "activity FROM event_log GROUP BY activity HAVING COUNT(*) = (SELECT COUNT(*) FROM event_log GROUP BY activity ORDER BY COUNT(*) DESC LIMIT 1)",
+        "n_examples": 0,
+        "db_id": "event_log",
+        "id": "15_4",
+        "index": 127
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "### Complete somente a consulta sqlite SQL e sem explica\u00e7\u00e3o\n### Tabelas SQLite SQL, com suas propriedades:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Quais s\u00e3o os 10 casos com a maior quantidade de atividades? Liste os casos em ordem descrescente.\nSELECT ",
+        "response": "idcase FROM event_log GROUP BY idcase HAVING COUNT(activity) IN (SELECT Count(activity) FROM event_log GROUP BY idcase ORDER BY Count(activity) Desc LIMIT 10) order by COUNT(activity) DESC",
+        "n_examples": 0,
+        "db_id": "event_log",
+        "id": "28_1",
+        "index": 223
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "### Complete somente a consulta sqlite SQL e sem explica\u00e7\u00e3o\n### Tabelas SQLite SQL, com suas propriedades:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Quais s\u00e3o as dez declara\u00e7\u00f5es que envolveram o maior n\u00famero de a\u00e7\u00f5es entre si? Preciso do resultado ordenado de forma descrescente de acordo com o c\u00f3digo de cada declara\u00e7\u00e3o\nSELECT ",
+        "response": "idcase FROM event_log GROUP BY idcase HAVING COUNT(activity) IN (SELECT Count(activity) FROM event_log GROUP BY idcase ORDER BY Count(activity) Desc LIMIT 10) order by COUNT(activity) DESC",
+        "n_examples": 0,
+        "db_id": "event_log",
+        "id": "28_9",
+        "index": 231
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "### Complete somente a consulta sqlite SQL e sem explica\u00e7\u00e3o\n### Tabelas SQLite SQL, com suas propriedades:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Quais s\u00e3o as dez declara\u00e7\u00f5es, em ordem decrescente de c\u00f3digo, com a maior quantidade de a\u00e7\u00f5es?\nSELECT ",
+        "response": "idcase FROM event_log GROUP BY idcase HAVING COUNT(activity) IN (SELECT Count(activity) FROM event_log GROUP BY idcase ORDER BY Count(activity) Desc LIMIT 10) order by COUNT(activity) DESC",
+        "n_examples": 0,
+        "db_id": "event_log",
+        "id": "28_10",
+        "index": 232
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "### Complete somente a consulta sqlite SQL e sem explica\u00e7\u00e3o\n### Tabelas SQLite SQL, com suas propriedades:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Quais s\u00e3o os 10 casos com a maior quantidade de eventos? Liste os casos em ordem descrescente.\nSELECT ",
+        "response": "idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log GROUP BY idcase ORDER BY COUNT(*) desc LIMIT 10) ORDER BY COUNT(*) DESC",
+        "n_examples": 0,
+        "db_id": "event_log",
+        "id": "29_2",
+        "index": 235
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "### Complete somente a consulta sqlite SQL e sem explica\u00e7\u00e3o\n### Tabelas SQLite SQL, com suas propriedades:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Fa\u00e7a uma lista dos funcion\u00e1rios que atuaram pelo menos 100 vezes, organizada de maneira descrescente pela quantidade de a\u00e7\u00f5es realizadas. \nSELECT ",
+        "response": "resource FROM event_log GROUP BY resource HAVING count(*) >= 100 ORDER BY count(*) DESC",
+        "n_examples": 0,
+        "db_id": "event_log",
+        "id": "31_2",
+        "index": 251
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "### Complete somente a consulta sqlite SQL e sem explica\u00e7\u00e3o\n### Tabelas SQLite SQL, com suas propriedades:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Desconsiderando casos que tiveram eventos ocorrendo em janeiro de 2018, quais s\u00e3o aqueles em que o recurso Charles trabalhou?\nSELECT ",
+        "response": "idcase FROM event_log WHERE resource = 'Charles' EXCEPT SELECT idcase FROM event_log WHERE timestamp BETWEEN '2018-01-01' and '2018-02-01'",
+        "n_examples": 0,
+        "db_id": "event_log",
+        "id": "46_3",
+        "index": 325
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "### Complete somente a consulta sqlite SQL e sem explica\u00e7\u00e3o\n### Tabelas SQLite SQL, com suas propriedades:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Liste os identificadores dos casos em que os recursos 'Sara' e 'Thomas' atuaram.\nSELECT ",
+        "response": "idcase FROM event_log WHERE resource = 'Sara' INTERSECT SELECT idcase FROM event_log WHERE resource = 'Thomas'",
+        "n_examples": 0,
+        "db_id": "event_log",
+        "id": "65_2",
+        "index": 528
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "### Complete somente a consulta sqlite SQL e sem explica\u00e7\u00e3o\n### Tabelas SQLite SQL, com suas propriedades:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Quais s\u00e3o as declara\u00e7\u00f5es em que tanto Sara quanto Thomas participaram juntos?\nSELECT ",
+        "response": "idcase FROM event_log WHERE resource = 'Sara' INTERSECT SELECT idcase FROM event_log WHERE resource = 'Thomas'",
+        "n_examples": 0,
+        "db_id": "event_log",
+        "id": "65_5",
+        "index": 531
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "### Complete somente a consulta sqlite SQL e sem explica\u00e7\u00e3o\n### Tabelas SQLite SQL, com suas propriedades:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Informe quantas a\u00e7\u00f5es ocorreram na declara\u00e7\u00e3o 56300.\nSELECT ",
+        "response": "count(*) FROM event_log WHERE idcase = 'declara\u00e7\u00e3o 56300'",
+        "n_examples": 0,
+        "db_id": "event_log",
+        "id": "78_6",
+        "index": 646
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "### Complete somente a consulta sqlite SQL e sem explica\u00e7\u00e3o\n### Tabelas SQLite SQL, com suas propriedades:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Liste todos os recursos que atuaram mais de cinco vezes em um mesmo caso.\nSELECT ",
+        "response": "DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5",
+        "n_examples": 0,
+        "db_id": "event_log",
+        "id": "90_1",
+        "index": 735
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "### Complete somente a consulta sqlite SQL e sem explica\u00e7\u00e3o\n### Tabelas SQLite SQL, com suas propriedades:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Quais recursos atuaram mais de cinco vezes em um mesmo caso?\nSELECT ",
+        "response": "DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5",
+        "n_examples": 0,
+        "db_id": "event_log",
+        "id": "90_2",
+        "index": 736
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "### Complete somente a consulta sqlite SQL e sem explica\u00e7\u00e3o\n### Tabelas SQLite SQL, com suas propriedades:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Se um recurso atuou mais de cinco vezes em um mesmo caso, liste o nome do recurso.\nSELECT ",
+        "response": "DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5",
+        "n_examples": 0,
+        "db_id": "event_log",
+        "id": "90_3",
+        "index": 737
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "### Complete somente a consulta sqlite SQL e sem explica\u00e7\u00e3o\n### Tabelas SQLite SQL, com suas propriedades:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Caso um recurso tenha atuado em mais de cinco eventos em um mesmo caso, liste o nome deste recurso.\nSELECT ",
+        "response": "DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5",
+        "n_examples": 0,
+        "db_id": "event_log",
+        "id": "90_4",
+        "index": 738
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "### Complete somente a consulta sqlite SQL e sem explica\u00e7\u00e3o\n### Tabelas SQLite SQL, com suas propriedades:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Liste os recursos que trabalharam na execu\u00e7\u00e3o de mais de cinco eventos em um mesmo caso.\nSELECT ",
+        "response": "DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5",
+        "n_examples": 0,
+        "db_id": "event_log",
+        "id": "90_5",
+        "index": 739
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "### Complete somente a consulta sqlite SQL e sem explica\u00e7\u00e3o\n### Tabelas SQLite SQL, com suas propriedades:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Quais recursos foram alocados para mais de cinco eventos em um mesmo caso?\nSELECT ",
+        "response": "DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5",
+        "n_examples": 0,
+        "db_id": "event_log",
+        "id": "90_6",
+        "index": 740
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "### Complete somente a consulta sqlite SQL e sem explica\u00e7\u00e3o\n### Tabelas SQLite SQL, com suas propriedades:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Quais recursos atuaram mais de cinco vezes em um declara\u00e7\u00e3o?\nSELECT ",
+        "response": "DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5",
+        "n_examples": 0,
+        "db_id": "event_log",
+        "id": "90_7",
+        "index": 741
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "### Complete somente a consulta sqlite SQL e sem explica\u00e7\u00e3o\n### Tabelas SQLite SQL, com suas propriedades:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Quais recursos atuaram mais de cinco vezes em uma \u00fanica declara\u00e7\u00e3o?\nSELECT ",
+        "response": "DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5",
+        "n_examples": 0,
+        "db_id": "event_log",
+        "id": "90_8",
+        "index": 742
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "### Complete somente a consulta sqlite SQL e sem explica\u00e7\u00e3o\n### Tabelas SQLite SQL, com suas propriedades:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Quais os recursos que t\u00eam mais de 5 atua\u00e7\u00f5es em uma \u00fanica declara\u00e7\u00e3o?\nSELECT ",
+        "response": "DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5",
+        "n_examples": 0,
+        "db_id": "event_log",
+        "id": "90_10",
+        "index": 744
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "### Complete somente a consulta sqlite SQL e sem explica\u00e7\u00e3o\n### Tabelas SQLite SQL, com suas propriedades:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Preciso saber quem s\u00e3o os dez funcion\u00e1rios que mais aprovaram uma declara\u00e7\u00e3o, em definitivo, usando a posi\u00e7\u00e3o de supervisor. A lista deve ser apresentada do funcion\u00e1rio mais alocado na atividade para o funcion\u00e1rio menos alocado.\nSELECT ",
+        "response": "resource FROM event_log where activity = 'Declara\u00e7\u00e3o aprovada pelo supervisor' group by resource HAVING COUNT(*) IN (select COUNT(*) from event_log where activity = 'Declara\u00e7\u00e3o aprovada pelo supervisor' group by resource order by count(*) DESC limit 10) ORDER BY COUNT(*) DESC",
+        "n_examples": 0,
+        "db_id": "event_log",
+        "id": "92_2",
+        "index": 752
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "### Complete somente a consulta sqlite SQL e sem explica\u00e7\u00e3o\n### Tabelas SQLite SQL, com suas propriedades:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Preciso saber quem s\u00e3o os funcion\u00e1rios que aprovaram uma declara\u00e7\u00e3o, em definitivo, usando a posi\u00e7\u00e3o de supervisor. A lista deve ser apresentada do funcion\u00e1rio mais alocado na atividade para o funcion\u00e1rio menos alocado.\nSELECT ",
+        "response": "resource from event_log where activity = 'Declara\u00e7\u00e3o final aprovada pelo supervisor' group by resource order by count(*) DESC",
+        "n_examples": 0,
+        "db_id": "event_log",
+        "id": "93_4",
+        "index": 757
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "### Complete somente a consulta sqlite SQL e sem explica\u00e7\u00e3o\n### Tabelas SQLite SQL, com suas propriedades:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Liste as declara\u00e7\u00f5es que passaram por mais de uma interven\u00e7\u00e3o em um mesmo dia.\nSELECT ",
+        "response": "DISTINCT(idcase) FROM (SELECT idcase, strftime('%Y-%m-%d', timestamp) as event_date, COUNT(*) as event_count FROM event_log GROUP BY idcase, event_date HAVING event_count > 1)",
+        "n_examples": 0,
+        "db_id": "event_log",
+        "id": "101_5",
+        "index": 815
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "### Complete somente a consulta sqlite SQL e sem explica\u00e7\u00e3o\n### Tabelas SQLite SQL, com suas propriedades:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Fa\u00e7a um relat\u00f3rio mostrando quantas interven\u00e7\u00f5es de cada funcion\u00e1rio n\u00e3o informaram os custos no processamento das declara\u00e7\u00f5es.\nSELECT ",
+        "response": "idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource",
+        "n_examples": 0,
+        "db_id": "event_log",
+        "id": "102_6",
+        "index": 823
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "### Complete somente a consulta sqlite SQL e sem explica\u00e7\u00e3o\n### Tabelas SQLite SQL, com suas propriedades:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Quantas interven\u00e7\u00f5es, por funcion\u00e1rio, n\u00e3o informaram custos durante o processamento das declara\u00e7\u00f5es?\nSELECT ",
+        "response": "idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource",
+        "n_examples": 0,
+        "db_id": "event_log",
+        "id": "102_7",
+        "index": 824
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "### Complete somente a consulta sqlite SQL e sem explica\u00e7\u00e3o\n### Tabelas SQLite SQL, com suas propriedades:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Quais a\u00e7\u00f5es indicando fim de uma viagem n\u00e3o foram registradas no dia doze de dezembro de dois mil e dezessete.\nSELECT ",
+        "response": "* from event_log where activity = 'Fim da viagem' and strftime('%Y-%m-%d', timestamp) != '2017-12-12'",
+        "n_examples": 0,
+        "db_id": "event_log",
+        "id": "110_6",
+        "index": 883
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "### Complete somente a consulta sqlite SQL e sem explica\u00e7\u00e3o\n### Tabelas SQLite SQL, com suas propriedades:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Qual foi o tempo gasto para uma declara\u00e7\u00e3o ser aprovada pelo supervisor?\nSELECT ",
+        "response": "nkedEvents AS (SELECT id, activity, timestamp, LEAD(timestamp) OVER (PARTITION BY idcase ORDER BY timestamp) AS next_timestamp, idcase FROM event_log) SELECT idcase, coalesce((strftime('%s', next_timestamp) - strftime('%s', timestamp)),0) as duration FROM RankedEvents WHERE activity='Declara\u00e7\u00e3o aprovada pelo supervisor'",
+        "n_examples": 0,
+        "db_id": "event_log",
+        "id": "115_6",
+        "index": 916
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "### Complete somente a consulta sqlite SQL e sem explica\u00e7\u00e3o\n### Tabelas SQLite SQL, com suas propriedades:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Quantos casos passaram pela atividade 'fim da viagem' entre 02/05/2017 e 12/05/2017?\nSELECT ",
+        "response": "COUNT(DISTINCT idcase) FROM event_log WHERE activity = 'Fim da viagem' AND timestamp BETWEEN '2017-05-02' and '2017-05-12'",
+        "n_examples": 0,
+        "db_id": "event_log",
+        "id": "119_0",
+        "index": 939
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "### Complete somente a consulta sqlite SQL e sem explica\u00e7\u00e3o\n### Tabelas SQLite SQL, com suas propriedades:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Quantas declara\u00e7\u00f5es os custos n\u00e3o foram informados \u00e0 universidade?\nSELECT ",
+        "response": "COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL)",
+        "n_examples": 0,
+        "db_id": "event_log",
+        "id": "126_7",
+        "index": 1001
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "### Complete somente a consulta sqlite SQL e sem explica\u00e7\u00e3o\n### Tabelas SQLite SQL, com suas propriedades:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Selecione as atividades dos eventos que tem '2018-04-12' como data de seu t\u00e9rmino.\nSELECT ",
+        "response": "DISTINCT activity FROM (select activity, MAX(timestamp) as timestamp FROM event_log GROUP by idcase) WHERE timestamp BETWEEN '2018-04-12' AND '2018-04-13'",
+        "n_examples": 0,
+        "db_id": "event_log",
+        "id": "139_3",
+        "index": 1098
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "### Complete somente a consulta sqlite SQL e sem explica\u00e7\u00e3o\n### Tabelas SQLite SQL, com suas propriedades:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Para cada uma das declara\u00e7\u00f5es de viagem, informe quais a\u00e7\u00f5es ocorreram depois do registro de finaliza\u00e7\u00e3o da viagem, e quem foi o funcion\u00e1rio que executou essas a\u00e7\u00f5es.\nSELECT ",
+        "response": "e1.id, e1.resource from event_log AS e1 inner join event_log AS e2 on e1.idcase = e2.idcase WHERE e2.activity = 'Fim da viagem' and e1.timestamp > e2.timestamp",
+        "n_examples": 0,
+        "db_id": "event_log",
+        "id": "148_16",
+        "index": 1195
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "### Complete somente a consulta sqlite SQL e sem explica\u00e7\u00e3o\n### Tabelas SQLite SQL, com suas propriedades:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Recupere a quantidade de vezes que um funcion\u00e1rio trabalhou no processamento de uma declara\u00e7\u00e3o de viagem, exceto aqueles em que ele foi o respons\u00e1vel por registrar o final de uma viagem.\nSELECT ",
+        "response": "COUNT(*), resource FROM event_log WHERE activity != 'Fim da viagem' GROUP BY resource",
+        "n_examples": 0,
+        "db_id": "event_log",
+        "id": "149_28",
+        "index": 1224
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "### Complete somente a consulta sqlite SQL e sem explica\u00e7\u00e3o\n### Tabelas SQLite SQL, com suas propriedades:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Em quais processamento de declara\u00e7\u00f5es de viagem foram executadas dez a\u00e7\u00f5es ou menos?\nSELECT ",
+        "response": "idcase FROM event_log group by idcase having count(*) <= 10",
+        "n_examples": 0,
+        "db_id": "event_log",
+        "id": "160_10",
+        "index": 1315
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "### Complete somente a consulta sqlite SQL e sem explica\u00e7\u00e3o\n### Tabelas SQLite SQL, com suas propriedades:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Identique o \u00faltimo evento executado para cada inst\u00e2ncia de processo e liste os identificadores destes eventos por ordem de execu\u00e7\u00e3o.\nSELECT ",
+        "response": "id FROM (select id, MAX(timestamp) as timestamp FROM event_log GROUP by idcase) ORDER by timestamp",
+        "n_examples": 0,
+        "db_id": "event_log",
+        "id": "185_6",
+        "index": 1544
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "### Complete somente a consulta sqlite SQL e sem explica\u00e7\u00e3o\n### Tabelas SQLite SQL, com suas propriedades:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Informe as atividades para as quais houve cem ou mais ocorr\u00eancias registradas no log.\nSELECT ",
+        "response": "activity FROM event_log GROUP BY activity HAVING COUNT (*) >= 100",
+        "n_examples": 0,
+        "db_id": "event_log",
+        "id": "186_4",
+        "index": 1551
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "### Complete somente a consulta sqlite SQL e sem explica\u00e7\u00e3o\n### Tabelas SQLite SQL, com suas propriedades:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Para quais atividades h\u00e1 registro de cem ou mais ocorr\u00eancias no log de evento?\nSELECT ",
+        "response": "activity FROM event_log GROUP BY activity HAVING COUNT (*) >= 100",
+        "n_examples": 0,
+        "db_id": "event_log",
+        "id": "186_5",
+        "index": 1552
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "### Complete somente a consulta sqlite SQL e sem explica\u00e7\u00e3o\n### Tabelas SQLite SQL, com suas propriedades:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Quais foram as a\u00e7\u00f5es para as quais foram registrados 100 ou mais ocorr\u00eancias?\nSELECT ",
+        "response": "activity FROM event_log GROUP BY activity HAVING COUNT (*) >= 100",
+        "n_examples": 0,
+        "db_id": "event_log",
+        "id": "186_6",
+        "index": 1553
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "### Complete somente a consulta sqlite SQL e sem explica\u00e7\u00e3o\n### Tabelas SQLite SQL, com suas propriedades:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Quais das a\u00e7\u00f5es referentes ao processamento de declara\u00e7\u00f5es j\u00e1 foram executadas 100 ou mais vezes?\nSELECT ",
+        "response": "activity FROM event_log GROUP BY activity HAVING COUNT (*) >= 100",
+        "n_examples": 0,
+        "db_id": "event_log",
+        "id": "186_7",
+        "index": 1554
+    },
+    {
+        "prompt_tokens": 0,
+        "prompt": "### Complete somente a consulta sqlite SQL e sem explica\u00e7\u00e3o\n### Tabelas SQLite SQL, com suas propriedades:\n#\n# event_log(id, activity, timestamp, resource, cost, idcase)\n#\n### Ordene as atividades previamente associadas a um grupo de recursos de acordo com o especificado em seu r\u00f3tulo (funcion\u00e1rio, supervisor, administra\u00e7\u00e3o, pr\u00e9-aprovador, respons\u00e1vel pelo or\u00e7amento, diretor), considerando a quantidade de vezes que foram executadas.\nSELECT ",
+        "response": "count(*), 'funcion\u00e1rio' as grupo from event_log WHERE activity like '%funcion\u00e1rio%' UNION select count(*), 'supervisor' as grupo from event_log WHERE activity like '%supervisor%' UNION select count(*), 'administra\u00e7\u00e3o' as grupo from event_log WHERE activity like '%administra\u00e7\u00e3o%' UNION select count(*), 'pr\u00e9-aprovador' as grupo from event_log WHERE activity like '%pr\u00e9-aprovador%' UNION select count(*), 'respons\u00e1vel pelo or\u00e7amento' as grupo from event_log WHERE activity like '%respons\u00e1vel pelo or\u00e7amento%' UNION select count(*), 'diretor' as grupo from event_log WHERE activity like '%diretor%' order by count(*)",
+        "n_examples": 0,
+        "db_id": "event_log",
+        "id": "188_0",
+        "index": 1560
+    }
+]
