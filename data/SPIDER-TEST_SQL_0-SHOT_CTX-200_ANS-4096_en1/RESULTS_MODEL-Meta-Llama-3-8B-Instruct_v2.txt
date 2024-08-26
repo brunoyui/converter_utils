@@ -1,0 +1,43 @@
+SELECT activity FROM event_log WHERE cost IS NOT NULL;
+SELECT * FROM event_log WHERE cost IS NOT NULL;
+SELECT * FROM event_log WHERE cost IS NOT NULL;
+SELECT * FROM event_log WHERE cost IS NOT NULL;
+SELECT * FROM event_log WHERE cost IS NOT NULL;
+SELECT * FROM event_log WHERE activity LIKE '%declarations%' AND cost > 0;
+SELECT activity, COUNT(*) as frequency FROM event_log WHERE idcase = 'declarations' -- assuming idcase is the column that indicates the type of declaration GROUP BY activity ORDER BY frequency DESC;
+SELECT idcase, COUNT(*) as num_activities FROM event_log GROUP BY idcase ORDER BY num_activities DESC LIMIT 10;
+SELECT idcase, COUNT(*) AS num_actions, activity FROM event_log GROUP BY idcase, activity ORDER BY num_actions DESC LIMIT 10;
+SELECT "resource", COUNT(*) AS "action_count" FROM "event_log" GROUP BY "resource" ORDER BY "action_count" DESC LIMIT 10;
+SELECT idcase, COUNT(*) as num_events FROM event_log GROUP BY idcase ORDER BY num_events DESC LIMIT 10;
+SELECT "resource" AS employee, COUNT(*) AS num_actions FROM "event_log" GROUP BY "resource" HAVING COUNT(*) >= 100 ORDER BY num_actions DESC;
+SELECT activity FROM event_log WHERE activity LIKE '%Sara%' AND activity LIKE '%Thomas%';
+SELECT COUNT(*) FROM event_log WHERE idcase = '56300';
+SELECT resource, idcase, COUNT(*) as count FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5
+SELECT resource, idcase, COUNT(*) as count FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5;
+SELECT DISTINCT resource FROM event_log WHERE idcase IS NOT NULL GROUP BY resource, idcase HAVING COUNT(*) > 5;
+SELECT DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5;
+SELECT DISTINCT resource FROM event_log WHERE idcase IN ( SELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) > 5 ) ORDER BY resource;
+SELECT resource, COUNT(*) as count FROM event_log WHERE idcase IS NOT NULL GROUP BY resource HAVING COUNT(*) > 5;
+SELECT resource, COUNT(*) as count FROM event_log WHERE idcase IS NOT NULL GROUP BY resource HAVING COUNT(*) > 5;
+SELECT resource, COUNT(*) as count FROM event_log GROUP BY resource HAVING COUNT(*) > 5;
+SELECT DISTINCT resource, COUNT(*) as count FROM event_log GROUP BY resource HAVING COUNT(*) > 5;
+SELECT "resource", "idcase", COUNT(*) AS "null_cost_events" FROM "event_log" WHERE "cost" IS NULL GROUP BY "resource", "idcase";
+SELECT resource, COUNT(*) AS num_null_cost_events FROM event_log WHERE cost IS NULL GROUP BY resource;
+SELECT idcase, resource, COUNT(*) AS num_null_cost_events FROM event_log WHERE cost IS NULL GROUP BY idcase, resource;
+SELECT resource, COUNT(*) AS num_null_cost_events FROM event_log WHERE cost IS NULL GROUP BY resource
+SELECT resource, COUNT(CASE WHEN cost IS NULL THEN 1 ELSE NULL END) AS null_cost_events FROM event_log GROUP BY resource
+SELECT idcase, COUNT(*) AS num_null_cost_events FROM event_log WHERE cost IS NULL GROUP BY idcase
+SELECT e.employee, COUNT(*) as num_interventions_without_cost FROM event_log el JOIN employees e ON el.idcase = e.idcase WHERE el.activity LIKE '%intervention%' AND el.cost IS NULL GROUP BY e.employee ORDER BY num_interventions_without_cost DESC;
+SELECT el1.resource AS employee, COUNT(*) AS num_interventions FROM event_log el1 JOIN event_log el2 ON el1.idcase = el2.idcase AND el1.activity = el2.activity WHERE el1.cost IS NOT NULL AND el2.cost IS NULL GROUP BY el1.resource
+SELECT activity FROM event_log WHERE activity LIKE '%end%' OR activity LIKE '%finish%' AND timestamp NOT LIKE '%2017-12-12%';
+SELECT SUM(cost) AS total_cost, TIMESTAMPDIFF(SECOND, MIN(timestamp), MAX(timestamp)) AS total_time FROM event_log WHERE activity LIKE '%declaration%' AND activity LIKE '%approved%' AND activity LIKE '%supervisor%' GROUP BY idcase;
+SELECT COUNT(*) FROM ( SELECT idcase, COUNT(*) AS cost_count FROM event_log GROUP BY idcase HAVING COUNT(CASE WHEN cost IS NULL THEN 1 ELSE NULL END) = COUNT(*) ) AS subquery
+SELECT COUNT(*) FROM event_log WHERE cost = 0 OR cost IS NULL
+SELECT * FROM event_log WHERE cost IS NOT NULL;
+SELECT * FROM event_log WHERE cost IS NOT NULL;
+SELECT el.activity, el.timestamp, el.resource, el.cost, el.idcase FROM event_log el WHERE el.idcase IS NOT NULL;
+SELECT t.idcase, COUNT(*) AS num_actions FROM event_log e JOIN travel_declaration t ON e.idcase = t.idcase GROUP BY t.idcase HAVING COUNT(*) <= 10;
+SELECT activity FROM event_log GROUP BY activity HAVING COUNT(*) >= 100;
+SELECT DISTINCT activity FROM event_log GROUP BY activity HAVING COUNT(*) >= 100;
+SELECT activity FROM event_log GROUP BY activity HAVING COUNT(*) >= 100;
+SELECT activity FROM event_log WHERE activity LIKE '%processing declarations%' AND cost >= 100 GROUP BY activity HAVING COUNT(*) >= 100;

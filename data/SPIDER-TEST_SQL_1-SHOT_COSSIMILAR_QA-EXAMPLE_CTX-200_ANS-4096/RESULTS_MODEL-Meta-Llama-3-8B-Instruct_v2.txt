@@ -1,0 +1,75 @@
+SELECT * FROM event_log WHERE cost IS NOT NULL;
+SELECT * FROM event_log WHERE cost IS NOT NULL;
+SELECT * FROM event_log WHERE cost IS NOT NULL;
+SELECT * FROM event_log WHERE cost IS NOT NULL;
+SELECT * FROM event_log WHERE cost IS NOT NULL;
+SELECT * FROM event_log WHERE cost IS NOT NULL;
+SELECT activity, COUNT(*) as count FROM event_log WHERE timestamp BETWEEN '2017-01-01' AND '2018-01-01' GROUP BY activity ORDER BY count DESC LIMIT 10;
+SELECT activity, COUNT(*) as frequency FROM event_log GROUP BY activity ORDER BY frequency DESC;
+SELECT DISTINCT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) <= 20;
+SELECT idcase, COUNT(*) as event_count FROM event_log GROUP BY idcase ORDER BY event_count DESC LIMIT 10;
+SELECT idcase, COUNT(*) as total_activities FROM event_log GROUP BY idcase ORDER BY total_activities DESC LIMIT 10;
+SELECT idcase FROM event_log GROUP BY idcase ORDER BY COUNT(*) DESC LIMIT 10;
+Based on the provided database schema and SQL examples, the answer to the second question is: /* Retrieve the codes for the longest declarations in terms of number of actions performed. */ SELECT idcase FROM event_log GROUP BY idcase ORDER BY COUNT(*) DESC LIMIT 1; This SQL query groups the event_log table by the idcase column, counts the number of actions performed for each idcase, and then orders the results in descending order. The LIMIT 1 clause is used to retrieve only the idcase with the most actions performed.
+SELECT idcase, COUNT(*) as num_activities FROM event_log GROUP BY idcase ORDER BY num_activities DESC LIMIT 10;
+SELECT idcase, COUNT(*) as activity_count FROM event_log GROUP BY idcase ORDER BY activity_count DESC LIMIT 10;
+SELECT idcase, COUNT(*) as num_activities FROM event_log GROUP BY idcase ORDER BY num_activities DESC LIMIT 10;
+SELECT idcase FROM event_log GROUP BY idcase ORDER BY COUNT(*) DESC LIMIT 10;
+SELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN ( SELECT COUNT(*) FROM event_log GROUP BY idcase ORDER BY COUNT(*) DESC LIMIT 10 ) ORDER BY idcase DESC;
+SELECT idcase, COUNT(*) as event_count FROM event_log GROUP BY idcase ORDER BY event_count DESC LIMIT 10;
+SELECT idcase, COUNT(*) as num_actions FROM event_log GROUP BY idcase ORDER BY num_actions DESC LIMIT 10;
+SELECT idcase, COUNT(*) AS num_actions FROM event_log GROUP BY idcase HAVING COUNT(*) >= 100 ORDER BY num_actions DESC;
+SELECT COUNT(DISTINCT resource) FROM event_log GROUP BY idcase HAVING COUNT(*) > 3;
+SELECT idcase, SUM(cost) AS total_cost FROM event_log GROUP BY idcase ORDER BY total_cost DESC LIMIT 1;
+SELECT DISTINCT idcase FROM event_log WHERE resource = 'Sara' AND resource = 'Thomas'
+SELECT activity FROM event_log GROUP BY activity HAVING COUNT(*) > 5;
+SELECT activity FROM event_log GROUP BY activity HAVING COUNT(*) > 5;
+SELECT COUNT(*) FROM event_log WHERE idcase = '56300';
+SELECT idcase FROM event_log WHERE resource = 'Thomas' UNION SELECT idcase FROM event_log WHERE resource = 'Diana' UNION SELECT idcase FROM event_log WHERE resource = 'Sara'
+SELECT idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource;
+SELECT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5
+SELECT resource, idcase, COUNT(*) as count FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5
+SELECT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5;
+SELECT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5;
+SELECT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5
+SELECT resource, idcase, COUNT(*) as num_events FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5;
+SELECT resource, COUNT(*) FROM event_log GROUP BY resource HAVING COUNT(*) > 5;
+SELECT resource, idcase, COUNT(*) FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5
+SELECT resource, COUNT(*) as count FROM event_log WHERE idcase IS NOT NULL GROUP BY resource HAVING COUNT(*) > 5;
+SELECT activity FROM event_log WHERE idcase = 'declaration 49464' EXCEPT SELECT activity FROM event_log WHERE idcase = 'declaration 76667'
+SELECT idcase, resource, COUNT(*) AS num_null_cost_events FROM event_log WHERE cost IS NULL GROUP BY idcase, resource
+SELECT idcase, resource, COUNT(*) AS num_null_cost_events FROM event_log WHERE cost IS NULL GROUP BY idcase, resource
+SELECT idcase, resource, COUNT(*) AS null_cost_events FROM event_log WHERE cost IS NULL GROUP BY idcase, resource
+SELECT idcase, resource, COUNT(*) AS num_null_cost_events FROM event_log WHERE cost IS NULL GROUP BY idcase, resource
+SELECT resource, idcase, COUNT(*) AS num_null_cost_events FROM event_log WHERE cost IS NULL GROUP BY resource, idcase
+SELECT idcase, COUNT(*) AS num_null_cost_events FROM event_log WHERE cost IS NULL GROUP BY idcase
+SELECT resource, COUNT(*) AS num_interventions_without_cost FROM event_log WHERE cost IS NULL GROUP BY resource
+SELECT resource, COUNT(*) AS num_interventions FROM event_log WHERE cost IS NULL GROUP BY resource
+SELECT e1.idcase, e1.activity FROM event_log AS e1 WHERE e1.activity = 'End trip' AND e1.timestamp NOT LIKE '%2017-12-12%'
+SELECT strftime('%s', p.timestamp) - strftime('%s', s.timestamp) as 'Time spent for approval' FROM event_log p INNER JOIN event_log s ON p.idcase = s.idcase WHERE p.activity = 'Approved by supervisor' AND s.activity = 'Declaration submitted'
+SELECT idcase, COUNT(*) AS num_actions FROM event_log GROUP BY idcase
+SELECT count(*), idcase FROM event_log GROUP BY idcase
+SELECT resource FROM event_log GROUP BY resource HAVING COUNT(idcase) > 200
+Based on the provided database schema and SQL examples, the answer to the second question would be: What different actions are registered with a name that contains the word 'declaration' in each travel declaration? SELECT DISTINCT activity FROM event_log WHERE activity LIKE '%declaration%'; This SQL query will return all the different actions (activities) that have a name that contains the word 'declaration' in each travel declaration. The LIKE operator is used with the wildcard character '%' to match any characters before and after the word 'declaration'. The DISTINCT keyword is used to return only unique activities.
+SELECT COUNT(DISTINCT idcase) FROM event_log WHERE cost IS NULL
+SELECT COUNT(*) FROM event_log WHERE cost IS NULL
+To answer the question "How many declarations did the costs not reported to the university?", we need to find the number of declarations where the cost is NULL. This can be achieved by using the following SQL query: SELECT COUNT(*) FROM event_log WHERE cost IS NULL This query will return the number of declarations where the cost was not reported to the university.
+The correct SQL query to answer the question "Select all events whose cost is not null" is: SELECT * FROM event_log WHERE cost IS NOT NULL This query uses the `IS NOT NULL` condition to filter the rows in the `event_log` table where the `cost` column is not null. The `*` symbol is used to select all columns from the table.
+The correct SQL query to answer the question "Select all tuples where the event cost is not null" is: SELECT * FROM event_log WHERE cost IS NOT NULL This query uses the `IS NOT NULL` condition to filter the rows in the `event_log` table where the `cost` column is not null. The `*` symbol is used to select all columns (`id`, `activity`, `timestamp`, `resource`, `cost`, `idcase`) from the table.
+SELECT * FROM event_log WHERE cost IS NOT NULL
+SELECT * FROM event_log WHERE cost IS NOT NULL
+SELECT * FROM event_log WHERE cost IS NOT NULL
+SELECT id, activity, resource, cost FROM event_log WHERE cost IS NOT NULL;
+SELECT idcase, COUNT(*) as num_actions, SUM(cost) as total_cost FROM event_log GROUP BY idcase ORDER BY num_actions DESC LIMIT 5;
+SELECT idcase, SUM(TIMESTAMPDIFF(SECOND, MIN(timestamp), MAX(timestamp))) AS duration FROM event_log WHERE idcase IN ( SELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) >= 20 ORDER BY COUNT(*) DESC LIMIT 5 ) GROUP BY idcase ORDER BY duration DESC;
+SELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) <= 10
+SELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) <= 10
+SELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) <= 10
+SELECT COUNT(*) FROM event_log WHERE activity = 'permit' AND timestamp = (SELECT MIN(timestamp) FROM event_log WHERE idcase = event_log.idcase)
+SELECT id FROM event_log WHERE id IN ( SELECT id FROM event_log GROUP BY idcase ORDER BY timestamp DESC LIMIT 1 ) ORDER BY timestamp DESC;
+SELECT activity FROM event_log GROUP BY activity HAVING COUNT(*) >= 100 ORDER BY COUNT(*) DESC;
+SELECT activity, COUNT(*) FROM event_log GROUP BY activity HAVING COUNT(*) >= 100;
+SELECT activity, COUNT(*) FROM event_log GROUP BY activity HAVING COUNT(*) >= 100;
+SELECT activity FROM event_log GROUP BY activity HAVING COUNT(*) >= 100;
+SELECT activity, COUNT(*) FROM event_log WHERE activity LIKE '%processing declarations%' GROUP BY activity HAVING COUNT(*) >= 100;
+WITH RankedEvents AS ( SELECT id, activity, timestamp, LEAD(timestamp) OVER (PARTITION BY idcase ORDER BY timestamp) AS next_timestamp, idcase FROM event_log ) SELECT idcase, coalesce((strftime('%s', next_timestamp) - strftime('%s', timestamp)), 0) as duration FROM RankedEvents WHERE activity IN ('Employee requests permit', 'Permit approved by administration') ORDER BY idcase;

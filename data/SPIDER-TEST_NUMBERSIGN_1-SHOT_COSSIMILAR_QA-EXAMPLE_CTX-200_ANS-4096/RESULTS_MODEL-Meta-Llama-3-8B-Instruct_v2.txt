@@ -1,0 +1,75 @@
+Here is the complete SQLite SQL query: SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL
+Here is the complete SQLite SQL query: SELECT * FROM event_log WHERE cost IS NOT NULL;
+SELECT * FROM event_log WHERE cost IS NOT NULL
+Here is the complete SQLite SQL query: SELECT COUNT(*) FROM event_log WHERE cost IS NOT NULL;
+SELECT * FROM event_log WHERE cost IS NOT NULL OR cost!= '';
+Here is the complete SQLite SQL query: SELECT * FROM event_log WHERE cost IS NOT NULL;
+SELECT activity, COUNT(*) AS frequency FROM event_log WHERE timestamp BETWEEN '2017-01-01' AND '2018-01-01' GROUP BY activity ORDER BY frequency DESC;
+SELECT activity, COUNT(*) as frequency FROM event_log GROUP BY activity ORDER BY frequency DESC;
+Here is the complete SQLite SQL query: SELECT DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5
+SELECT idcase FROM event_log GROUP BY idcase ORDER BY COUNT(*) DESC LIMIT 10;
+SELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log GROUP BY idcase ORDER BY COUNT(*) DESC LIMIT 10) ORDER BY COUNT(*) DESC;
+SELECT idcase FROM event_log GROUP BY idcase ORDER BY COUNT(*) DESC LIMIT 10;
+SELECT idcase FROM event_log GROUP BY idcase ORDER BY COUNT(*) DESC LIMIT 10;
+SELECT COUNT(DISTINCT idcase), activity FROM event_log GROUP BY activity
+SELECT idcase FROM event_log GROUP BY idcase ORDER BY COUNT(*) DESC LIMIT 10;
+SELECT idcase FROM event_log GROUP BY idcase ORDER BY COUNT(*) DESC LIMIT 10;
+SELECT idcase FROM event_log GROUP BY idcase ORDER BY COUNT(*) DESC LIMIT 10;
+SELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log GROUP BY idcase ORDER BY COUNT(*) DESC LIMIT 10) ORDER BY idcase DESC;
+SELECT idcase FROM event_log GROUP BY idcase ORDER BY COUNT(*) DESC LIMIT 10;
+SELECT idcase FROM event_log GROUP BY idcase ORDER BY COUNT(*) DESC LIMIT 10;
+SELECT idcase, COUNT(*) AS count FROM event_log GROUP BY idcase HAVING COUNT(*) >= 100 ORDER BY count DESC;
+SELECT COUNT(*), resource FROM (SELECT resource, MIN(timestamp) FROM event_log GROUP BY idcase) GROUP BY resource;
+SELECT COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log WHERE cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log WHERE cost IS NOT NULL);
+SELECT DISTINCT idcase FROM event_log WHERE resource = 'Thomas' AND resource = 'Sara';
+SELECT activity FROM event_log GROUP BY activity HAVING COUNT(*) > 5;
+SELECT activity FROM event_log GROUP BY activity HAVING COUNT(*) > 5
+SELECT COUNT(*) FROM event_log WHERE idcase = 56300;
+SELECT idcase FROM event_log WHERE resource IN ('Thomas', 'Diana', 'Sara');
+SELECT idcase, resource, COUNT(*) FROM event_log WHERE id IS NULL OR cost IS NULL GROUP BY idcase, resource;
+SELECT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5;
+SELECT resource, COUNT(*) AS count FROM event_log WHERE idcase IS NOT NULL GROUP BY resource, idcase HAVING COUNT(*) > 5;
+SELECT resource FROM event_log WHERE idcase IN (SELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(DISTINCT resource) > 5)
+SELECT resource FROM event_log WHERE idcase IN (SELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(DISTINCT resource) > 5)
+SELECT resource FROM event_log WHERE idcase IN (SELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) > 5) GROUP BY resource HAVING COUNT(*) > 5;
+SELECT resource, count(*) FROM event_log WHERE idcase IS NOT NULL GROUP BY resource HAVING count(*) > 5;
+SELECT resource, COUNT(*) FROM event_log GROUP BY resource HAVING COUNT(*) > 5
+SELECT resource, COUNT(*) FROM event_log GROUP BY resource HAVING COUNT(*) > 5
+SELECT resource, COUNT(*) FROM event_log WHERE idcase IN (SELECT id FROM event_log GROUP BY idcase HAVING COUNT(*) > 5) GROUP BY resource;
+SELECT activity FROM event_log WHERE idcase = 'declaration 49464' EXCEPT SELECT activity FROM event_log WHERE idcase = 'declaration 76667';
+SELECT COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL)
+SELECT COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log WHERE cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log WHERE cost IS NOT NULL);
+SELECT COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL)
+SELECT COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log WHERE cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log WHERE cost IS NOT NULL)
+SELECT resource, COUNT(*) AS num_null_cost_events FROM event_log WHERE cost IS NULL GROUP BY resource, idcase
+SELECT idcase, COUNT(*) AS num_null_cost_events FROM event_log WHERE cost IS NULL GROUP BY idcase;
+SELECT COUNT(DISTINCT resource) FROM event_log WHERE cost IS NULL;
+SELECT COUNT(*) AS num_interventions FROM event_log WHERE cost IS NULL GROUP BY resource;
+SELECT idcase FROM event_log WHERE activity = 'End trip' AND timestamp NOT BETWEEN '2017-12-12 00:00:00' AND '2017-12-12 23:59:59';
+SELECT strftime('%s', p.timestamp) - strftime('%s', s.timestamp) as 'Time spent for approval' FROM event_log p INNER JOIN (SELECT MIN(timestamp) as start_time, idcase FROM event_log GROUP by idcase) e ON e.idcase = p.idcase INNER JOIN event_log s ON s.idcase = p.idcase AND s.activity = 'Approved by supervisor' WHERE p.activity = 'Start of declaration'
+SELECT idcase, COUNT(*) AS num_actions FROM event_log GROUP BY idcase;
+SELECT COUNT(*), resource FROM event_log WHERE activity = 'intervention' GROUP BY resource;
+SELECT resource FROM event_log GROUP BY resource HAVING COUNT(DISTINCT idcase) > 200
+SELECT activity FROM event_log WHERE activity LIKE '%declaration%' GROUP BY activity;
+SELECT COUNT(DISTINCT idcase) FROM event_log WHERE cost IS NULL
+SELECT COUNT(DISTINCT idcase) FROM event_log WHERE cost IS NULL
+SELECT COUNT(*) FROM event_log WHERE cost IS NULL
+SELECT * FROM event_log WHERE cost IS NOT NULL
+SELECT * FROM event_log WHERE cost IS NOT NULL
+SELECT * FROM event_log WHERE cost IS NOT NULL
+SELECT * FROM event_log WHERE cost IS NOT NULL
+SELECT * FROM event_log WHERE cost IS NOT NULL
+SELECT id, activity, resource, cost FROM event_log WHERE cost IS NOT NULL AND cost BETWEEN 50 AND 400;
+SELECT idcase, COUNT(*) as num_interventions, SUM(cost) as total_cost FROM event_log GROUP BY idcase ORDER BY num_interventions DESC LIMIT 5;
+SELECT idcase, SUM(cost) AS total_cost FROM event_log WHERE idcase IN ( SELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) >= 20 ORDER BY COUNT(*) DESC LIMIT 5 ) GROUP BY idcase ORDER BY total_cost DESC;
+Here is the complete SQLite SQL query: SELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) <= 10 ORDER BY COUNT(*) DESC;
+SELECT idcase FROM event_log GROUP BY idcase HAVING COUNT(*) <= 10
+SELECT idcase, count(*) FROM event_log GROUP BY idcase HAVING count(*) <= 10
+SELECT COUNT(*) FROM event_log WHERE activity = 'permit' AND idcase IN (SELECT idcase FROM event_log WHERE activity ='start');
+SELECT id FROM event_log WHERE id IN ( SELECT id FROM event_log GROUP BY id ORDER BY timestamp DESC LIMIT -1 OFFSET ROWID(id) - 10 ) ORDER BY id;
+SELECT activity FROM event_log GROUP BY activity HAVING COUNT(*) >= 100 ORDER BY COUNT(*) DESC;
+SELECT activity, COUNT(*) FROM event_log GROUP BY activity HAVING COUNT(*) >= 100;
+SELECT activity FROM event_log GROUP BY activity HAVING COUNT(*) >= 100;
+SELECT activity FROM event_log GROUP BY activity HAVING COUNT(*) >= 100;
+SELECT activity FROM event_log GROUP BY activity HAVING COUNT(*) >= 100;
+WITH RankedEvents AS (SELECT id, activity, timestamp, LEAD(timestamp) OVER (PARTITION BY idcase ORDER BY timestamp) AS next_timestamp, idcase FROM event_log) SELECT idcase, coalesce((strftime('%s', next_timestamp) - strftime('%s', timestamp)),0) as duration FROM RankedEvents WHERE activity IN ('Employee requested permit', 'Permit approved by administration')
