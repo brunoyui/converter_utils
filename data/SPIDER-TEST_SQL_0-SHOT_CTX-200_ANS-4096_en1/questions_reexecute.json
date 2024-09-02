@@ -23,390 +23,516 @@
     "questions": [
         {
             "prompt_tokens": 0,
-            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Which events have a cost other than null? */\nSELECT ",
-            "response": "* FROM event_log WHERE cost IS NOT NULL",
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Return the name of the activities and how many times they occur in the event log, ordering the list in descending order by the number of activity occurrences. */\nSELECT ",
+            "response": "activity, COUNT(*) FROM event_log GROUP BY activity ORDER BY COUNT (*) DESC",
             "n_examples": 0,
             "db_id": "event_log",
-            "id": "13_0",
-            "index": 108
+            "id": "16_0",
+            "index": 128
         },
         {
             "prompt_tokens": 0,
-            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Which events have a non-null cost? */\nSELECT ",
-            "response": "* FROM event_log WHERE cost IS NOT NULL",
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What are the activities of this business process and how many times were they performed? Order your response in relation to the frequency of performing the activities, from the most frequent to the least frequent */\nSELECT ",
+            "response": "activity, COUNT(*) FROM event_log GROUP BY activity ORDER BY COUNT (*) DESC",
             "n_examples": 0,
             "db_id": "event_log",
-            "id": "13_1",
-            "index": 109
+            "id": "16_1",
+            "index": 129
         },
         {
             "prompt_tokens": 0,
-            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: List the events that have a non-null cost. */\nSELECT ",
-            "response": "* FROM event_log WHERE cost IS NOT NULL",
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Retrieve the name of the activities and the number of times they were performed. Order the answer according to the frequency of performing the activities, from the most frequent to the least frequent. */\nSELECT ",
+            "response": "activity, COUNT(*) FROM event_log GROUP BY activity ORDER BY COUNT (*) DESC",
             "n_examples": 0,
             "db_id": "event_log",
-            "id": "13_2",
-            "index": 110
+            "id": "16_2",
+            "index": 130
         },
         {
             "prompt_tokens": 0,
-            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What are the events in which the cost is not null? */\nSELECT ",
-            "response": "* FROM event_log WHERE cost IS NOT NULL",
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Report the values of attributes of the events associated with the 'declaration 143598' case, which occurred between the dates '2017-01-10' and '2017-02-01'. */\nSELECT ",
+            "response": "* FROM event_log WHERE idcase = 'declaration 143598' AND timestamp BETWEEN '2017-01-10' AND '2017-02-01'",
             "n_examples": 0,
             "db_id": "event_log",
-            "id": "13_3",
-            "index": 111
+            "id": "26_2",
+            "index": 208
         },
         {
             "prompt_tokens": 0,
-            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: List the events that have a cost other than null. */\nSELECT ",
-            "response": "* FROM event_log WHERE cost IS NOT NULL",
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Report the values of the attributes of the events that occurred between the dates '2017-01-10' and '2017-02-01' and are associated with the 'declaration 143598' case */\nSELECT ",
+            "response": "* FROM event_log WHERE idcase = 'declaration 143598' AND timestamp BETWEEN '2017-01-10' AND '2017-02-01'",
             "n_examples": 0,
             "db_id": "event_log",
-            "id": "13_4",
-            "index": 112
+            "id": "26_3",
+            "index": 209
         },
         {
             "prompt_tokens": 0,
-            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Report all occurrences in the processing of declarations where costs were communicated to the university */\nSELECT ",
-            "response": "* FROM event_log WHERE cost IS NOT NULL",
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: List all events, and their corresponding attribute values, that are associated with the 'permit' activity. */\nSELECT ",
+            "response": "* FROM event_log WHERE activity LIKE '%Permit%'",
             "n_examples": 0,
             "db_id": "event_log",
-            "id": "13_9",
-            "index": 117
+            "id": "63_1",
+            "index": 509
         },
         {
             "prompt_tokens": 0,
-            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What activities does the university perform most during the processing of declarations? */\nSELECT ",
-            "response": "activity FROM event_log GROUP BY activity HAVING COUNT(*) = (SELECT COUNT(*) FROM event_log GROUP BY activity ORDER BY COUNT(*) DESC LIMIT 1)",
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What are the events, and their corresponding attribute values, referring to the 'permit' activity? */\nSELECT ",
+            "response": "* FROM event_log WHERE activity LIKE '%Permit%'",
             "n_examples": 0,
             "db_id": "event_log",
-            "id": "15_4",
-            "index": 127
+            "id": "63_5",
+            "index": 513
         },
         {
             "prompt_tokens": 0,
-            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What are the 10 cases with the greatest number of activities? List the cases in descending order. */\nSELECT ",
-            "response": "idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT Count(*) FROM event_log GROUP BY idcase ORDER BY Count(*) Desc LIMIT 10) order by idcase DESC",
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Show the attribute values of the events associated with the 'permit' activity. */\nSELECT ",
+            "response": "* FROM event_log WHERE activity LIKE '%Permit%'",
             "n_examples": 0,
             "db_id": "event_log",
-            "id": "28_1",
-            "index": 223
+            "id": "63_8",
+            "index": 516
         },
         {
             "prompt_tokens": 0,
-            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What are the ten declarations that involved the greatest number of actions? I need the results sorted in descending order according to the code of each declaration */\nSELECT ",
-            "response": "idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT Count(*) FROM event_log GROUP BY idcase ORDER BY Count(*) Desc LIMIT 10) order by idcase DESC",
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Which activities were performed more than once before 01/10/2017, and how many times were they performed? */\nSELECT ",
+            "response": "COUNT(*), activity FROM event_log WHERE timestamp < '2017-01-10' GROUP BY activity HAVING COUNT(*) > 1",
             "n_examples": 0,
             "db_id": "event_log",
-            "id": "28_9",
-            "index": 231
+            "id": "79_0",
+            "index": 647
         },
         {
             "prompt_tokens": 0,
-            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What are the ten declarations, in descending code order, with the greatest number of actions? */\nSELECT ",
-            "response": "idcase FROM event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT Count(*) FROM event_log GROUP BY idcase ORDER BY Count(*) Desc LIMIT 10) order by idcase DESC",
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Report the activities that were performed more than once before 01/10/2017, and how many times they were performed. */\nSELECT ",
+            "response": "COUNT(*), activity FROM event_log WHERE timestamp < '2017-01-10' GROUP BY activity HAVING COUNT(*) > 1",
             "n_examples": 0,
             "db_id": "event_log",
-            "id": "28_10",
-            "index": 232
+            "id": "79_1",
+            "index": 648
         },
         {
             "prompt_tokens": 0,
-            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What are the 10 cases with the greatest number of events? List the cases in descending order. */\nSELECT ",
-            "response": "idcase from event_log GROUP BY idcase HAVING COUNT(*) IN (SELECT COUNT(*) FROM event_log GROUP BY idcase ORDER BY COUNT(*) Desc LIMIT 10) ORDER BY idcase DESC",
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: List the activities that were performed more than once before 01/10/2017 and how many times they were performed. */\nSELECT ",
+            "response": "COUNT(*), activity FROM event_log WHERE timestamp < '2017-01-10' GROUP BY activity HAVING COUNT(*) > 1",
             "n_examples": 0,
             "db_id": "event_log",
-            "id": "29_2",
-            "index": 235
+            "id": "79_2",
+            "index": 649
         },
         {
             "prompt_tokens": 0,
-            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Make a list of employees who have acted at least 100 times, organized in descending order by the number of actions performed. */\nSELECT ",
-            "response": "resource FROM event_log GROUP BY resource HAVING count(*) >= 100 ORDER BY count(*) DESC",
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Retrieve activities that were performed more than once before 01/10/2017, and how many times they were performed. */\nSELECT ",
+            "response": "COUNT(*), activity FROM event_log WHERE timestamp < '2017-01-10' GROUP BY activity HAVING COUNT(*) > 1",
             "n_examples": 0,
             "db_id": "event_log",
-            "id": "31_2",
-            "index": 251
+            "id": "79_3",
+            "index": 650
         },
         {
             "prompt_tokens": 0,
-            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What are the declarations in which both Sara and Thomas participated together? */\nSELECT ",
-            "response": "idcase FROM event_log WHERE resource = 'Sara' INTERSECT SELECT idcase FROM event_log WHERE resource = 'Thomas'",
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: If any activity was performed more than once before 01/10/2017, retrieve the name of the activity and how many times it was performed. */\nSELECT ",
+            "response": "COUNT(*), activity FROM event_log WHERE timestamp < '2017-01-10' GROUP BY activity HAVING COUNT(*) > 1",
             "n_examples": 0,
             "db_id": "event_log",
-            "id": "65_5",
-            "index": 531
+            "id": "79_4",
+            "index": 651
         },
         {
             "prompt_tokens": 0,
-            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Report how many actions happened in declaration 56300. */\nSELECT ",
-            "response": "count(*) FROM event_log WHERE idcase = 'declaration 56300'",
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: If any activity was performed more than once before 01/10/2017, list the name of the activity and how many times it was performed. */\nSELECT ",
+            "response": "COUNT(*), activity FROM event_log WHERE timestamp < '2017-01-10' GROUP BY activity HAVING COUNT(*) > 1",
             "n_examples": 0,
             "db_id": "event_log",
-            "id": "78_6",
-            "index": 646
+            "id": "79_5",
+            "index": 652
         },
         {
             "prompt_tokens": 0,
-            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: List all resources that acted more than five times in the same case. */\nSELECT ",
-            "response": "DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5",
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: If any activity was performed more than once before 01/10/2017, report the name of the activity and how many times it was performed. */\nSELECT ",
+            "response": "COUNT(*), activity FROM event_log WHERE timestamp < '2017-01-10' GROUP BY activity HAVING COUNT(*) > 1",
             "n_examples": 0,
             "db_id": "event_log",
-            "id": "90_1",
-            "index": 735
+            "id": "79_6",
+            "index": 653
         },
         {
             "prompt_tokens": 0,
-            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Which resources acted more than five times in the same case? */\nSELECT ",
-            "response": "DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5",
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Report the activities that were performed more than once before 01/10/2017, and the number of times they were performed. */\nSELECT ",
+            "response": "COUNT(*), activity FROM event_log WHERE timestamp < '2017-01-10' GROUP BY activity HAVING COUNT(*) > 1",
             "n_examples": 0,
             "db_id": "event_log",
-            "id": "90_2",
-            "index": 736
+            "id": "79_7",
+            "index": 654
         },
         {
             "prompt_tokens": 0,
-            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: If a resource acted more than five times in the same case, list the name of the resource. */\nSELECT ",
-            "response": "DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5",
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: List the activities that were performed more than once before 01/10/2017, and the number of times they were performed. */\nSELECT ",
+            "response": "COUNT(*), activity FROM event_log WHERE timestamp < '2017-01-10' GROUP BY activity HAVING COUNT(*) > 1",
             "n_examples": 0,
             "db_id": "event_log",
-            "id": "90_3",
-            "index": 737
+            "id": "79_8",
+            "index": 655
         },
         {
             "prompt_tokens": 0,
-            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: If a resource has acted on more than five events in the same case, list the name of this resource. */\nSELECT ",
-            "response": "DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5",
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What actions were performed to process the declarations, before 01/10/2017, and how many times were they performed? */\nSELECT ",
+            "response": "COUNT(*), activity FROM event_log WHERE timestamp < '2017-01-10' GROUP BY activity HAVING COUNT(*) > 1",
             "n_examples": 0,
             "db_id": "event_log",
-            "id": "90_4",
-            "index": 738
+            "id": "79_9",
+            "index": 656
         },
         {
             "prompt_tokens": 0,
-            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: List the resources that worked on executing more than five events in the same case. */\nSELECT ",
-            "response": "DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5",
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: In how many cases that occurred between 5/1/2017 and 6/1/2017 is each resource associated? */\nSELECT ",
+            "response": "COUNT(DISTINCT idcase), resource FROM event_log WHERE timestamp between '2017-05-01' and '2017-06-01' GROUP BY resource",
             "n_examples": 0,
             "db_id": "event_log",
-            "id": "90_5",
-            "index": 739
+            "id": "83_0",
+            "index": 682
         },
         {
             "prompt_tokens": 0,
-            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What resources were allocated to more than five events in the same case? */\nSELECT ",
-            "response": "DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5",
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Report the number of cases that occurred between 5/1/2017 and 6/1/2017 with which each resource was associated. */\nSELECT ",
+            "response": "COUNT(DISTINCT idcase), resource FROM event_log WHERE timestamp between '2017-05-01' and '2017-06-01' GROUP BY resource",
             "n_examples": 0,
             "db_id": "event_log",
-            "id": "90_6",
-            "index": 740
+            "id": "83_1",
+            "index": 683
         },
         {
             "prompt_tokens": 0,
-            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Which resources acted more than five times on a declaration? */\nSELECT ",
-            "response": "DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5",
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: List the number of cases that occurred between 5/1/2017 and 6/1/2017 with which each resource was associated. */\nSELECT ",
+            "response": "COUNT(DISTINCT idcase), resource FROM event_log WHERE timestamp between '2017-05-01' and '2017-06-01' GROUP BY resource",
             "n_examples": 0,
             "db_id": "event_log",
-            "id": "90_7",
-            "index": 741
+            "id": "83_2",
+            "index": 684
         },
         {
             "prompt_tokens": 0,
-            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Which resources acted more than five times on a single declaration? */\nSELECT ",
-            "response": "DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5",
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Retrieve the number of cases that occurred between 5/1/2017 and 6/1/2017 with which each resource was associated. */\nSELECT ",
+            "response": "COUNT(DISTINCT idcase), resource FROM event_log WHERE timestamp between '2017-05-01' and '2017-06-01' GROUP BY resource",
             "n_examples": 0,
             "db_id": "event_log",
-            "id": "90_8",
-            "index": 742
+            "id": "83_3",
+            "index": 685
         },
         {
             "prompt_tokens": 0,
-            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Which resources have more than 5 actions in a single declaration? */\nSELECT ",
-            "response": "DISTINCT resource FROM event_log GROUP BY resource, idcase HAVING COUNT(*) > 5",
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Calculate the number of cases that occurred between 5/1/2017 and 6/1/2017 with which each resource was associated. */\nSELECT ",
+            "response": "COUNT(DISTINCT idcase), resource FROM event_log WHERE timestamp between '2017-05-01' and '2017-06-01' GROUP BY resource",
             "n_examples": 0,
             "db_id": "event_log",
-            "id": "90_10",
-            "index": 744
+            "id": "83_4",
+            "index": 686
         },
         {
             "prompt_tokens": 0,
-            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: How many null cost events are associated with each resource in each case? */\nSELECT ",
-            "response": "idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource",
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: How many process instances that occurred between 5/1/2017 and 6/1/2017 is each resource associated with? */\nSELECT ",
+            "response": "COUNT(DISTINCT idcase), resource FROM event_log WHERE timestamp between '2017-05-01' and '2017-06-01' GROUP BY resource",
             "n_examples": 0,
             "db_id": "event_log",
-            "id": "102_0",
-            "index": 817
+            "id": "83_5",
+            "index": 687
         },
         {
             "prompt_tokens": 0,
-            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: For each case, how many null cost events are there associated with each resource? */\nSELECT ",
-            "response": "idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource",
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: In how many process instances, performed between 5/1/2017 and 6/1/2017, is each resource associated? */\nSELECT ",
+            "response": "COUNT(DISTINCT idcase), resource FROM event_log WHERE timestamp between '2017-05-01' and '2017-06-01' GROUP BY resource",
             "n_examples": 0,
             "db_id": "event_log",
-            "id": "102_1",
-            "index": 818
+            "id": "83_6",
+            "index": 688
         },
         {
             "prompt_tokens": 0,
-            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: How many null cost events are there for each case, associated with each resource? */\nSELECT ",
-            "response": "idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource",
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: In how many cases, performed between 5/1/2017 and 6/1/2017, is each resource associated? */\nSELECT ",
+            "response": "COUNT(DISTINCT idcase), resource FROM event_log WHERE timestamp between '2017-05-01' and '2017-06-01' GROUP BY resource",
             "n_examples": 0,
             "db_id": "event_log",
-            "id": "102_2",
-            "index": 819
+            "id": "83_7",
+            "index": 689
         },
         {
             "prompt_tokens": 0,
-            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: For each process instance, how many null cost events are there associated with each resource? */\nSELECT ",
-            "response": "idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource",
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: How many declarations processed between 5/1/2017 and 6/1/2017 were each employee allocated? */\nSELECT ",
+            "response": "COUNT(DISTINCT idcase), resource FROM event_log WHERE timestamp between '2017-05-01' and '2017-06-01' GROUP BY resource",
             "n_examples": 0,
             "db_id": "event_log",
-            "id": "102_3",
-            "index": 820
+            "id": "83_8",
+            "index": 690
         },
         {
             "prompt_tokens": 0,
-            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: List how many null cost events are associated with each resource in each of the process instances. */\nSELECT ",
-            "response": "idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource",
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: How many cases, whose event occurred between 5/1/2017 and 6/1/2017, is each resource associated with? */\nSELECT ",
+            "response": "COUNT(DISTINCT idcase), resource FROM event_log WHERE timestamp between '2017-05-01' and '2017-06-01' GROUP BY resource",
             "n_examples": 0,
             "db_id": "event_log",
-            "id": "102_4",
-            "index": 821
+            "id": "84_0",
+            "index": 691
         },
         {
             "prompt_tokens": 0,
-            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Report how many null cost events there are associated with each employee in each of the process instances recorded in the log. */\nSELECT ",
-            "response": "idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource",
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: How many cases was each resource associated with, considering events that occurred between 5/1/2017 and 6/1/2017? */\nSELECT ",
+            "response": "COUNT(DISTINCT idcase), resource FROM event_log WHERE timestamp between '2017-05-01' and '2017-06-01' GROUP BY resource",
             "n_examples": 0,
             "db_id": "event_log",
-            "id": "102_5",
-            "index": 822
+            "id": "84_1",
+            "index": 692
         },
         {
             "prompt_tokens": 0,
-            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Make a report stating how many interventions by each employee did not report costs in the processing of declarations. */\nSELECT ",
-            "response": "idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource",
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: How many declarations, that went through any intervention between 5/01/2017 and 6/01/2017, were each of our employees allocated to? */\nSELECT ",
+            "response": "COUNT(DISTINCT idcase), resource FROM event_log WHERE timestamp between '2017-05-01' and '2017-06-01' GROUP BY resource",
             "n_examples": 0,
             "db_id": "event_log",
-            "id": "102_6",
-            "index": 823
+            "id": "84_2",
+            "index": 693
         },
         {
             "prompt_tokens": 0,
-            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: How many interventions, per employee, did not report costs during the processing of declarations? */\nSELECT ",
-            "response": "idcase, resource, count(*) FROM event_log WHERE cost IS NULL GROUP BY idcase, resource",
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: In which cases was the 'start trip' activity carried out first and in the period from 3/01/2017 to 3/31/2017? */\nSELECT ",
+            "response": "DISTINCT idcase FROM (select idcase, timestamp, activity FROM event_log GROUP BY idcase HAVING strftime('%Y-%m', MIN(timestamp)) = '2017-03') where activity = 'Start trip'",
             "n_examples": 0,
             "db_id": "event_log",
-            "id": "102_7",
-            "index": 824
+            "id": "89_1",
+            "index": 728
         },
         {
             "prompt_tokens": 0,
-            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Which actions indicating the end of a trip were not recorded on the twelfth of December, twenty seventeen? */\nSELECT ",
-            "response": "* from event_log where activity = 'End trip' and strftime('%Y-%m-%d', timestamp) != '2017-12-12'",
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: How many actions has each employee already acted in? */\nSELECT ",
+            "response": "resource, COUNT(*) FROM event_log group by resource",
             "n_examples": 0,
             "db_id": "event_log",
-            "id": "110_6",
-            "index": 883
+            "id": "112_5",
+            "index": 896
         },
         {
             "prompt_tokens": 0,
-            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What was the time spent for a declaration to be approved by the supervisor? */\nSELECT ",
-            "response": "nkedEvents AS (SELECT id, activity, timestamp, LEAD(timestamp) OVER (PARTITION BY idcase ORDER BY timestamp) AS next_timestamp, idcase FROM event_log) SELECT idcase, coalesce((strftime('%s', next_timestamp) - strftime('%s', timestamp)),0) as duration FROM RankedEvents WHERE activity='Declaration approved by supervisor'",
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: How many cases went through the 'end trip' activity between 05/02/2017 and 05/12/2017? */\nSELECT ",
+            "response": "COUNT(DISTINCT idcase) FROM event_log WHERE activity = 'End trip' AND timestamp BETWEEN '2017-05-02' and '2017-05-12'",
             "n_examples": 0,
             "db_id": "event_log",
-            "id": "115_6",
-            "index": 916
+            "id": "119_0",
+            "index": 939
         },
         {
             "prompt_tokens": 0,
-            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: In how many cases do all events have null cost? */\nSELECT ",
-            "response": "COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL)",
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Report the number of process instances that went through the 'end trip' activity between 05/02/2017 and 05/12/2017. */\nSELECT ",
+            "response": "COUNT(DISTINCT idcase) FROM event_log WHERE activity = 'End trip' AND timestamp BETWEEN '2017-05-02' and '2017-05-12'",
             "n_examples": 0,
             "db_id": "event_log",
-            "id": "126_5",
-            "index": 999
+            "id": "119_1",
+            "index": 940
         },
         {
             "prompt_tokens": 0,
-            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: How many declarations did the costs not reported to the university? */\nSELECT ",
-            "response": "COUNT(*) FROM (SELECT DISTINCT idcase FROM event_log where cost IS NULL EXCEPT SELECT DISTINCT idcase FROM event_log where cost IS NOT NULL)",
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: In how many cases did the 'end trip' activity occur considering the time interval of 05/02/2017 and 05/12/2017? */\nSELECT ",
+            "response": "COUNT(DISTINCT idcase) FROM event_log WHERE activity = 'End trip' AND timestamp BETWEEN '2017-05-02' and '2017-05-12'",
             "n_examples": 0,
             "db_id": "event_log",
-            "id": "126_7",
-            "index": 1001
+            "id": "119_4",
+            "index": 943
         },
         {
             "prompt_tokens": 0,
-            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Select all events whose cost is not null. */\nSELECT ",
-            "response": "* FROM event_log WHERE cost IS NOT NULL",
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: How many cases went through the 'end trip' activity considering the time interval of 05/02/2017 and 05/12/2017? */\nSELECT ",
+            "response": "COUNT(DISTINCT idcase) FROM event_log WHERE activity = 'End trip' AND timestamp BETWEEN '2017-05-02' and '2017-05-12'",
             "n_examples": 0,
             "db_id": "event_log",
-            "id": "141_0",
-            "index": 1112
+            "id": "119_5",
+            "index": 944
         },
         {
             "prompt_tokens": 0,
-            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Select all tuples where the event cost is not null. */\nSELECT ",
-            "response": "* FROM event_log WHERE cost IS NOT NULL",
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: How many trips ended between 05/02/2017 and 05/12/2017? */\nSELECT ",
+            "response": "COUNT(DISTINCT idcase) FROM event_log WHERE activity = 'End trip' AND timestamp BETWEEN '2017-05-02' and '2017-05-12'",
             "n_examples": 0,
             "db_id": "event_log",
-            "id": "141_1",
-            "index": 1113
+            "id": "119_6",
+            "index": 945
         },
         {
             "prompt_tokens": 0,
-            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Report all actions carried out during the processing of each declaration, which costs are not null. */\nSELECT ",
-            "response": "* FROM event_log WHERE cost IS NOT NULL",
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: In how many declarations did the end of the trip occur between 05/02/2017 and 05/12/2017? */\nSELECT ",
+            "response": "COUNT(DISTINCT idcase) FROM event_log WHERE activity = 'End trip' AND timestamp BETWEEN '2017-05-02' and '2017-05-12'",
             "n_examples": 0,
             "db_id": "event_log",
-            "id": "141_7",
-            "index": 1119
+            "id": "119_7",
+            "index": 946
         },
         {
             "prompt_tokens": 0,
-            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: In which travel declaration processes were ten or fewer actions performed? */\nSELECT ",
-            "response": "idcase FROM event_log group by idcase having count(*) <= 10",
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What are the cases that went through 'request payment' activities? Report the identifiers of these cases, ordering them increasingly by the number of events per case. */\nSELECT ",
+            "response": "idcase FROM event_log WHERE idcase IN (SELECT DISTINCT idcase FROM event_log WHERE activity = 'Request payment' ) GROUP BY idcase ORDER BY count(*)",
             "n_examples": 0,
             "db_id": "event_log",
-            "id": "160_10",
-            "index": 1315
+            "id": "133_0",
+            "index": 1047
         },
         {
             "prompt_tokens": 0,
-            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Report the activities for which there were one hundred or more occurrences recorded in the log. */\nSELECT ",
-            "response": "activity FROM event_log GROUP BY activity HAVING COUNT (*) >= 100",
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Retrieve the number of times 'start trip' or 'end trip' activities occurred */\nSELECT ",
+            "response": "count(*), activity from event_log where activity = 'Start trip' or activity = 'End trip' GROUP BY activity",
             "n_examples": 0,
             "db_id": "event_log",
-            "id": "186_4",
-            "index": 1551
+            "id": "145_2",
+            "index": 1152
         },
         {
             "prompt_tokens": 0,
-            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: For which activities are one hundred or more occurrences recorded in the event log? */\nSELECT ",
-            "response": "activity FROM event_log GROUP BY activity HAVING COUNT (*) >= 100",
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Retrieve the number of events related to the performance of 'start trip' and 'end trip' activities. */\nSELECT ",
+            "response": "count(*), activity from event_log where activity = 'Start trip' or activity = 'End trip' GROUP BY activity",
             "n_examples": 0,
             "db_id": "event_log",
-            "id": "186_5",
-            "index": 1552
+            "id": "145_3",
+            "index": 1153
         },
         {
             "prompt_tokens": 0,
-            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What were the actions for which 100 or more occurrences were recorded? */\nSELECT ",
-            "response": "activity FROM event_log GROUP BY activity HAVING COUNT (*) >= 100",
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Select the number of occurrences of the 'start trip' and 'end trip' activities. */\nSELECT ",
+            "response": "count(*), activity from event_log where activity = 'Start trip' or activity = 'End trip' GROUP BY activity",
             "n_examples": 0,
             "db_id": "event_log",
-            "id": "186_6",
-            "index": 1553
+            "id": "145_6",
+            "index": 1156
         },
         {
             "prompt_tokens": 0,
-            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Which of the actions relating to processing declarations have already been carried out 100 or more times? */\nSELECT ",
-            "response": "activity FROM event_log GROUP BY activity HAVING COUNT (*) >= 100",
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What are the five cases that have the most associated events and what is the duration of each of these cases? */\nSELECT ",
+            "response": "strftime('%s', MAX(timestamp)) - strftime('%s', MIN(timestamp)), idcase FROM event_log where idcase in (select idcase from event_log group by idcase having count(*) IN (select count(*) from event_log group by idcase order by count(*) desc limit 5)) group by idcase",
             "n_examples": 0,
             "db_id": "event_log",
-            "id": "186_7",
-            "index": 1554
+            "id": "157_6",
+            "index": 1282
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Considering the subset of cases completed on March 12, 2018, provide a list that associates each activity and in how many cases they appear. */\nSELECT ",
+            "response": "activity, count(DISTINCT idcase) FROM event_log where idcase in (SELECT idcase FROM event_log GROUP BY idcase HAVING strftime('%Y-%m-%d', MAX(timestamp)) = '2018-03-12') group by activity",
+            "n_examples": 0,
+            "db_id": "event_log",
+            "id": "169_2",
+            "index": 1386
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Provide a list including activity and number of cases in which it appears, considering the subset of cases completed on March 12, 2018. */\nSELECT ",
+            "response": "activity, count(DISTINCT idcase) FROM event_log where idcase in (SELECT idcase FROM event_log GROUP BY idcase HAVING strftime('%Y-%m-%d', MAX(timestamp)) = '2018-03-12') group by activity",
+            "n_examples": 0,
+            "db_id": "event_log",
+            "id": "169_3",
+            "index": 1387
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Relate the activities to the number of cases in which they appear, considering only the cases whose last event ended on March 12, 2018. */\nSELECT ",
+            "response": "activity, count(DISTINCT idcase) FROM event_log where idcase in (SELECT idcase FROM event_log GROUP BY idcase HAVING strftime('%Y-%m-%d', MAX(timestamp)) = '2018-03-12') group by activity",
+            "n_examples": 0,
+            "db_id": "event_log",
+            "id": "169_4",
+            "index": 1388
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Extract from the subset of cases completed on March 12, 2018, information about activities that occurred and the number of cases in which they occurred. */\nSELECT ",
+            "response": "activity, count(DISTINCT idcase) FROM event_log where idcase in (SELECT idcase FROM event_log GROUP BY idcase HAVING strftime('%Y-%m-%d', MAX(timestamp)) = '2018-03-12') group by activity",
+            "n_examples": 0,
+            "db_id": "event_log",
+            "id": "169_5",
+            "index": 1389
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Each of the possible processing actions was performed on how many declarations processed and ended on March 12, 2018? */\nSELECT ",
+            "response": "activity, count(DISTINCT idcase) FROM event_log where idcase in (SELECT idcase FROM event_log GROUP BY idcase HAVING strftime('%Y-%m-%d', MAX(timestamp)) = '2018-03-12') group by activity",
+            "n_examples": 0,
+            "db_id": "event_log",
+            "id": "169_6",
+            "index": 1390
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: I need to know in how many declarations performed and ended on March 12, 2018 each of the different processing actions were performed. */\nSELECT ",
+            "response": "activity, count(DISTINCT idcase) FROM event_log where idcase in (SELECT idcase FROM event_log GROUP BY idcase HAVING strftime('%Y-%m-%d', MAX(timestamp)) = '2018-03-12') group by activity",
+            "n_examples": 0,
+            "db_id": "event_log",
+            "id": "169_7",
+            "index": 1391
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What is the number of associations between each resource and the performance of the 'declaration saved by employee' activity? Sort the answer by resource. */\nSELECT ",
+            "response": "count(*), resource From event_log where activity = 'Declaration saved by employee' group by resource order by resource",
+            "n_examples": 0,
+            "db_id": "event_log",
+            "id": "173_7",
+            "index": 1431
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: What activities did the Thomas resource carry out between 1/1/2018 and 7/31/2018? */\nSELECT ",
+            "response": "DISTINCT activity from event_log where resource = 'Thomas' and timestamp between '2018-01-01' and '2018-07-01'",
+            "n_examples": 0,
+            "db_id": "event_log",
+            "id": "179_4",
+            "index": 1483
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: In which cases was the 'declaration rejected by supervisor' activity performed? Provide the answer in date order relative to the start of the case. */\nSELECT ",
+            "response": "DISTINCT e1.idcase FROM event_log e1 inner join (SELECT idcase, MIN(timestamp) as timestamp FROM event_log GROUP BY idcase order by timestamp) AS e2 on e1.idcase=e2.idcase WHERE e1.activity = 'Declaration rejected by supervisor' ORDER by e2.timestamp",
+            "n_examples": 0,
+            "db_id": "event_log",
+            "id": "180_2",
+            "index": 1490
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: In which cases was the 'declaration rejected by supervisor' activity performed? Provide the answer in ascending temporal order relative to the beginning of the case. */\nSELECT ",
+            "response": "DISTINCT e1.idcase FROM event_log e1 inner join (SELECT idcase, MIN(timestamp) as timestamp FROM event_log GROUP BY idcase order by timestamp) AS e2 on e1.idcase=e2.idcase WHERE e1.activity = 'Declaration rejected by supervisor' ORDER by e2.timestamp",
+            "n_examples": 0,
+            "db_id": "event_log",
+            "id": "180_3",
+            "index": 1491
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: In which process instances was the 'declaration rejected by supervisor' activity performed? Provide the answer in date order relative to the start of the process. */\nSELECT ",
+            "response": "DISTINCT e1.idcase FROM event_log e1 inner join (SELECT idcase, MIN(timestamp) as timestamp FROM event_log GROUP BY idcase order by timestamp) AS e2 on e1.idcase=e2.idcase WHERE e1.activity = 'Declaration rejected by supervisor' ORDER by e2.timestamp",
+            "n_examples": 0,
+            "db_id": "event_log",
+            "id": "180_4",
+            "index": 1492
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: In which process instances was the 'declaration rejected by supervisor' activity performed? Provide the answer in ascending temporal order relative to the start of the process. */\nSELECT ",
+            "response": "DISTINCT e1.idcase FROM event_log e1 inner join (SELECT idcase, MIN(timestamp) as timestamp FROM event_log GROUP BY idcase order by timestamp) AS e2 on e1.idcase=e2.idcase WHERE e1.activity = 'Declaration rejected by supervisor' ORDER by e2.timestamp",
+            "n_examples": 0,
+            "db_id": "event_log",
+            "id": "180_5",
+            "index": 1493
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Present, in ascending temporal order relative to the beginning of the case, the list of cases in which the 'declaration rejected by supervisor' activity was performed. */\nSELECT ",
+            "response": "DISTINCT e1.idcase FROM event_log e1 inner join (SELECT idcase, MIN(timestamp) as timestamp FROM event_log GROUP BY idcase order by timestamp) AS e2 on e1.idcase=e2.idcase WHERE e1.activity = 'Declaration rejected by supervisor' ORDER by e2.timestamp",
+            "n_examples": 0,
+            "db_id": "event_log",
+            "id": "180_6",
+            "index": 1494
+        },
+        {
+            "prompt_tokens": 0,
+            "prompt": "/* Given the following database schema: */\nCREATE TABLE \"event_log\" (\n\t\"id\"\tint,\n\t\"activity\"\tTEXT COLLATE NOCASE,\n\t\"timestamp\"\tDATETIME,\n\t\"resource\"\tTEXT COLLATE NOCASE,\n\t\"cost\"\tNUMERIC,\n\t\"idcase\"\tTEXT COLLATE NOCASE,\n\tPRIMARY KEY(\"id\")\n)\n\n/* Answer the following: Present, in ascending temporal order relative to the beginning of the process, the list of process instances in which the 'declaration rejected by supervisor' activity was performed. */\nSELECT ",
+            "response": "DISTINCT e1.idcase FROM event_log e1 inner join (SELECT idcase, MIN(timestamp) as timestamp FROM event_log GROUP BY idcase order by timestamp) AS e2 on e1.idcase=e2.idcase WHERE e1.activity = 'Declaration rejected by supervisor' ORDER by e2.timestamp",
+            "n_examples": 0,
+            "db_id": "event_log",
+            "id": "180_7",
+            "index": 1495
         }
     ]
 }
