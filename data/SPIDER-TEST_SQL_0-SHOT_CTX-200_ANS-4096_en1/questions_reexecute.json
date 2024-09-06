@@ -1,25 +1,6 @@
 {
-    "args": {
-        "data_type": "spider",
-        "split": "test",
-        "k_shot": 0,
-        "prompt_repr": "SQL",
-        "example_type": null,
-        "selector_type": null,
-        "max_seq_len": 4096,
-        "max_ans_len": 200,
-        "tokenizer": "gpt-3.5-turbo",
-        "scope_factor": 100,
-        "pre_test_result": null
-    },
-    "costs": {
-        "prompt_tokens_per_prompt": 0.0,
-        "gpt-4": 13.24,
-        "gpt-3.5-turbo": 0.662,
-        "text-davinci-003": 6.62,
-        "example_quality": 1,
-        "pattern_similarity": 1
-    },
+    "args": {},
+    "costs": {},
     "questions": [
         {
             "prompt_tokens": 0,
