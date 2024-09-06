@@ -1,0 +1,57 @@
+SELECT "activity", COUNT("activity") AS "occurrences" FROM "event_log" GROUP BY "activity" ORDER BY "occurrences" DESC;
+SELECT activity, COUNT(activity) AS frequency FROM event_log GROUP BY activity ORDER BY frequency DESC;
+SELECT activity, COUNT(activity) AS frequency FROM event_log GROUP BY activity ORDER BY frequency DESC;
+SELECT "activity", "timestamp", "resource", "cost" FROM event_log WHERE "idcase" = 'declaration 143598' AND "timestamp" BETWEEN '2017-01-10' AND '2017-02-01';
+SELECT "id", "activity", "timestamp", "resource", "cost", "idcase" FROM event_log WHERE timestamp BETWEEN '2017-01-10' AND '2017-02-01' AND idcase = 'declaration 143598';
+SELECT * FROM event_log WHERE activity = 'permit';
+SELECT "activity", "timestamp", "resource", "cost", "idcase" FROM event_log WHERE "activity" = 'permit';
+SELECT * FROM event_log WHERE activity = 'permit';
+SELECT activity, COUNT(activity) AS num_times_performed FROM event_log WHERE timestamp < '2017-01-10' GROUP BY activity HAVING COUNT(activity) > 1;
+SELECT activity, COUNT(activity) AS num_times_performed FROM event_log WHERE timestamp < '2017-01-10' GROUP BY activity HAVING COUNT(activity) > 1;
+SELECT activity, COUNT(activity) AS num_times_performed FROM event_log WHERE timestamp < '2017-01-10' GROUP BY activity HAVING COUNT(activity) > 1;
+SELECT activity, COUNT(activity) as num_times_performed FROM event_log WHERE timestamp < '2017-01-10' GROUP BY activity HAVING COUNT(activity) > 1;
+SELECT activity, COUNT(activity) as num_times_performed FROM event_log WHERE timestamp < '2017-01-10' GROUP BY activity HAVING COUNT(activity) > 1;
+SELECT activity, COUNT(activity) AS num_times_performed FROM event_log WHERE timestamp < '2017-01-10' GROUP BY activity HAVING COUNT(activity) > 1;
+SELECT activity, COUNT(activity) AS num_times_performed FROM event_log WHERE timestamp < '2017-01-10' GROUP BY activity HAVING COUNT(activity) > 1;
+SELECT activity, COUNT(activity) AS num_times_performed FROM event_log WHERE timestamp < '2017-01-10' GROUP BY activity HAVING COUNT(activity) > 1;
+SELECT activity, COUNT(activity) AS num_times_performed FROM event_log WHERE timestamp < '2017-01-10' GROUP BY activity HAVING COUNT(activity) > 1;
+SELECT activity, COUNT(*) AS num_times_performed FROM event_log WHERE timestamp < '2017-01-10' GROUP BY activity;
+SELECT resource, COUNT(DISTINCT idcase) AS cases_associated FROM event_log WHERE timestamp >= '2017-05-01' AND timestamp < '2017-06-01' GROUP BY resource;
+SELECT "resource", COUNT(DISTINCT "idcase") AS "number_of_cases" FROM "event_log" WHERE "timestamp" >= '2017-05-01' AND "timestamp" < '2017-06-01' GROUP BY "resource";
+SELECT "resource", COUNT(DISTINCT "idcase") FROM "event_log" WHERE "timestamp" >= '2017-05-01' AND "timestamp" < '2017-06-01' GROUP BY "resource";
+SELECT resource, COUNT(DISTINCT idcase) AS num_cases FROM event_log WHERE timestamp >= '2017-05-01' AND timestamp < '2017-06-01' GROUP BY resource;
+SELECT "resource", COUNT(DISTINCT "idcase") AS "number_of_cases" FROM "event_log" WHERE "timestamp" >= '2017-05-01' AND "timestamp" < '2017-06-01' GROUP BY "resource"
+SELECT "resource", COUNT(DISTINCT "idcase") FROM "event_log" WHERE "timestamp" >= '2017-05-01' AND "timestamp" < '2017-06-01' GROUP BY "resource"
+SELECT resource, COUNT(DISTINCT idcase) AS process_instances FROM event_log WHERE timestamp BETWEEN '2017-05-01' AND '2017-06-01' GROUP BY resource;
+SELECT resource, COUNT(DISTINCT idcase) AS cases_performed FROM event_log WHERE timestamp BETWEEN '2017-05-01' AND '2017-06-01' GROUP BY resource;
+SELECT resource, COUNT(*) AS num_declarations FROM event_log WHERE timestamp >= '2017-05-01' AND timestamp < '2017-06-01' AND activity = 'declaration processed' GROUP BY resource;
+SELECT "resource", COUNT(DISTINCT "idcase") FROM "event_log" WHERE "timestamp" BETWEEN '2017-05-01' AND '2017-06-01' GROUP BY "resource"
+SELECT "resource", COUNT(DISTINCT "idcase") FROM "event_log" WHERE "timestamp" BETWEEN '2017-05-01' AND '2017-06-01' GROUP BY "resource";
+SELECT COUNT(DISTINCT idcase) AS num_declarations FROM event_log WHERE activity = 'intervention' AND timestamp BETWEEN '2017-05-01' AND '2017-06-01' GROUP BY resource;
+SELECT idcase FROM event_log WHERE activity = 'start trip' AND timestamp BETWEEN '2017-03-01' AND '2017-03-31';
+SELECT "resource", COUNT(DISTINCT "activity") AS "actions_count" FROM "event_log" GROUP BY "resource"
+SELECT COUNT(DISTINCT idcase) FROM event_log WHERE activity = 'end trip' AND timestamp BETWEEN '2017-05-02' AND '2017-05-12';
+SELECT COUNT(DISTINCT idcase) FROM event_log WHERE activity = 'end trip' AND timestamp BETWEEN '2017-05-02' AND '2017-05-12';
+SELECT COUNT(DISTINCT idcase) FROM event_log WHERE activity = 'end trip' AND timestamp BETWEEN '2017-05-02' AND '2017-05-12';
+SELECT COUNT(DISTINCT idcase) FROM event_log WHERE activity = 'end trip' AND timestamp BETWEEN '2017-05-02' AND '2017-05-12';
+SELECT COUNT(*) FROM event_log WHERE activity = 'trip ended' AND timestamp BETWEEN '2017-05-02' AND '2017-05-12';
+SELECT COUNT(*) FROM event_log WHERE activity = 'end of trip' AND timestamp BETWEEN '2017-05-02' AND '2017-05-12';
+SELECT "idcase", COUNT(*) AS num_events FROM event_log WHERE activity = 'request payment' GROUP BY "idcase" ORDER BY num_events;
+SELECT COUNT(*) FROM event_log WHERE activity = 'start trip' OR activity = 'end trip';
+SELECT activity, COUNT(*) as num_events FROM event_log WHERE activity = 'start trip' OR activity = 'end trip' GROUP BY activity;
+SELECT activity, COUNT(*) FROM event_log WHERE activity = 'start trip' OR activity = 'end trip' GROUP BY activity;
+SELECT "idcase", COUNT(*) AS num_events, (MAX("timestamp") - MIN("timestamp")) AS duration FROM event_log GROUP BY "idcase" ORDER BY num_events DESC LIMIT 5;
+SELECT activity, COUNT(DISTINCT idcase) AS num_cases FROM event_log WHERE timestamp >= '2018-03-12 00:00:00' AND timestamp < '2018-03-13 00:00:00' GROUP BY activity;
+SELECT activity, COUNT(DISTINCT idcase) AS num_cases FROM event_log WHERE timestamp >= '2018-03-12 00:00:00' AND timestamp < '2018-03-13 00:00:00' GROUP BY activity;
+SELECT activity, COUNT(DISTINCT idcase) AS num_cases FROM event_log WHERE timestamp = (SELECT MAX(timestamp) FROM event_log WHERE idcase = event_log.idcase AND date(timestamp) = '2018-03-12') GROUP BY activity;
+SELECT activity, COUNT(DISTINCT idcase) AS num_cases FROM event_log WHERE timestamp >= '2018-03-12 00:00:00' AND timestamp < '2018-03-13 00:00:00' GROUP BY activity;
+SELECT activity, COUNT(*) FROM event_log WHERE timestamp >= '2018-03-12 00:00:00' AND timestamp < '2018-03-13 00:00:00' GROUP BY activity;
+SELECT activity, COUNT(*) as total_declarations FROM event_log WHERE timestamp >= '2018-03-12 00:00:00' AND timestamp <= '2018-03-12 23:59:59' GROUP BY activity;
+SELECT "resource", COUNT(*) AS "association_count" FROM "event_log" WHERE "activity" = 'declaration saved by employee' GROUP BY "resource" ORDER BY "resource";
+SELECT DISTINCT activity FROM event_log WHERE resource = 'Thomas' AND timestamp BETWEEN '2018-01-01' AND '2018-07-31';
+SELECT "timestamp", "idcase" FROM event_log WHERE "activity" = 'declaration rejected by supervisor' ORDER BY "timestamp" ASC;
+SELECT "idcase", "timestamp" FROM event_log WHERE activity = 'declaration rejected by supervisor' ORDER BY "timestamp" ASC;
+SELECT DISTINCT idcase FROM event_log WHERE activity = 'declaration rejected by supervisor' ORDER BY timestamp;
+SELECT DISTINCT idcase FROM event_log WHERE activity = 'declaration rejected by supervisor' ORDER BY timestamp;
+SELECT "idcase" FROM "event_log" WHERE "activity" = 'declaration rejected by supervisor' ORDER BY "timestamp" ASC;
+SELECT DISTINCT idcase FROM event_log WHERE activity = 'declaration rejected by supervisor' ORDER BY timestamp;
