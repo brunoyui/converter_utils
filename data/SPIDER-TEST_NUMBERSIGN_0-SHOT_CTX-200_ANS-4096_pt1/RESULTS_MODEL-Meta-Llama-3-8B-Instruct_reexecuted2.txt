@@ -1,0 +1,32 @@
+SELECT activity, COUNT(*) AS frequency FROM event_log GROUP BY activity ORDER BY frequency DESC;
+SELECT activity, COUNT(*) as frequency FROM event_log GROUP BY activity ORDER BY frequency DESC;
+SELECT activity, COUNT(*) AS frequency FROM event_log GROUP BY activity ORDER BY frequency DESC;
+SELECT idcase FROM event_log WHERE activity = 'início da viagem' AND strftime('%Y', timestamp) = '2017' AND strftime('%m', timestamp) = '03';
+SELECT * FROM event_log WHERE activity = 'início da viagem' AND timestamp BETWEEN '2017-03-01 00:00:00' AND '2017-03-31 23:59:59' ORDER BY timestamp ASC LIMIT 1;
+SELECT idcase FROM event_log WHERE activity = 'início da viagem' AND strftime('%Y-%m', timestamp) = '2017-03';
+SELECT idcase FROM event_log WHERE activity = 'início da viagem' AND timestamp LIKE '2017-03-%' AND id = (SELECT MIN(id) FROM event_log WHERE activity = 'início da viagem' AND timestamp LIKE '2017-03-%');
+SELECT id FROM event_log WHERE activity = 'início da viagem' AND timestamp >= '2017-01-03' AND timestamp <= '2017-03-31' AND id NOT IN (SELECT id FROM event_log WHERE timestamp < '2017-01-03' OR timestamp > '2017-03-31')
+SELECT id FROM event_log WHERE activity = 'início da viagem' AND timestamp BETWEEN '2017-03-01 00:00:00' AND '2017-03-31 23:59:59';
+SELECT idcase, COUNT(DISTINCT activity) AS num_actions FROM event_log GROUP BY idcase;
+SELECT timestamp FROM event_log WHERE activity = 'início da viagem' AND resource LIKE '%s';
+SELECT * FROM event_log WHERE activity = 'início da viagem' AND resource LIKE '%s';
+SELECT timestamp FROM event_log WHERE activity = 'início da viagem' AND resource LIKE '%s';
+SELECT timestamp FROM event_log WHERE activity = 'início da viagem' AND resource LIKE '%s';
+SELECT timestamp FROM event_log WHERE activity = 'início da viagem' AND resource LIKE '%s';
+SELECT timestamp FROM event_log WHERE activity = 'início da viagem' AND resource LIKE '%s';
+SELECT timestamp FROM event_log WHERE activity = 'início da viagem' AND resource LIKE '%s';
+SELECT timestamp FROM event_log WHERE activity = 'início da viagem' AND resource LIKE '%s';
+SELECT resource, COUNT(*) AS quantidade_eventos FROM event_log WHERE activity = 'declaração aprovada pela administração' GROUP BY resource ORDER BY quantidade_eventos DESC LIMIT 1;
+SELECT idcase, COUNT(*) as num_events, SUM(cost) as total_cost FROM event_log GROUP BY idcase ORDER BY num_events DESC LIMIT 5;
+SELECT activity, COUNT(*) AS quantidade_casos FROM event_log WHERE timestamp BETWEEN '2018-03-12 00:00:00' AND '2018-03-12 23:59:59' AND idcase IN (SELECT id FROM event_log WHERE timestamp BETWEEN '2018-03-12 00:00:00' AND '2018-03-12 23:59:59' AND cost IS NOT NULL) GROUP BY activity;
+SELECT activity, COUNT(*) AS quantidade_casos FROM event_log WHERE timestamp BETWEEN '2018-03-01 00:00:00' AND '2018-03-12 23:59:59' AND idcase IN (SELECT id FROM event_log WHERE activity = 'finalizado') GROUP BY activity;
+SELECT activity, COUNT(idcase) AS quantidade_casos FROM event_log WHERE timestamp <= '2018-03-12 23:59:59' AND activity IS NOT NULL GROUP BY activity;
+SELECT activity, COUNT(*) AS quantidade_casos FROM event_log WHERE timestamp BETWEEN '2018-03-12 00:00:00' AND '2018-03-12 23:59:59' AND idcase IN (SELECT id FROM event_log WHERE timestamp BETWEEN '2018-01-01 00:00:00' AND '2018-03-12 23:59:59' AND status = 'finalizado')
+SELECT activity, COUNT(CASE WHEN timestamp LIKE '2018-03-12%' AND idcase = 'processada' THEN 1 ELSE NULL END) AS processed, COUNT(CASE WHEN timestamp LIKE '2018-03-12%' AND idcase = 'finalizada' THEN 1 ELSE NULL END) AS finalized FROM event_log WHERE timestamp LIKE '2018-03-12%' GROUP BY activity;
+SELECT activity, COUNT(CASE WHEN activity = 'declared' AND timestamp >= '2018-03-12 00:00:00' AND timestamp < '2018-03-13 00:00:00' THEN 1 ELSE NULL END) AS declared_executed, COUNT(CASE WHEN activity = 'declared' AND timestamp >= '2018-03-12 00:00:00' AND timestamp < '2018-03-13 00:00:00' THEN 1 ELSE NULL END) AS declared_finalized, COUNT(CASE WHEN activity = 'executed' AND timestamp >= '2018-03-12 00:00:00' AND timestamp < '2018-03-13 00:00:00' THEN 1 ELSE NULL END) AS executed_executed, COUNT(CASE WHEN activity = 'executed' AND timestamp >= '2018-03-12 00:00:00' AND timestamp < '2018-03-13 00:00:00' THEN 1 ELSE NULL END) AS executed_finalized FROM event_log WHERE timestamp >= '2018-03-12 00:00:00' AND timestamp < '2018-03-13 00:00:00';
+SELECT * FROM event_log WHERE activity = 'declaração rejeitada pelo supervisor' ORDER BY timestamp;
+SELECT * FROM event_log WHERE activity = 'declaração rejeitada pelo supervisor' ORDER BY timestamp ASC;
+SELECT idcase, timestamp FROM event_log WHERE activity = 'declaração rejeitada pelo supervisor' ORDER BY timestamp;
+SELECT idcase FROM event_log WHERE activity = 'declaração rejeitada pelo supervisor' ORDER BY timestamp ASC;
+SELECT idcase FROM event_log WHERE activity = 'declaração rejeitada pelo supervisor' ORDER BY timestamp ASC;
+SELECT * FROM event_log WHERE activity = 'declaração rejeitada pelo supervisor' ORDER BY timestamp ASC;
